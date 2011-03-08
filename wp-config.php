@@ -19,13 +19,13 @@
 define('DB_NAME', 'db9645_mdo');
 
 /** MySQL database username */
-define('DB_USER', 'root');
+define('DB_USER', 'db9645');
 
 /** MySQL database password */
-define('DB_PASSWORD', '');
+define('DB_PASSWORD', 'QR4BbPpgcRQI0vZErJWe');
 
 /** MySQL hostname */
-define('DB_HOST', '127.0.0.1');
+define('DB_HOST', 'internal-db.s9645.gridserver.com');
 
 /** Database Charset to use in creating database tables. */
 define('DB_CHARSET', 'utf8');
