@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: WP Tweet Button
-Version: 2.0.2
+Version: 2.0.3.3
 Plugin URI: http://0xtc.com/plugins/wp-tweet-button
 Description: The WordPress implementation of the official Twitter Tweet Button.
 Contributors: 0xtc
@@ -25,7 +25,7 @@ Domain Path: /lang
 #	wp_tweet_button
 	(string:html)
 	Use this hook to manipulate the generated button html code.
-	
+
 #	wp_tweet_button_options
 	(Array)
 	Use this hook to register new options at runtime.
@@ -33,14 +33,18 @@ Domain Path: /lang
 #	wp_tweet_button_shortenerdata
 	(Array)
 	Use this hook together with the wp_tweet_button_options hook to add new shorteners to the configuration.
-
 */
 
 class wpTweetButton {
 	var $optionsname = 'wp_tweet_button';
 	var $txtdom = 'wp-tweet-button';
 	var $readyState = false;
+	var $excerptState = false;
 	var $postid;
+	/**
+	* The following are default settings for the plugin's configuration.
+	* Most of these settings can be accessed from the plugin's settings page.
+	*/
 	var $options = array(
 		'tw_hook_prio'=> '75',
 		'tw_debug'=> '',
@@ -77,6 +81,7 @@ class wpTweetButton {
 		'tw_style'=> '',
 		'tw_style_c'=> '',
 		'tw_count'=> 'horizontal',
+		'tw_nostyle_feed'=> '',
 		'tw_force_manual'=> '',
 		'tw_display_single'=> '1',
 		'tw_display_archive'=> '1',
@@ -90,6 +95,7 @@ class wpTweetButton {
 		'tw_bwdata_attr'=> '',
 		'tw_use_rel_me'=> '',
 		'tw_add_rel_shortlink'=> '',
+		'tw_no_https_shortlinks'=> '1',
 		'tw_post_type_exclude'=>'',
 		'tw_config_ver'=>'',
 		'tw_auto_tweet_via'=>'',
@@ -100,6 +106,10 @@ class wpTweetButton {
 		'tw_auto_tweet_strip'=>'stext',
 		'tw_script_infooter'=>'0'
 		);
+	/**
+	* These are settings from the list above that have boolean values (true or false / 1 or 0) 
+	* It is used for cleanup and validation actions.
+	*/
 	var $boolops = array(
 		'tw_debug',
 		'tw_script_infooter',
@@ -119,8 +129,17 @@ class wpTweetButton {
 		'tw_bwdata_attr',
 		'tw_url_samecount',
 		'tw_auto_tweet_pages',
-		'tw_auto_tweet_posts'
+		'tw_auto_tweet_posts',
+		'tw_no_https_shortlinks',
+		'tw_nostyle_feed'
 		);
+	/**
+	* These are TinyArro.ws domains. 
+	* Due to javascript ristrictions there is currently no method to automatically add
+	* TinyArro.ws domains to a tweet button dialog. 
+	* Although TinyArro.ws is not supported we're declaring them here in the hope of one day
+	* being able to use them.
+	*/
 	var $tinyarrow_hosts = array(
 		'xn--ogi.ws'=>'&#x27A8;.ws',
 		'xn--vgi.ws'=>'&#x27AF;.ws',
@@ -137,7 +156,10 @@ class wpTweetButton {
 		'xn--l3h.ws'=>'&#x2601;.ws',
 		'ta.gd '=>'ta.gd'
 		);
-
+	/**
+	* The following array is used to extract data about shorteners and 
+	* their configuration.
+	*/
 	var $shortenerdata = array(
 		'none' => array(
 			'label'=>'None',
@@ -255,8 +277,16 @@ class wpTweetButton {
 			)
 		)
 	);
+
+	/**
+	* Auto-tweet provider URL.
+	*/
+	
 	var $wptbsrv = 'http://wptbsrv.0xtc.com/a/';
 
+	/**
+	* This function is used during development to output debug data.
+	*/
 	function decho ($var_name,$thingie){
 		if ($this->tw_get_option('tw_debug') != '1') return false;
 		echo '<!-- '.$var_name.' = ';
@@ -268,14 +298,23 @@ class wpTweetButton {
 		echo ' -->'."\r\n";
 	}
 
+	/**
+	* This function isn't actually used but is left here for historical reasons. Yeah, that's it...historical reasons.
+	*/
 	function init() {
 		$this->tw_readoptions();
 	}
 
+	/**
+	* Commits options to database.
+	*/
 	function tw_writeoptions(){
 		update_option($this->optionsname, $this->options);
 	}
 
+	/**
+	* Validate and write settings.
+	*/
 	function tw_updateoptions() {
 		if( isset($_POST['tw_where']) ) {
 			$new_options = $_POST;
@@ -295,6 +334,9 @@ class wpTweetButton {
 		return false;
 	}
 	
+	/**
+	* Validate and read configuration into class.
+	*/
 	function tw_readoptions() {
 		$values = $this->options;
 		$twOptions = get_option($this->optionsname);
@@ -325,14 +367,23 @@ class wpTweetButton {
 		return $values;
 	}
 
+	/**
+	* This function reads individual settings 
+	*/
 	function tw_get_option($optionname){
 		return $this->options[$optionname];
 	}
 
+	/**
+	* This function sets individual settings 
+	*/
 	function tw_set_option($optionname=null, $value=null){
 		$this->options[$optionname]=$value;
 	}
 
+	/**
+	* Clear cached shortURLs if requested. 
+	*/
 	function tw_flush_cached_shortlinks(){
 		if ($_POST['tw_flush_cached_shortlinks']=='1'){
 			$allposts = get_posts('numberposts=-1&post_type=post&post_status=any');
@@ -345,6 +396,9 @@ class wpTweetButton {
 		}
 	}
 	
+	/**
+	* Clear page cache if requested 
+	*/
 	function tw_flush_cache(){
 		$msg = '';
 		if ($_POST['tw_flush_cache']=='1'){
@@ -359,6 +413,9 @@ class wpTweetButton {
 		return false;
 	}
 
+	/**
+	* Find the author's twitter name from various settings. 
+	*/
 	function tw_get_twitter_name(){
 		$viauser=false;
 		if(is_int($this->postid)) {
@@ -378,12 +435,17 @@ class wpTweetButton {
 		return $viauser;
 	}
 
+	/**
+	* This function decides the format of the tweet text based on preferences and limitations.
+	*/
 	function tw_get_text($entitydecode=false){
+		global $post;
 		if(is_int($this->postid)) {
 			$post = get_post($this->postid);
 		} else {
-			global $post;
+			$this->postid = $post->ID;
 		}
+		
 		if (get_post_meta($post->ID, '_twitterrelated_custom_text', true)){
 			if ($entitydecode){
 				$button_data_text =  html_entity_decode($this->tw_preptext(get_post_meta($post->ID, '_twitterrelated_custom_text', true)));
@@ -400,6 +462,9 @@ class wpTweetButton {
 		return $button_data_text;
 	}
 	
+	/**
+	* Applies formatting and transformations to texts. 
+	*/	
 	function tw_preptext($text){
 		if(is_int($this->postid)) {
 			$post = get_post($this->postid);
@@ -414,37 +479,68 @@ class wpTweetButton {
 		return $tmptxt;
 	}
 
+	/**
+	* Adds relational tag "me" to header. 
+	*/
 	function tw_add_rel_me(){
 		echo '<link rel="me" href="http://twitter.com/'.$this->tw_get_twitter_name().'" />';
 	}
+	
+	/**
+	* Adds relational tag "shortlink" to header. 
+	*/
 	function tw_add_rel_shortlink(){
 		echo '<link rel="shortlink" href="'.$this->tw_get_short_url().'" />';
 	}
 	
-	function wpTweetButton(){
-		if(is_int($this->postid)) {
-			$post = get_post($this->postid);
-		} else {
-			global $post;
-		}
-		$this->options = $this->tw_readoptions();
-		$this->shortenerdata = apply_filters('wp_tweet_button_shortenerdata', $this->shortenerdata);
-		$this->options = apply_filters('wp_tweet_button_options', $this->options);
-		add_action('future_to_publish',			array(&$this, 'tw_send_auto_tweet'),100,1);
-		if (is_admin()){
+	/**
+	* Used once to hook up actions. 
+	*/
+	function tw_hook_up_actions (){
 			add_action('admin_menu', 			array(&$this, 'tw_options'));
 			add_action('admin_init', 			array(&$this, 'tw_init'));
 			add_action('admin_menu', 			array(&$this, 'tw_tweet_button_post_options_box'));
+
 			add_action('new_to_publish', 		array(&$this, 'tw_post_tweet_button_box_process'));
-			add_action('publish_post', 			array(&$this, 'tw_post_tweet_button_box_process'));
+			add_action('new_to_future', 		array(&$this, 'tw_post_tweet_button_box_process'));
+			add_action('new_to_draft',			array(&$this, 'tw_post_tweet_button_box_process'));
+			add_action('future_to_draft', 		array(&$this, 'tw_post_tweet_button_box_process'));
+			add_action('future_to_future', 		array(&$this, 'tw_post_tweet_button_box_process'));
+			add_action('draft_to_future', 		array(&$this, 'tw_post_tweet_button_box_process'));
+			add_action('draft_to_draft', 		array(&$this, 'tw_post_tweet_button_box_process'));
+			add_action('draft_to_publish', 		array(&$this, 'tw_post_tweet_button_box_process'));
+			add_action('pending_to_publish', 	array(&$this, 'tw_post_tweet_button_box_process'));
+
+			add_action('publish_post', 			array(&$this, 'tw_post_tweet_button_box_process'));			
+			add_action('publish_page', 			array(&$this, 'tw_post_tweet_button_box_process'));
 
 			add_action('publish_post',			array(&$this, 'tw_send_auto_tweet'),100,1);
 			add_action('new_to_publish',		array(&$this, 'tw_send_auto_tweet'),100,1);
 			add_action('draft_to_publish',		array(&$this, 'tw_send_auto_tweet'),100,1);
 			add_action('pending_to_publish',	array(&$this, 'tw_send_auto_tweet'),100,1);
 
-			add_action('profile_update', 		array(&$this, 'tw_account_cleanup'));
-
+			add_action('profile_update', 		array(&$this, 'tw_account_cleanup'));	
+	}
+	
+	/**
+	* The function that runs the show.
+	*/
+	function wpTweetButton(){
+/*
+		if(is_int($this->postid)) {
+			$post = get_post($this->postid);
+		} else {
+*/
+//			global $post;
+	//		$this->postid = $post->ID;
+/*		}
+*/
+		$this->options = $this->tw_readoptions();
+		$this->shortenerdata = apply_filters('wp_tweet_button_shortenerdata', $this->shortenerdata);
+		$this->options = apply_filters('wp_tweet_button_options', $this->options);
+		add_action('future_to_publish',			array(&$this, 'tw_send_auto_tweet'),100,1);
+		if (is_admin()){
+			$this->tw_hook_up_actions();
 			$uri=null;
 			if($this->tw_updateoptions()){
 				$uri='&op1=1';
@@ -462,7 +558,6 @@ class wpTweetButton {
 				$t3 = filter_input(INPUT_GET, 't3', FILTER_SANITIZE_STRING);
 				$oauth = filter_input(INPUT_GET, 'oauth', FILTER_SANITIZE_STRING);
 			} else {
-				// for hosts that refuse to upgrade to php5 (This is less secure)
 				$t1 = $_GET['t1'];
 				$t2 = $_GET['t2'];
 				$t3 = $_GET['t3'];
@@ -499,7 +594,10 @@ class wpTweetButton {
 		}
 		add_filter('the_title', array(&$this,'tw_set_placement_ready'), 9);
 		add_filter('the_content', array(&$this, 'tw_update'),$this->tw_get_option('tw_hook_prio'));
-		add_filter('get_the_excerpt', array(&$this, 'tw_remove_filter'), 9);
+		add_filter('get_the_excerpt', array(&$this,'tw_enter_excerpt'), 1);
+		add_filter('get_the_excerpt', array(&$this,'tw_exit_excerpt'), 9999);
+		// add_filter('get_the_excerpt', array(&$this, 'tw_remove_filter'), 9);
+		// ----------------------
 		if ($this->tw_get_option('tw_display_excerpt') == '1') add_filter('the_excerpt', array(&$this, 'tw_update'), $this->tw_get_option('tw_hook_prio'));
 		add_action('init', array(&$this, 'tw_add_script'));
 		if (function_exists('get_user_meta')){
@@ -511,6 +609,23 @@ class wpTweetButton {
 		}
 	}
 
+	/**
+	* This is called if a post is in excerpt mode.  It sets $this->excerptState to
+	* true, so we can test for it later.
+	*/
+	function tw_enter_excerpt($the_excerpt) {
+		$this->excerptState = true;
+		return $the_excerpt;
+	}
+	
+	function tw_exit_excerpt($the_excerpt) {
+		$this->excerptState = false;
+		return $the_excerpt;
+	}
+	
+	/**
+	* This writes a twitter username to the user's settings.
+	*/
 	function tw_account_cleanup($user_id) {
 		$twitter_username = $_POST['twitter'];
 		$twitter_username =  $this->tw_sanitize_username($twitter_username);
@@ -522,22 +637,35 @@ class wpTweetButton {
 	}
 
 	
+	/**
+	* This function sets the readyState when the title is displayed.
+	* This prevents that the tweet button isn't rendered in the header area.
+	*/
 	function tw_set_placement_ready($title){
 		$this->readyState=true;
 		return $title;
 	}
 
+	/**
+	* Deprecated function that removed content filter and added kit again at a later time 
+	*/
 	function tw_remove_filter($content) {
 		remove_action('the_content', array(&$this, 'tw_update'),$this->tw_get_option('tw_hook_prio'));
 		add_filter('the_content', array(&$this, 'tw_add_content_filter'),$this->tw_get_option('tw_hook_prio'));
 		return $content;
 	}
 
+	/**
+	* Deprecated function that added content filter
+	*/
 	function tw_add_content_filter ($content){
 		add_filter('the_content', array(&$this, 'tw_update'),$this->tw_get_option('tw_hook_prio'));
 		return $content;
 	}
 
+	/**
+	* Function returns a list of hashtags (#one #two #three) based on post tags.
+	*/
 	function tw_get_hash_tags(){
 		if(is_int($this->postid)) {
 			$post = get_post($this->postid);
@@ -554,6 +682,9 @@ class wpTweetButton {
 		return trim(str_replace('-','',$textsuff));
 	}
 
+	/**
+	* Function returns a list of category hash tags (#one #two #three) based on post categories.
+	*/
 	function tw_get_hash_cats(){
 		if(is_int($this->postid)) {
 			$post = get_post($this->postid);
@@ -570,6 +701,9 @@ class wpTweetButton {
 		return trim(str_replace('-','',$textsuff));
 	}
 
+	/**
+	* Universal function for gettings the URL of a post.
+	*/
 	function tw_get_the_url($bwdata=false){
 		$shortener = $this->tw_get_option('tw_url_shortener');
 		if ($shortener != 'none' && $shortener != 'awesm' && $shortener != ''){
@@ -580,6 +714,9 @@ class wpTweetButton {
 		return $url;
 	}
 
+	/**
+	* Function returns the post's relationship with a twitter account.
+	*/
 	function tw_get_related_text($urenc=false){
 		if(is_int($this->postid)) {
 			$post = get_post($this->postid);
@@ -600,11 +737,15 @@ class wpTweetButton {
 		return $text;
 	}
 	
+	/**
+	* Function returns attributes for HTML5 based buttons
+	*/
 	function tw_build_options_data() {
 		if(is_int($this->postid)) {
 			$post = get_post($this->postid);
 		} else {
 			global $post;
+			$this->postid = $post->ID;
 		}
 		$textprefix = null;
 		$button_data_via=null;
@@ -643,11 +784,15 @@ class wpTweetButton {
 		return $anchordata;	
 	}
 	
+	/**
+	* Function returns url parameters for legacy buttons
+	*/
 	function tw_build_options($bwdata=false) {
 		if(is_int($this->postid)) {
 			$post = get_post($this->postid);
 		} else {
 			global $post;
+			$this->postid = $post->ID;
 		}
 		$textprefix =null;
 		if ($bwdata==true && !is_feed()){return false;}
@@ -673,6 +818,9 @@ class wpTweetButton {
 		return $button;
 	}
 
+	/**
+	* Function is an HTTP tool for requesting HTML.
+	*/
 	function tw_nav_browse($url, $use_POST_method = false, $POST_data = null) {
 		if(function_exists('wp_remote_request') && function_exists('wp_remote_retrieve_response_code') && function_exists('wp_remote_retrieve_body') && $use_POST_method == 'GET') {
 			if($use_POST_method == 'POST') {
@@ -714,21 +862,31 @@ class wpTweetButton {
 		return $source;
 	}
 
+	/**
+	* Function returns the "long" url for a post.
+	*/
 	//	hook: wp_tweet_button_long_url
 	function tw_get_long_url($addtrack=false) {
+		global $my_transposh_plugin;
+	
 		if(is_int($this->postid)) {
 			$post = get_post($this->postid);
 		} else {
 			global $post;
 		}
-
 		$perms=null;
 		if (empty($post->post_title)) {
 			$perms= 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
 		} else {
 			$perms = trim(get_permalink($post->ID));
 		}
-		if ($addtrack && $this->tw_get_option('tw_ga_code') && $this->tw_get_option('tw_enable_ga_code')==1) {
+		
+		if (is_object($my_transposh_plugin)){
+			if ($my_transposh_plugin->target_language) {
+				$perms= transposh_utils::rewrite_url_lang_param($perms, $my_transposh_plugin->home_url, $my_transposh_plugin->enable_permalinks_rewrite, $my_transposh_plugin->target_language, $my_transposh_plugin->edit_mode);
+			}
+		}
+			if ($addtrack && $this->tw_get_option('tw_ga_code') && $this->tw_get_option('tw_enable_ga_code')==1) {
 			if (strstr($perms,'?')){$prestr='&';} else {$prestr='?';}
 			$tmptxt= str_replace('?', '', $this->tw_get_option('tw_ga_code'));
 			$tmptxt= str_replace('+', '', $tmptxt);
@@ -738,30 +896,36 @@ class wpTweetButton {
 			$tmptxt= str_replace('%20', '', $tmptxt);
 			$perms = $perms . $prestr . $tmptxt;
 		}
+		
 		$perms = apply_filters('wp_tweet_button_long_url', $perms);
 		if (strstr($perms,admin_url())){return false;}
 
 		return $perms;
 	}
 
+	/**
+	* Function strips www. prefix from URLs.
+	*/
 	function tw_strip_www($content){
 		$str = str_replace('http://www.','http://',$content);
 		$str = str_replace('https://www.','https://',$str);
 		return $str;
 	}
 	
+	/**
+	* Function returns the "short" url for a post (or not...).
+	*/
 	// hook: wp_tweet_button_url
 	function tw_get_short_url() {
-		if(is_int($this->postid)) {
-			$post = get_post($this->postid);
-		} else {
-			global $post;
-		}
+		global $post;
+		$this->postid = $post->ID;
 		$perms = $this->tw_get_long_url(true);
 		if ($perms == false) return false;
+		if (strstr($perms,'https://') && $this->tw_get_option('tw_no_https_shortlinks')=='1') return $perms;
+		if (strstr($perms,'preview=true')) return $perms;
 		$selectedshortener=$this->tw_get_option('tw_url_shortener');
 		if (
-			($post && get_post_status($post->ID) != 'publish') || 
+//			($post && $post->post_status != 'publish') || 
 			($selectedshortener == 'none')) {
 			return $perms;
 		}
@@ -785,15 +949,17 @@ class wpTweetButton {
 			foreach ($paramsarray as $name=>$value){
 				if (is_array($value)){
 					if (isset($value['value'])){
-						$this->shortenerdata[$selectedshortener]['params'][$name]=$this->tw_get_option($value['value']);
+						$tmp1 = $this->shortenerdata[$selectedshortener]['params'][$name]; //=$this->tw_get_option($value['value']);
+						$tmp1 = $this->tw_get_option($value['value']);
 					}
 				} else {
 						$tmp = str_replace('%URL%',urlencode($perms),$this->shortenerdata[$selectedshortener]['params'][$name]);
 						$tmp = str_replace('%RAWURL%',rawurlencode($perms),$tmp);
-						$this->shortenerdata[$selectedshortener]['params'][$name]=$tmp;
+						$tmp1=$tmp;
 				}
-				$paramstr .= $name.'='.$this->shortenerdata[$selectedshortener]['params'][$name].'&';			
+				$paramstr .= $name.'='.$tmp1.'&';
 			}
+
 			$paramstr = substr($paramstr,0, -1);
 			$method = $this->shortenerdata[$selectedshortener]['method'];
 			if ($method=='POST'){
@@ -802,12 +968,13 @@ class wpTweetButton {
 			} else {
 				$request_url = $this->shortenerdata[$selectedshortener]['url'] . '?'.$paramstr;
 			}
+
 			if (($selectedshortener != get_post_meta($post->ID, '_activeshortener',true)) || 
 				(md5($perms) != get_post_meta($post->ID, '_twitterrelated_short_urlHash',true))) {
 				if (!(strstr($request_url,'http://' . $_SERVER['SERVER_NAME'])) && ($request_url != '')){
 					$fetch_url = trim($this->tw_nav_browse($request_url, $method, $POST_data));
 				}
-				if ( !empty( $fetch_url ) && ($fetch_url != $perms) && strstr($fetch_url,'http://')) {
+				if ( !empty( $fetch_url ) && ($fetch_url != $perms) && strstr($fetch_url,'http://') && (!strstr($perms,'preview=true'))) {
 					if (!update_post_meta($post->ID, '_activeshortener', $selectedshortener )) {
 						add_post_meta($post->ID, '_activeshortener', $selectedshortener);
 					}
@@ -818,7 +985,7 @@ class wpTweetButton {
 						add_post_meta($post->ID, '_twitterrelated_short_urlHash', md5($perms));
 					}
 				} else {
-					$fetch_url = $perms;			
+//					$fetch_url = $perms;
 				}
 			} else {
 				$fetch_url = get_post_meta($post->ID, '_twitterrelated_short_url',true);
@@ -832,6 +999,10 @@ class wpTweetButton {
 		return $fetch_url;
 	}
 
+	/**
+	* Function generates a tweet button.
+	* $bwdata can be used to return HTML5 (true) or not (false)
+	*/
 	// Hook : wp_tweet_button
 	function tw_generate_button($bwdata=false) {
 		$data=null;
@@ -850,21 +1021,31 @@ class wpTweetButton {
 			if ($alignment=='left') $alignstr = ';float:left;margin-right:10px;';
 			if ($alignment=='center') $alignstr = ';float:none;margin:0 auto;text-align:center;';
 		}
-		$button = 	'<div class="tw_button" style="' . $this->tw_get_option('tw_style_c') . $alignstr . '">';
-		$button .= 	'<a href="http://twitter.com/share'.$this->tw_build_options($bwdata).'" ' . $data . $relstr . ' class="twitter-share-button" target="_blank" style="width:55px;height:22px;background:transparent url(\''. WP_PLUGIN_URL.'/wp-tweet-button/tweetn.png\') no-repeat  0 0;text-align:left;text-indent:-9999px;display:block;">'.$tw_text.'</a>';
+
+		if ($this->tw_get_option('tw_nostyle_feed') == ''){
+			$StyleStrDiv = ' style="' . $this->tw_get_option('tw_style_c') . $alignstr . '"';
+			$StyleStrBtn = ' style="width:55px;height:22px;background:transparent url(\''. WP_PLUGIN_URL.'/wp-tweet-button/tweetn.png\') no-repeat  0 0;text-align:left;text-indent:-9999px;display:block;"';
+		} else {
+			$StyleStrDiv = '';
+			$StyleStrBtn = '';	
+		}
+
+		$button = 	'<div class="tw_button"'.$StyleStrDiv.'>';
+		$button .= 	'<a href="http://twitter.com/share'.$this->tw_build_options($bwdata).'" class="twitter-share-button" target="_blank" ' . $data . $relstr . $StyleStrBtn.'>'.$tw_text.'</a>';
 		$button .= 	'</div>';
 		$button = apply_filters( 'wp_tweet_button', $button );
 		return $button;
 	}
 	
-	function tw_update($content) {	
-		if(is_int($this->postid)) {
-			$post = get_post($this->postid);
-		} else {
-			global $post;
-		}
+	/**
+	* Function places button in content.
+	*/
+	function tw_update($content) {
+		global $post;
+		$this->postid = $post->ID;
 		if (
 			(!$this->readyState) ||
+			($this->tw_get_option('tw_display_excerpt') == '' && $this->excerptState) ||
 			(get_post_meta($post->ID, '_exclude_tweet_button', true))							||
 			($this->tw_get_option('tw_display_feed') == '' && is_feed())						||
 			(($this->tw_get_option('tw_display_page') == '' && is_page()) && (get_post_meta($post->ID, 'forcetweetbutton', true)== '')) ||
@@ -911,6 +1092,9 @@ class wpTweetButton {
 		return $content;
 	}
 
+	/**
+	* Function returns a tweet button.
+	*/
 	function tweetbutton($post,$bwdata=false) {
 		if (isset($post->ID)){
 			if (get_post_meta($post->ID, '_exclude_tweet_button', true)){
@@ -924,7 +1108,9 @@ class wpTweetButton {
 		}
 	}
 
-	// Put the script for the button in your head or foot
+	/**
+	* Function places twitter script in your header or footer
+	*/
 	function tw_add_script() {
 		if ($this->tw_get_option('tw_url_shortener')=='awesm') {
 			wp_register_script('twitter-widgets','http://tools.awe.sm/tweet-button/files/widgets.js',array(),'1.1',($this->tw_get_option('tw_script_infooter') == '1'));
@@ -937,6 +1123,9 @@ class wpTweetButton {
 		}
 	}
 
+	/**
+	* Function outputs CSS for the settings page
+	*/
 	function tw_drawcss_admin(){
 			?><style type="text/css">
 			#wptweetbutton-mbox-general .green {color: #0A0;}
@@ -967,6 +1156,9 @@ class wpTweetButton {
 			</style><?php
 	}
 
+	/**
+	* Function returns settings page
+	*/
 	function tw_options_page(){
 		if( function_exists( 'add_meta_box' )) {
 			add_meta_box( 'TweetButtonSettings1', 'General settings', array(&$this, 'tw_options_box'), 'wptweetbutton', 'normal');
@@ -992,6 +1184,9 @@ class wpTweetButton {
 		}
 	}
 
+	/**
+	* Function returns a row on the settings page
+	*/
 	function tw_row_head($rh,$lfor=""){
 		return ' 
 					<th class="twhrow" scope="row" valign="top">
@@ -1001,6 +1196,9 @@ class wpTweetButton {
 					</th>';
 	}
 	
+	/**
+	* Function outputs the settings page contents
+	*/
 	function tw_options_box() {
 		$msg['w3'] = __('W3 Total Cache page cache has been cleared',$this->txtdom);
 		$msg['sc'] = __('WP Super Cache cleared',$this->txtdom);
@@ -1334,7 +1532,8 @@ class wpTweetButton {
 								<br style="clear:both" />
 								<input type="checkbox" value="1" name="tw_flush_cached_shortlinks" id="tw_flush_cached_shortlinks" />
 								<label for="tw_flush_cached_shortlinks"><?php _e('Delete all previously saved shortlinks when I save.',$this->txtdom); ?></label><br />
-
+								<input type="checkbox" value="1" <?php if ($this->tw_get_option('tw_no_https_shortlinks') == '1') echo 'checked="checked"'; ?> name="tw_no_https_shortlinks" id="tw_no_https_shortlinks" />
+								<label for="tw_no_https_shortlinks"><?php _e('Do not shrink HTTPS URLs.',$this->txtdom); ?></label><br />
 						</td>
 						<td class="twhdata twhhlp" crowspan="<?php echo ($this->shortenerdata['tinyarrow']['enabled']!='false') ? '7' : '6';?>" valign="top" style="border-top:1px solid #fff;">
 						</td>
@@ -1441,6 +1640,8 @@ class wpTweetButton {
 							<label for="tw_force_manual"><?php _e('Force manual placement.',$this->txtdom); ?></label><br />
 							<input type="checkbox" value="1" <?php if ($this->tw_get_option('tw_script_infooter') == '1') echo 'checked="checked"'; ?> name="tw_script_infooter" id="tw_script_infooter" />
 							<label for="tw_script_infooter"><?php _e('Place script in footer.',$this->txtdom); ?></label><br />
+							<input type="checkbox" value="1" <?php if ($this->tw_get_option('tw_nostyle_feed') == '1') echo 'checked="checked"'; ?> name="tw_nostyle_feed" id="tw_nostyle_feed" />
+							<label for="tw_nostyle_feed"><?php _e('No styles in feeds.',$this->txtdom); ?></label><br />
 							<?php
 									if (function_exists('w3tc_pgcache_flush')) {
 										?>
@@ -1506,14 +1707,25 @@ class wpTweetButton {
 		<?php
 	}
 
+	/**
+	* Function saves per-post options
+	*/
 	function tw_post_tweet_button_box_process($post_ID) {
 		$thepost = get_post($post_ID);
+		$this->postid = $post_ID;
 		if (!empty($_POST)){
 			if ($_POST['tw_do_not_send_auto_tweet'] == '1') {
 				add_post_meta($thepost->ID, '_tw_do_not_send_auto_tweet', 1, TRUE) or update_post_meta($thepost->ID, '_tw_do_not_send_auto_tweet', 1);
 			} elseif ( $_POST['tw_do_not_send_auto_tweet'] == null ) {
 				delete_post_meta($thepost->ID, '_tw_do_not_send_auto_tweet');
+			}
+			
+			if ($_POST['tw_clear_short_cache_post'] == '1') {
+				delete_post_meta($thepost->ID, '_twitterrelated_short_url');
+				delete_post_meta($thepost->ID, '_twitterrelated_short_urlHash');
+				delete_post_meta($thepost->ID, '_activeshortener');
 			}	
+
 			if ($_POST['tw_exclude_tweet_button'] == '1') {
 				add_post_meta($thepost->ID, '_exclude_tweet_button', 1, TRUE) or update_post_meta($thepost->ID, '_exclude_tweet_button', 1);
 			} elseif ( $_POST['tw_exclude_tweet_button'] == null ) {
@@ -1544,7 +1756,9 @@ class wpTweetButton {
 		}
 	}
 
-
+	/**
+	* Function regulates and manages autotweeting
+	*/
 	function tw_send_auto_tweet($post_id){
 		global $post_type_object;
 		if(is_int($post_id)) {
@@ -1557,10 +1771,10 @@ class wpTweetButton {
 		
 		if ($thepost->post_type == 'revision' || ($thepost->post_status != 'publish' && $thepost->post_status != 'future') || $thepost->post_password != '' ) return false;	
 		if (
-		(
-			($this->tw_get_option('tw_auto_tweet_posts') == '1' && $post_type_object->hierarchical=='') || 
-			($this->tw_get_option('tw_auto_tweet_pages') == '1' && $post_type_object->hierarchical=='1')
-		) &&
+				(
+					($this->tw_get_option('tw_auto_tweet_posts') == '1' && $post_type_object->hierarchical=='') || 
+					($this->tw_get_option('tw_auto_tweet_pages') == '1' && $post_type_object->hierarchical=='1')
+				) &&
 		$this->tw_get_option('tw_auto_tweet_token') != '' &&
 		$this->tw_get_option('tw_auto_tweet_token_secret') != '' &&
 		(get_post_meta($thepost->ID, '_tw_do_not_send_auto_tweet',true) == '') &&
@@ -1586,6 +1800,9 @@ class wpTweetButton {
 		return false;
 	}
 
+	/**
+	* Function validates, edits and optimizes tweet text for an autotweet
+	*/
 	function tw_validate_tweet($text, $url){
 		$max	= 134;
 		if (strstr($url,admin_url())){return false;}
@@ -1655,7 +1872,10 @@ class wpTweetButton {
 			return $text.' '.$url;
 		}
 	}
-	
+
+	/**
+	* Function outputs the per-post settings dialog.
+	*/	
 	function tw_post_tweet_button_box() {
 		if(is_int($this->postid)) {
 			$post = get_post($this->postid);
@@ -1694,6 +1914,8 @@ class wpTweetButton {
 					<img src="<?php echo WP_PLUGIN_URL; ?>/wp-tweet-button/tweetn.png" id="tw_tweet_button_image" style="float:right;margin:-3px 10px 0 10px"/>
 					<input style="min-width:20px;" onclick="var twimgp=document.getElementById('tw_tweet_button_image');twimgp.style.display=(this.checked)?'none':'block';" type="checkbox" value="1" <?php if ($tw_exclude_tweet_button == '1') echo 'checked="checked"'; ?> name="tw_exclude_tweet_button" id="tw_exclude_tweet_button"/>
 					<label for="tw_exclude_tweet_button"><?php _e('Disable Tweet Button',$this->txtdom);?></label><br />
+					<input style="min-width:20px;" type="checkbox" value="1" name="tw_clear_short_cache_post" id="tw_clear_short_cache_post"/>
+					<label for="tw_clear_short_cache_post"><?php _e('Clear shortlink cache',$this->txtdom);?></label><br />
 					<?php
 					if ($this->tw_get_option('tw_auto_tweet_token') != '' && $this->tw_get_option('tw_auto_tweet_token_secret') != ''){
 						if (strstr(get_post_meta($post->ID, '_tw_autotweeted',true),':') != false){?>
@@ -1716,6 +1938,9 @@ class wpTweetButton {
 		</div></div><p style="clear:both;"></p><?php
 	}
 
+	/**
+	* Function hooks per-post settings dialog
+	*/
 	function tw_tweet_button_post_options_box() {
 		if ( version_compare(get_bloginfo('version'), '2.7', '>=')) {
 			add_action('post_submitbox_start', array(&$this, 'tw_post_tweet_button_box'));
@@ -1724,33 +1949,50 @@ class wpTweetButton {
 		}
 	}
 
+	/**
+	* Function registers settings record
+	*/
 	function tw_init(){
 		if(function_exists('register_setting')){
 			register_setting('tw-options', 'wp_tweet_button');
 		}
 	}
 
+	/**
+	* Function cleans up returned twitter usernames
+	*/
 	function tw_sanitize_username($username){
 		$username = str_replace(array('http://','https://','twitter.com/','twitter.com','@'),'',$username);
 		return preg_replace('/[^A-Za-z0-9_]/','',$username);
 	}
 
-	// Release the Kraken!
+	/**
+	* Function releases the Kraken.
+	*/
 	function tw_activate(){
 		add_option('wp_tweet_button',array());
 		$this->tw_readoptions();
 	}
 
+	/**
+	* Function adds settings page to the menu.
+	*/
 	function tw_options() {
 		add_options_page('WP Tweet Button', 'WP Tweet Button', 8, basename(__FILE__), array(&$this, 'tw_options_page'));
 	}
 
+	/**
+	* Function adds Twitter as a contact method in the Wordpress user settings.
+	*/
 	function tw_add_twitter_contactmethod($contactmethods) {
 		$contactmethods['twitter'] = 'Twitter <span class="description">(username)</span>';
 		return $contactmethods;
 	}
 }
 
+/**
+* Function manages manual tweetbutton() calls to generate a button.
+*/
 function tweetbutton($thepost='',$bwdata=false,$type='d'){
 	global $wpTweetButton, $post;
 	$thepost = is_null($post) ? $post : $thepost;
@@ -1761,7 +2003,14 @@ function tweetbutton($thepost='',$bwdata=false,$type='d'){
 	return $wpTweetButton->tweetbutton($post,$bwdata);
 }
 
+/**
+* Other things...and stuff...
+*/
+/**
+* Class, exciting and new. Create one or even a few. Bugs, a coder's reward. Ruins flow and it comes back to you. Wordpress, soon will be making another run and Wordpress promises something for everyone....
+*/	
 $wpTweetButton = new wpTweetButton();
 load_plugin_textdomain($wpTweetButton->txtdom,null,dirname( plugin_basename( __FILE__ ) ).'/lang/');
 register_activation_hook( __FILE__, array(&$wpTweetButton, 'tw_activate'));
+
 ?>

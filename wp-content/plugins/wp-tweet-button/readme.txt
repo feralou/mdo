@@ -2,7 +2,7 @@
 Contributors: 0xTC
 Tags: twitter, tweet button, retweet, tweet, autotweet, WP Tweet Button, advanced, tweeting, social media, button, SEO, share, shortener, awe.sm, b2l.me, bit.ly, cli.gs, sl.ly, snipr, su.pr, tinyurl, analytics, google analytics, campaign, campaign tracking, auto tweeting, auto posts
 Requires at least: 2.7.2
-Tested up to: 3.0.1
+Tested up to: 3.0.5
 Stable tag: trunk
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=6331357
 
@@ -122,6 +122,15 @@ You can either leave a comment on the [plugin's page](http://0xtc.com/plugins/wp
 7. Users can follow you and a recommended user after their tweet is sent.
 
 == Changelog ==
+
+= 2.0.3.3 =
+* Addresses issue where a single shortlinks is generated and saved for all posts on the main page.
+* Added option to clear shortlink cache per post/page.
+
+= 2.0.3 =
+* Transposh Translation Filter support.
+* Added option to remove styles in RSS feeds.
+* Improved compatibility with All in One SEO (thanks to monodistortion)
 
 = 2.0.2 =
 * Bugfix related to Auto-Tweeting and custom menus.
