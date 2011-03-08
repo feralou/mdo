@@ -128,6 +128,9 @@
           <li>
             <a href="http://flickr.com/photos/markdotto" title="View my photos and screenshots on Flickr">Flickr</a>
           </li>
+          <li>
+            <a href="http://rdio.com/people/mdo/" title="Follow me and my musical tastes on Rdio">Rdio</a>
+          </li>
         </ul>
         <h4>Contact</h4>
         <ul>
