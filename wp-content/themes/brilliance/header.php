@@ -2,7 +2,10 @@
 <html <?php language_attributes(); ?>>
   <head>
     <meta charset="<?php bloginfo( 'charset' ); ?>" />
+    <meta http-equiv="Default-Style" content="default">
+    
     <title><?php wp_title('&middot;', true, 'right'); ?> <?php bloginfo('name'); ?></title>
+    
     <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon" /> 
     <link rel="profile" href="http://gmpg.org/xfn/11" />
     <link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo('stylesheet_url'); ?>" />
@@ -13,35 +16,24 @@
     <!-- // Less.js at the ready! -->
     <link rel="stylesheet/less" type="text/css" media="all" href="<?php bloginfo('stylesheet_directory'); ?>/less/style.less" />
     <script type="text/javascript" src="<?php bloginfo('stylesheet_directory'); ?>/js/less-1.0.40.min.js"></script>
+
+    <!-- // Lighter Styles -->
+    <script type="text/javascript" src="<?php bloginfo('stylesheet_directory'); ?>/js/style-switcher.js"></script>
+    <link rel="alternate stylesheet" type="text/css" media="all" title="light" href="<?php bloginfo('stylesheet_directory'); ?>/light.css" disabled="" />
     
     <!-- jQuery -->
     <script type="text/javascript" src="<?php bloginfo('stylesheet_directory'); ?>/js/jquery.js"></script>
-    <script type="text/javascript" src="<?php bloginfo('stylesheet_directory'); ?>/js/jquery.noisy.min.js"></script>
-<!--     <script type="text/javascript" src="<?php bloginfo('stylesheet_directory'); ?>/js/jquery.exif.min.js"></script> -->
 		<script type="text/javascript">
       $(document).ready(function(){
-       /*
- $(".copy-code").focus(function() {
-          $(this).select();
-        });
-        $(".copy-code").mouseup(function(e) {
+        // Switch em up!
+        $('#stylesheets a').click(function(e) {
+          if ($(this).is('#defaultStyles')) {
+            setActiveStyleSheet('default');
+          } else {
+            setActiveStyleSheet('light');
+          }
           e.preventDefault();
         });
-*/
-        $('body').noisy({
-          'intensity' : 1, 
-          'size' : '200', 
-          'opacity' : 0.03, 
-          'fallback' : '', 
-          'monochrome' : true
-        }).css('background-color', '#222');
-        
-/*
-        $("div.photo img").click(function() {  
-          alert("Taken with a " + $(this).exif("Make") + " " + $(this).exif("Model") + " on " + $(this).exif("DateTimeOriginal"));  
-          // exif(strTagName) returns a string with value for the tag [strTagName]  
-        }); 
-*/
       });
 		</script>
 		
@@ -82,6 +74,10 @@
     
     <div id="container">
       <header>
+  		  <ul id="stylesheets">
+  		    <li><a href="#" id="defaultStyles">Dark</a></li>
+  		    <li><a href="#" id="lightStyles">Light</a></li>
+  		  </ul>
         <h3>
           <a href="<?php echo home_url( '/' ); ?>" title="<?php bloginfo('name'); ?>">
   		      <?php bloginfo('name'); ?>

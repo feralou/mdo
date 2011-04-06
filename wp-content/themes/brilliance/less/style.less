@@ -99,9 +99,33 @@ footer {
   display: block;
 }
 header {
+  position: relative;
   margin-bottom: 30px;
   h3 {
     text-align: center;
+  }
+  ul#stylesheets {
+    position: absolute;
+    top: 0;
+    right: 0;
+    li {
+      display: inline;
+      a {
+        background: #222;
+        border: 1px solid #fff;
+        float: left;
+        display: inline;
+        width: 20px;
+        height: 20px;
+        margin-left: 5px;
+        overflow: hidden;
+        text-indent: -999em;
+        .border-radius(3px);
+        &#lightStyles {
+          background: #eee;
+        }
+      }
+    }
   }
 }
 footer {
