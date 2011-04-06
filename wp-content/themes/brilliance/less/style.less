@@ -1,0 +1,235 @@
+// Clearize w/ adapted CSS Reset by Eric Meyer
+html, body { margin: 0; padding: 0; }
+h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, cite, code, del, dfn, em, img, q, s, samp, small, strike, strong, sub, sup, tt, var, dd, dl, dt, li, ol, ul, fieldset, form, label, legend, button, table, caption, tbody, tfoot, thead, tr, th, td { margin: 0; padding: 0; border: 0; font-weight: normal; font-style: normal; font-size: 100%; line-height: 1; font-family: inherit; text-align: left; }
+table { border-collapse: collapse; border-spacing: 0; }
+ol, ul { list-style: none; }
+q:before, q:after, blockquote:before, blockquote:after { content: ""; }
+
+// Bootstrap it!
+@import "bootstrap.less";
+
+// Nice bod
+html, body {
+  background-color: #222;
+}
+body {
+/*
+  background-attachment: fixed;
+  #gradient > .vertical(rgba(0,0,0,.25), rgba(0,0,0,0.01));
+*/
+  margin-top: -28px !important;
+  padding: 60px 0;
+  color: #999;
+  text-rendering: optimizeLegibility;
+  text-shadow: 0 1px 2px rgba(0,0,0,.75);
+}
+body, p, li {
+  .sans-serif(normal,15px,20px);
+}
+
+// Bangin' links
+@link-color: #fff;
+a, a:visited {
+  color: @link-color;
+  text-decoration: none;
+  .transition(all linear .2s);
+  &:hover {
+    color: @link-color;
+    text-decoration: underline;
+    text-shadow: 0 0 10px rgba(255,255,255,.75);
+  }
+}
+
+// Typography
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 200;
+}
+h1 {
+  font-size: 40px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 25px;
+}
+h4 {
+  font-size: 20px;
+  margin-bottom: 5px;
+  small {
+    font-size: 12px;
+    color: #666;
+  }
+}
+p {
+  margin-bottom: 20px;
+}
+ol, ul {
+  margin-left: 30px;
+  margin-bottom: 20px;
+}
+ol {
+  list-style: decimal;
+}
+ul {
+  list-style: disc;
+  li a {
+    font-weight: normal;
+  }
+}
+
+// Scaffolding
+div#container {
+  width: 1000px;
+  margin: 0 auto;
+  z-index: 2;
+}
+div#bringthe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  background: #272727;
+}
+header,
+section,
+footer {
+  display: block;
+}
+header {
+  margin-bottom: 30px;
+  h3 {
+    text-align: center;
+  }
+}
+footer {
+  text-shadow: 0 1px 1px rgba(0,0,0,.2);
+  p {
+    text-align: center;
+    margin-bottom: 0;
+    font-size: 13px;
+    span {
+      opacity: .5;
+    }
+  }
+}
+
+// Search Form
+#search {
+  margin: 0 0 30px;
+  input {
+    background-color: #333;
+    background-color: rgba(255,255,255,.075);
+    display: block;
+    width: 300px;
+    margin: 0 auto;
+    padding: 4px 14px;
+    .sans-serif(normal,15px,1);
+    color: #555;
+    border: 1px solid #222;
+    border: 1px solid rgba(0,0,0,.5);
+    .border-radius(14px);
+    @shadow: 0 1px 0 rgba(255,255,255,.1), inset 0 1px 3px rgba(0,0,0,.25);
+    .box-shadow(@shadow);
+    .transition(background linear .2s);
+    &:focus {
+      background: #fff;
+      color: #333;
+      outline: none;
+      border: 0;
+      padding: 5px 15px;
+      .box-shadow(0 0 10px rgba(255,255,255,.4));
+    }
+  }
+}
+
+// Buttons
+a.button {
+  .button();
+  &.purple {
+    .button(@purple,#fff,0 -1px 1px rgba(0,0,0,.4));
+  }
+}
+
+// Photos
+div.photo {
+  background: darken(#222,2);
+  margin-bottom: 120px;
+  .border-radius(4px);
+  @shadow: inset 0 -1px 0 rgba(0,0,0,.25), 0 0 10px rgba(0,0,0,.25);
+  .box-shadow(@shadow);
+  .clearfix;
+  a.photo {
+    display: block;
+    position: relative;
+    line-height: 1;
+    overflow: hidden;
+    // .transition(all linear .2s);
+    cursor: pointer;
+    p {
+      margin: 0;
+      line-height: 1;
+    }
+    img {
+      width: 1000px;
+      margin: 0;
+      position: relative;
+      z-index: 1;
+      .border-radius(4px 4px 0 0);
+    }
+    &:after {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 1px;
+      z-index: 5;
+      content: '';
+      .border-radius(4px 4px 0 0);
+      .box-shadow(inset 0 1px 2px rgba(255,255,255,.3));
+      cursor: pointer;
+      display: none;
+    }
+/*
+    &:hover {
+      @shadow: 0 0 15px rgba(0,0,0,.25), 0 0 30px rgba(255,255,255,.15);
+      .box-shadow(@shadow);
+    }
+*/
+  }
+  div.content {
+    margin: 30px 340px 30px 30px;
+    h4 a {
+      font-weight: bold;
+    }
+    span {
+      font-size: 12px;
+      color: #555;
+    }
+  }
+  ul.meta {
+    margin: 30px 30px 0 0;
+    float: right;
+    li {
+      display: inline;
+      a {
+        background-repeat: no-repeat;
+        background-position: 0 0;
+        display: inline;
+        float: left;
+        margin-left: 20px;
+        height: 24px;
+        padding-left: 30px;
+        line-height: 24px;
+      }
+      &.comment a {
+        background-image: url(../img/comments.png);
+      }
+      &.tweet a {
+        background-image: url(../img/larry.png);
+      }
+    }
+  }
+}
