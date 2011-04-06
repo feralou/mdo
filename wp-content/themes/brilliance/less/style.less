@@ -248,4 +248,35 @@ div#comments {
     margin-left: 180px;
     margin-bottom: 30px;
   }
+  ol {
+    margin: 0;
+    list-style: none;
+    li {
+      margin-bottom: 30px;
+      .author {
+        float: left;
+        width: 160px;
+        text-align: right;
+      }
+      .content {
+        margin-left: 180px;
+        margin-right: 180px;
+        .awaiting-moderation {
+          background: rgba(255,255,255,.03);
+          padding: 5px 10px;
+          .border-radius(4px);
+          font-size: 12px;
+          font-style: italic;
+          position: relative;
+          top: -4px;
+          margin-bottom: 10px;
+        }
+        small a {
+          font-weight: normal;
+          font-size: 12px;
+          color: #999;
+        }
+      }
+    }
+  }
 }
