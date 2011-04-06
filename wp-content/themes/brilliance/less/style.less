@@ -7,6 +7,7 @@ q:before, q:after, blockquote:before, blockquote:after { content: ""; }
 
 // Bootstrap it!
 @import "bootstrap.less";
+@import "scaffolding.less";
 
 // Nice bod
 html, body {
@@ -79,25 +80,6 @@ ul {
 }
 
 // Scaffolding
-div#container {
-  width: 1000px;
-  margin: 0 auto;
-  z-index: 2;
-}
-div#bringthe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: -1;
-  background: #272727;
-}
-header,
-section,
-footer {
-  display: block;
-}
 header {
   position: relative;
   margin-bottom: 30px;
@@ -130,57 +112,12 @@ header {
 }
 footer {
   text-shadow: 0 1px 1px rgba(0,0,0,.2);
-  p {
-    text-align: center;
-    margin-bottom: 0;
-    font-size: 13px;
-    span {
-      opacity: .5;
-    }
-  }
-}
-
-// Search Form
-#search {
-  margin: 0 0 30px;
-  input {
-    background-color: #333;
-    background-color: rgba(255,255,255,.075);
-    display: block;
-    width: 300px;
-    margin: 0 auto;
-    padding: 4px 14px;
-    .sans-serif(normal,15px,1);
-    color: #555;
-    border: 1px solid #222;
-    border: 1px solid rgba(0,0,0,.5);
-    .border-radius(14px);
-    @shadow: 0 1px 0 rgba(255,255,255,.1), inset 0 1px 3px rgba(0,0,0,.25);
-    .box-shadow(@shadow);
-    .transition(background linear .2s);
-    &:focus {
-      background: #fff;
-      color: #333;
-      outline: none;
-      border: 0;
-      padding: 5px 15px;
-      .box-shadow(0 0 10px rgba(255,255,255,.4));
-    }
-  }
-}
-
-// Buttons
-a.button {
-  .button();
-  &.purple {
-    .button(@purple,#fff,0 -1px 1px rgba(0,0,0,.4));
-  }
 }
 
 // Photos
 div.photo {
   background: darken(#222,2);
-  margin-bottom: 120px;
+  margin: 0 -30px 30px;
   .border-radius(4px);
   @shadow: inset 0 -1px 0 rgba(0,0,0,.25), 0 0 10px rgba(0,0,0,.25);
   .box-shadow(@shadow);
@@ -255,5 +192,60 @@ div.photo {
         background-image: url(../img/larry.png);
       }
     }
+  }
+}
+div#photos div.photo {
+  margin-bottom: 120px;
+}
+
+// Customize forms a bit
+form.common-form {
+  // Inputs, Textareas, Selects
+  input[type=text],
+  input[type=password],
+  textarea {
+    background-color: #333;
+    background-color: rgba(255,255,255,.075);
+    padding: 4px;
+    color: #555;
+    border: 1px solid #222;
+    border: 1px solid rgba(0,0,0,.5);
+    .border-radius(4px);
+    @shadow: 0 1px 0 rgba(255,255,255,.1), inset 0 1px 3px rgba(0,0,0,.25);
+    .box-shadow(@shadow);
+    .transition(none);
+    .transition(background linear .2s);
+    &:focus {
+      background: #fff;
+      color: #333;
+      outline: none;
+      padding: 5px;
+      border: 0;
+      .box-shadow(0 0 10px rgba(255,255,255,.4));
+    }
+  }
+}
+// Search Form
+#search {
+  margin: 100px 0 30px;
+  input {
+    display: block;
+    width: 300px;
+    margin: 0 auto;
+    padding: 4px 14px;
+    .sans-serif(normal,15px,1);
+    .border-radius(14px);
+    &:focus {
+      padding: 5px 15px;
+    }
+  }
+}
+
+
+// Comment form
+div#comments {
+  h3 {
+    margin-left: 180px;
+    margin-bottom: 30px;
   }
 }

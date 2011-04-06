@@ -70,9 +70,7 @@
 
   <body>
     
-    <div id="bringthe"></div>
-    
-    <div id="container">
+    <div class="container">
       <header>
   		  <ul id="stylesheets">
   		    <li><a href="#" id="defaultStyles">Dark</a></li>

@@ -9,6 +9,9 @@
 	</div><!-- #post-0 -->
 <?php endif; ?>
 
+<?php if (!is_single()) { ?>
+<div id="photos">
+<?php } ?>
 
 <?php if ( have_posts() ) while ( have_posts() ) : the_post(); ?>
 
@@ -30,6 +33,10 @@
   </div>
 
 <?php endwhile; ?>
+
+<?php if (!is_single()) { ?>
+</div>
+<?php } ?>
 
 <?php if ( $wp_query->max_num_pages > 1 ) : ?>
 	<ul class="pagination">
