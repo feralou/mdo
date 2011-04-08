@@ -16,20 +16,18 @@
 <?php if ( have_posts() ) while ( have_posts() ) : the_post(); ?>
 
   <div class="photo">
-    <a class="photo" href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
-      <?php the_post_thumbnail('full'); ?>
-    </a>
     <ul class="meta">
       <li class="comment"><?php comments_popup_link('0', '1', '%', 'comments-link', 'Off'); ?></li>
       <li class="tweet"><a href="">Tweet</a></li>
     </ul>
-    <div class="content">
-      <h4>
-        <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a> 
-        <small class="date"><?php the_time('l, F jS, Y') ?></small>
-      </h4>
-      <?php the_content(); ?>
-    </div>
+    <h3>
+      <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a> 
+      <small class="date"><?php the_time('l, F jS, Y') ?></small>
+    </h3>
+    <a class="photo" href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
+      <?php the_post_thumbnail('full'); ?>
+    </a>
+    <?php the_content(); ?>
   </div>
 
 <?php endwhile; ?>
