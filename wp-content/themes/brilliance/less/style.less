@@ -28,6 +28,7 @@ body, p, li {
 @link-color: @gray-dark;
 // Bangin' links
 a, a:visited {
+  font-weight: bold;
   color: @link-color;
   text-decoration: none;
   .transition(all linear .2s);
@@ -119,6 +120,8 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 200;
 }
 h1 {
+  margin-top: -8px;
+  margin-bottom: 10px;
   font-size: 40px;
 }
 h2 {
@@ -189,12 +192,46 @@ hr {
     list-style: none;
     li {
       line-height: 20px;
+    }
+    // Main nav styles
+    &.menu li {
       a:hover:after,
       &.current-menu-item a:after {
         content: "\00a0 \2192";
       }
       &.current-menu-item a {
         color: lighten(@gray-light, 25);
+      }
+    }
+    // Stylesheet switcher
+    &.stylesheets {
+      
+    }
+    // Social nav
+    &.social {
+      li {
+        display: inline;
+        a {
+          background-color: #eee;
+          background-position: center center;
+          background-repeat: no-repeat;
+          float: left;
+          display: inline;
+          width: 30px;
+          height: 30px;
+          margin-right: 5px;
+          text-indent: -999em;
+          .border-radius(3px);
+          &:hover {
+            background-color: #ccc;
+          }
+        }
+        &.flickr a {
+          background-image: url(../img/icon-flickr.png);
+        }
+        &.twitter a {
+          background-image: url(../img/icon-twitter.png);
+        }
       }
     }
   }
@@ -205,6 +242,9 @@ hr {
   min-width: 760px;
 }
 .footer {
+  margin: 40px 0 30px;
+  border-top: 1px solid #eee;
+  padding-top: 39px;
   p {
     text-align: center;
     margin-bottom: 0;
@@ -242,16 +282,42 @@ ul#stylesheets {
 */
 }
 
+
+// Misc Post Content
+.page {
+  max-width: 600px;
+  .edit-link {
+    float: right;
+  }
+}
+
+
+// Pagination
+ul.pagination {
+  margin: 0;
+  width: 100%;
+  height: 30px;
+  list-style: none;
+  li {
+    display: inline;
+    a {
+      float: left;
+      display: inline;
+      font-weight: bold;
+    }
+    &.newer a {
+      float: right;
+    }
+  }
+}
+
+
 // Photos
 div.photo {
   padding-bottom: 29px;
   margin-bottom: 50px;
   border-bottom: 1px solid #eee;
-  a.photo {
-    p {
-      margin: 0;
-      line-height: 1;
-    }
+  a {
     img {
       width: 100%;
       height: auto;
@@ -259,19 +325,19 @@ div.photo {
     }
   }
   ul.meta {
-    margin: 0;
+    margin: 8px 0 0;
     float: right;
     li {
       display: inline;
       a {
         background-repeat: no-repeat;
-        background-position: 0 0;
+        background-position: -1px -1px;
         display: inline;
         float: left;
         margin-left: 20px;
-        height: 24px;
+        height: 30px;
         padding-left: 30px;
-        line-height: 24px;
+        line-height: 30px;
       }
       &.comment a {
         background-image: url(../img/comments.png);
@@ -312,9 +378,25 @@ form.common-form {
   }
 }
 */
+
+
+// Search
+
+// Search Page
+div.no-results {
+  #search {
+    background: #f5f5f5;
+    margin-top: 30px;
+    padding: 40px;
+    // .border-radius(4px);
+    input {
+      width: 90%;
+    }
+  }
+}
 // Search Form
 #search {
-  margin: 100px 0 30px;
+  margin-bottom: 30px;
   input {
     display: block;
     width: 300px;
@@ -375,7 +457,7 @@ body {
   position: absolute;
   top: 0;
   left: 0;
-  right: 10px;
+  right: 20px;
   bottom: 0;
 }
 ::-webkit-scrollbar {
@@ -396,7 +478,8 @@ body {
 ::-webkit-scrollbar-track-piece {
   background-color: #f5f5f5;
   -webkit-border-radius: 4px;
-  margin-top: 5px;
+  margin-top: 15px;
+  margin-bottom: 20px;
 }
 ::-webkit-scrollbar-thumb:vertical {
   height: 50px;

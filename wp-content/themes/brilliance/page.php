@@ -1,14 +1,13 @@
 <?php get_header(); ?>
 
-  <p><a href="<?php bloginfo('siteurl');?>" title="Back home">&larr; Back home</a></p>
-
+<div class="page">
   <?php if ( have_posts() ) while ( have_posts() ) : the_post(); ?>
+    <?php edit_post_link( 'Edit', '<span class="edit-link">', '</span>' ); ?>
     <h1><?php the_title(); ?></h1>
     <?php the_content(); ?>
-    <?php edit_post_link( 'Edit', '<span class="edit-link">', '</span>' ); ?>
     <hr />
   <?php endwhile; ?>
-
-	<?php // comments_template( '', true ); ?>
+  <p><a href="<?php bloginfo('siteurl');?>" title="Back home">&larr; Back home</a></p>
+</div>
 
 <?php get_footer(); ?>

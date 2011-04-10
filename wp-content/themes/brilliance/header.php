@@ -48,7 +48,7 @@
 		<script type="text/javascript">
       $(document).ready(function(){
         // Switch em up!
-        $('#stylesheets a').click(function(e) {
+        $('.stylesheets a').click(function(e) {
           if ($(this).is('#defaultStyles')) {
             setActiveStyleSheet('default');
           } else {
@@ -98,11 +98,17 @@
       <hr />
       
       <h4>View on</h4>
-		  <ul id="stylesheets">
+		  <ul class="stylesheets">
 		    <li><a href="#" id="defaultStyles">White</a></li>
 		    <li><a href="#" id="altnerateStyles">Dark gray</a></li>
 		  </ul>
       
+      <hr />
+      
+      <ul class="social">
+        <li class="flickr"><a href="http://flickr.com/photos/troy" target="_blank">Flickr</a></li>
+        <li class="twitter"><a href="http://twitter.com/troy" target="_blank">Twitter</a></li>
+      </ul>
     </div>
 
     <div class="content">
