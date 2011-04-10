@@ -1,37 +1,40 @@
-<?php
-/**
- * The template for displaying Search Results pages.
- *
- * @package WordPress
- * @subpackage Twenty_Ten
- * @since Twenty Ten 1.0
- */
+<?php get_header(); ?>
 
-get_header(); ?>
+	<div id="content" class="narrowcolumn">
 
-		<div id="container">
-			<div id="content" role="main">
+	<?php if (have_posts()) : ?>
 
-<?php if ( have_posts() ) : ?>
-				<h1 class="page-title"><?php printf( __( 'Search Results for: %s', 'twentyten' ), '<span>' . get_search_query() . '</span>' ); ?></h1>
-				<?php
-				/* Run the loop for the search to output the results.
-				 * If you want to overload this in a child theme then include a file
-				 * called loop-search.php and that will be used instead.
-				 */
-				 get_template_part( 'loop', 'search' );
-				?>
-<?php else : ?>
-				<div id="post-0" class="post no-results not-found">
-					<h2 class="entry-title"><?php _e( 'Nothing Found', 'twentyten' ); ?></h2>
-					<div class="entry-content">
-						<p><?php _e( 'Sorry, but nothing matched your search criteria. Please try again with some different keywords.', 'twentyten' ); ?></p>
-						<?php get_search_form(); ?>
-					</div><!-- .entry-content -->
-				</div><!-- #post-0 -->
-<?php endif; ?>
-			</div><!-- #content -->
-		</div><!-- #container -->
+		<h2 class="pagetitle">Search Results</h2>
+		
+		<div class="navigation">
+			<div class="alignleft"><?php next_posts_link('&laquo; Previous Entries') ?></div>
+			<div class="alignright"><?php previous_posts_link('Next Entries &raquo;') ?></div>
+		</div>
 
-<?php get_sidebar(); ?>
+
+		<?php while (have_posts()) : the_post(); ?>
+				
+			<div class="post">
+				<h3 id="post-<?php the_ID(); ?>"><a href="<?php the_permalink() ?>" rel="bookmark" title="Permanent Link to <?php the_title(); ?>"><?php the_title(); ?></a></h3>
+				<small><?php the_time('l, F jS, Y') ?></small>
+		
+				<p class="postmetadata">Posted in <?php the_category(', ') ?> | <?php edit_post_link('Edit', '', ' | '); ?>  <?php comments_popup_link('No Comments &#187;', '1 Comment &#187;', '% Comments &#187;'); ?></p>
+			</div>
+	
+		<?php endwhile; ?>
+
+		<div class="navigation">
+			<div class="alignleft"><?php next_posts_link('&laquo; Previous Entries') ?></div>
+			<div class="alignright"><?php previous_posts_link('Next Entries &raquo;') ?></div>
+		</div>
+	
+	<?php else : ?>
+
+		<h2 class="center">No posts found. Try a different search?</h2>
+		<?php include (TEMPLATEPATH . '/searchform.php'); ?>
+
+	<?php endif; ?>
+		
+	</div>
+
 <?php get_footer(); ?>
