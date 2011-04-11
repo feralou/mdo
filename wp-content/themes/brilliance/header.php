@@ -59,16 +59,6 @@
       });
 		</script>
 
-		<!-- @anywhere -->
-<!--
-		<script src="http://platform.twitter.com/anywhere.js?id=Bil8FuG70FBQMHJrqB0Qlw&v=1" type="text/javascript"></script>
-		<script type="text/javascript">
-  		twttr.anywhere(function (T) {
-        T.hovercards();
-      });
-		</script>
--->
-
 		<!-- WordPress stuff -->
     <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
     <?php
