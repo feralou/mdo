@@ -45,7 +45,6 @@ if (!empty($post->post_password) && $_COOKIE['wp-postpass_'. COOKIEHASH] != $pos
 	<?php comment_text() ?>
 	<p><cite><?php comment_type('Comment', 'Trackback', 'Pingback'); ?> by <?php comment_author_link() ?> &#8212; <?php comment_date() ?> @ <a href="#comment-<?php comment_ID() ?>"><?php comment_time() ?></a></cite></p>
 	</li>
-
 <?php } // end for each comment ?>
 </ol>
 <?php } else { // this is displayed if there are no comments so far ?>
@@ -53,9 +52,10 @@ if (!empty($post->post_password) && $_COOKIE['wp-postpass_'. COOKIEHASH] != $pos
 <?php } ?>
 
 <?php if ('open' == $post->comment_status) { ?>
-<h2>Leave a comment</h2>
-<p>Line and paragraph breaks automatic, e-mail address never displayed, <acronym title="Hypertext Markup Language">HTML</acronym> allowed: <code><?php echo allowed_tags(); ?></code></p>
-
+<div class="comments-header">
+  <h2>Leave a comment</h2>
+  <p>Line and paragraph breaks automatic, e-mail address never displayed, <acronym title="Hypertext Markup Language">HTML</acronym> allowed: <code><?php echo allowed_tags(); ?></code></p>
+</div>
 <form action="<?php echo get_settings('siteurl'); ?>/wp-comments-post.php" method="post" id="commentform">
 	<p>
 	  <input type="text" name="author" id="author" class="textarea" value="<?php echo $comment_author; ?>" size="28" tabindex="1" />
@@ -86,7 +86,9 @@ if (!empty($post->post_password) && $_COOKIE['wp-postpass_'. COOKIEHASH] != $pos
 	<?php do_action('comment_form', $post->ID); ?>
 </form>
 <?php } else { // comments are closed ?>
-<p>Sorry, the comment form is closed at this time.</p>
+<div class="comments-header">
+  <p>Sorry, the comment form is closed at this time.</p>
+</div>
 <?php }
 } // end password check
 ?>

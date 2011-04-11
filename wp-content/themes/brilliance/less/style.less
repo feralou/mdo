@@ -216,7 +216,9 @@ hr {
       li {
         display: inline;
         a {
-          background-color: #333;
+          background-color: #444;
+          background-repeat: no-repeat;
+          background-position: center center;
           float: left;
           display: inline;
           width: 20px;
@@ -226,7 +228,8 @@ hr {
           text-indent: -999em;
           .border-radius(3px);
           &#default {
-            background-color: #f5f5f5;
+            background-color: #eee;
+            background-image: url(../img/checkmark.png);
           }
         }
       }
@@ -312,12 +315,14 @@ ul.pagination {
 
 // Photos
 div.photos {
-  
+  div.photo {
+    padding-bottom: 29px;
+    margin-bottom: 50px;
+    border-bottom: 1px solid #eee;
+  }  
 }
 div.photo {
-  padding-bottom: 29px;
-  margin-bottom: 50px;
-  border-bottom: 1px solid #eee;
+  margin-bottom: 10px;
   a {
     img {
       width: 100%;
@@ -421,21 +426,28 @@ div.no-results {
 
 // Comment form
 div#comments {
-  h3 {
+  div.comments-header,
+  h3,
+  p.comments-help {
     margin-left: 180px;
-    margin-bottom: 30px;
+  }
+  h3 {
+    margin-bottom: 20px;
   }
   ol {
-    margin: 0;
+    margin: 0 0 20px;
     list-style: none;
+    border-bottom: 1px solid #eee;
     li {
-      margin-bottom: 30px;
+      margin-bottom: 20px;
+      padding-top: 19px;
+      border-top: 1px solid #eee;
       .author {
         float: left;
         width: 160px;
         text-align: right;
       }
-      .content {
+      .comment {
         margin-left: 180px;
         margin-right: 180px;
         .awaiting-moderation {
@@ -446,6 +458,9 @@ div#comments {
           font-style: italic;
           position: relative;
           top: -4px;
+          margin-bottom: 10px;
+        }
+        p, ul, ol {
           margin-bottom: 10px;
         }
         small a {

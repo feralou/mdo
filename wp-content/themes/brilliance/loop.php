@@ -17,9 +17,11 @@
 	 <!-- no posts -->
 	<?php endif; ?>
 <?php } else { ?>
-  <?php if (have_posts()) while (have_posts()) : the_post(); ?>
-    <?php get_template_part('photo'); ?>
-  <?php endwhile; ?>
+  <div class="photos">
+    <?php if (have_posts()) while (have_posts()) : the_post(); ?>
+      <?php get_template_part('photo'); ?>
+    <?php endwhile; ?>
+  </div>
 <?php } ?>
 
 <?php if ( $wp_query->max_num_pages > 1 ) : ?>

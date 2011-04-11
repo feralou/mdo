@@ -23,11 +23,24 @@ div.header ul.social li a {
 div.header ul.social li a:hover {
   background-color: #222;
 }
-div.photo {
-  border-bottom-color: #444;
+div.header ul.stylesheets li a#default {
+  background-image: none !important;
 }
-div.footer {
-  border-top-color: #444;
+div.header ul.stylesheets li a#alternate {
+  background-image: url(img/checkmark.png) !important;
+}
+div.header form#search input {
+  padding: 5px 13px;
+}
+div.photo,
+div.footer,
+div#comments ol,
+div#comments ol li {
+  border-color: #444;
+}
+div#comments ol li small,
+div#comments ol li small a {
+  color: #555;
 }
 form input[type=text],
 form input[type=password]

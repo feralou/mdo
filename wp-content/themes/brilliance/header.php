@@ -41,7 +41,7 @@
 
     <!-- // Lighter Styles -->
     <script type="text/javascript" src="<?php bloginfo('stylesheet_directory'); ?>/js/style-switcher.js"></script>
-    <link rel="alternate stylesheet" type="text/css" media="all" title="alternate" href="<?php bloginfo('stylesheet_directory'); ?>/alternate.css" disabled="" />
+    <link rel="alternate stylesheet" type="text/css" media="all" title="alternate" href="<?php bloginfo('stylesheet_directory'); ?>/alternate.css?v=4" disabled="" />
 
     <!-- jQuery -->
     <script type="text/javascript" src="<?php bloginfo('stylesheet_directory'); ?>/js/jquery.js"></script>
@@ -54,7 +54,6 @@
           } else {
             setActiveStyleSheet('alternate');
           }
-          $(this).parents('li').addClass('active').siblings().removeClass('active');
           e.preventDefault();
         });
       });
@@ -110,7 +109,7 @@
       <hr />
       
 		  <ul class="stylesheets">
-		    <li class="active"><a href="#" id="default">White</a></li>
+		    <li><a href="#" id="default">White</a></li>
 		    <li><a href="#" id="alternate">Dark gray</a></li>
 		  </ul>
     </div>
