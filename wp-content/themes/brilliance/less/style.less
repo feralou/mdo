@@ -32,15 +32,15 @@ a, a:visited {
   color: @link-color;
   text-decoration: none;
   .transition(all linear .2s);
-  &:hover {
-    color: @link-color;
-    text-decoration: underline;
-  }
+}
+a:hover {
+  color: @link-color;
+  text-decoration: underline;
 }
 
 
 // Forms
-form.common-form {
+form {
   // Parent element that clears floats and wraps labels and fields
   div.clearfix {
     margin-bottom: 15px;
@@ -78,7 +78,7 @@ form.common-form {
     font-size: 13px;
     line-height: 18px;
     color: #555;
-    border: 1px solid #bbb;
+    border: 1px solid #ddd;
     .border-radius(4px);
     &.large {
       width: 600px;
@@ -187,6 +187,14 @@ hr {
   h4 {
     color: @gray-light;
   }
+  p {
+    margin-bottom: 0;
+    color: @gray-light;
+    line-height: 20px;
+    a {
+      font-weight: normal;
+    }
+  }
   ul {
     margin: 0 0 15px;
     list-style: none;
@@ -205,10 +213,27 @@ hr {
     }
     // Stylesheet switcher
     &.stylesheets {
-      
+      li {
+        display: inline;
+        a {
+          background-color: #333;
+          float: left;
+          display: inline;
+          width: 20px;
+          height: 20px;
+          margin-right: 5px;
+          overflow: hidden;
+          text-indent: -999em;
+          .border-radius(3px);
+          &#default {
+            background-color: #f5f5f5;
+          }
+        }
+      }
     }
     // Social nav
     &.social {
+      .clearfix();
       li {
         display: inline;
         a {
@@ -237,7 +262,7 @@ hr {
   }
 }
 .content {
-  margin: 40px 220px 0 240px;
+  margin: 40px 20px 0 240px;
   max-width: 1024px;
   min-width: 760px;
 }
@@ -253,33 +278,6 @@ hr {
       opacity: .5;
     }
   }
-}
-
-// Stylesheet switcher
-ul#stylesheets {
-/*
-  position: absolute;
-  top: 0;
-  right: 0;
-  li {
-    display: inline;
-    a {
-      background: #222;
-      border: 1px solid #fff;
-      float: left;
-      display: inline;
-      width: 20px;
-      height: 20px;
-      margin-left: 5px;
-      overflow: hidden;
-      text-indent: -999em;
-      .border-radius(3px);
-      &#lightStyles {
-        background: #eee;
-      }
-    }
-  }
-*/
 }
 
 
@@ -313,6 +311,9 @@ ul.pagination {
 
 
 // Photos
+div.photos {
+  
+}
 div.photo {
   padding-bottom: 29px;
   margin-bottom: 50px;
@@ -383,10 +384,20 @@ form.common-form {
 // Search
 
 // Search Page
+div.results {
+  margin-bottom: 30px;
+  h2 {
+    color: @gray-light;
+    em {
+      font-style: italic;
+    }
+  }
+}
 div.no-results {
   #search {
     background: #f5f5f5;
     margin-top: 30px;
+    margin-bottom: 30px;
     padding: 40px;
     // .border-radius(4px);
     input {
@@ -396,14 +407,14 @@ div.no-results {
 }
 // Search Form
 #search {
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   input {
     display: block;
-    width: 300px;
+    width: 130px;
     margin: 0 auto;
-    padding: 5px 14px;
-    .sans-serif(normal,14px,1);
-    .border-radius(14px);
+    padding: 4px 12px;
+    .sans-serif(normal,13px,1);
+    .border-radius(13px);
   }
 }
 

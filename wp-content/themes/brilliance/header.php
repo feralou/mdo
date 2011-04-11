@@ -49,11 +49,12 @@
       $(document).ready(function(){
         // Switch em up!
         $('.stylesheets a').click(function(e) {
-          if ($(this).is('#defaultStyles')) {
+          if ($(this).is('#default')) {
             setActiveStyleSheet('default');
           } else {
             setActiveStyleSheet('alternate');
           }
+          $(this).parents('li').addClass('active').siblings().removeClass('active');
           e.preventDefault();
         });
       });
@@ -92,23 +93,26 @@
 			  'container' => '',
 			  'depth' => '1'
 			)); ?>
-			
-			<?php // get_search_form(); ?>
-      
-      <hr />
-      
-      <h4>View on</h4>
-		  <ul class="stylesheets">
-		    <li><a href="#" id="defaultStyles">White</a></li>
-		    <li><a href="#" id="altnerateStyles">Dark gray</a></li>
-		  </ul>
-      
-      <hr />
+
+			<?php get_search_form(); ?>
       
       <ul class="social">
         <li class="flickr"><a href="http://flickr.com/photos/troy" target="_blank">Flickr</a></li>
         <li class="twitter"><a href="http://twitter.com/troy" target="_blank">Twitter</a></li>
       </ul>
+      
+      <hr />
+      
+      <p>Design by <a href="http://twitter.com/mdo" target="_blank"><span>@</span>mdo</a></p>
+      <p><a href="http://laughingsquid.us/" target="_blank">Laughing Squid Hosting</a></p>
+      <p><a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/3.0/" title="This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License." target="_blank">Creative Commons</a></p>
+      
+      <hr />
+      
+		  <ul class="stylesheets">
+		    <li class="active"><a href="#" id="default">White</a></li>
+		    <li><a href="#" id="alternate">Dark gray</a></li>
+		  </ul>
     </div>
 
     <div class="content">

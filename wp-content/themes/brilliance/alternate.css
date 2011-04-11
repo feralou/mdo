@@ -1,22 +1,48 @@
+/* Change up base styles */
 body, html {
-  background: #eee;
-  color: #333;
-  text-shadow: 0 1px 1px rgba(255,255,255.5);
+  background: #333;
+  color: #999;
+}
+a,
+a:visited,
+a:hover {
+  color: #fff;
 }
 
+/* Change up borders and backgrounds */
+hr {
+  border-top-color: #222;
+  border-bottom-color: #444;
+}
+div.header ul li a:hover {
+  color: #fff;
+}
+div.header ul.social li a {
+  background-color: #444;
+}
+div.header ul.social li a:hover {
+  background-color: #222;
+}
 div.photo {
-  background: none;
-  -webkit-box-shadow: none;
-     -moz-box-shadow: none;
-          box-shadow: none;
+  border-bottom-color: #444;
 }
-div.photo a.photo,
-div.photo a.photo img {
-  -moz-border-radius: 4px;
-       border-radius: 4px;
+div.footer {
+  border-top-color: #444;
 }
-div.photo a.photo {
-  -webkit-box-shadow: 0 0 10px rgba(0,0,0,.25);
-     -moz-box-shadow: 0 0 10px rgba(0,0,0,.25);
-          box-shadow: 0 0 10px rgba(0,0,0,.25);
+form input[type=text],
+form input[type=password]
+form textarea {
+  border: none;
+}
+
+/* Change up scrollbars */
+::-webkit-scrollbar-track-piece {
+  background-color: rgba(0,0,0,.1);
+}
+::-webkit-scrollbar-thumb:vertical {
+  background-color: #444;
+  -webkit-box-shadow: 0 1px 0 rgba(255,255,255,.1);
+}
+::-webkit-scrollbar-thumb:horizontal {
+  background-color: #444;
 }

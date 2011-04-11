@@ -1,7 +1,9 @@
 <?php get_header(); ?>
 
 	<?php if (have_posts()) : ?>
-		<h2>Search Results</h2>
+    <div class="results">
+  		<h2>Search Results for <em><?php echo wp_specialchars($s, 1); ?></em></h2>
+		</div>
 		<?php while (have_posts()) : the_post(); ?>
       <?php get_template_part('photo'); ?>
     <?php endwhile; ?>
