@@ -61,7 +61,7 @@
 <div id="respond">
 	<h3>
     <?php comment_form_title( 'Leave a Reply', 'Leave a Reply to %s' ); ?> 
-    <small class="cancel-comment-reply"><?php cancel_comment_reply_link(); ?></small>
+    <small class="cancel-comment-reply"><?php cancel_comment_reply_link('(cancel reply)'); ?></small>
 	</h3>
 	<?php if ( get_option('comment_registration') && !is_user_logged_in() ) : ?>
 	<p>You must be <a href="<?php echo wp_login_url( get_permalink() ); ?>">logged in</a> to post a comment.</p>
