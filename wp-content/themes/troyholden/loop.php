@@ -16,6 +16,10 @@
 	<?php else : ?>
 	 <!-- no posts -->
 	<?php endif; ?>
+<?php } elseif (is_single()) { ?>
+  <?php if (have_posts()) while (have_posts()) : the_post(); ?>
+    <?php get_template_part('photo'); ?>
+  <?php endwhile; ?>
 <?php } else { ?>
   <div class="photos">
     <?php if (have_posts()) while (have_posts()) : the_post(); ?>

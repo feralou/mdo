@@ -41,7 +41,7 @@
 
     <!-- // Lighter Styles -->
     <script type="text/javascript" src="<?php bloginfo('stylesheet_directory'); ?>/js/style-switcher.js"></script>
-    <link rel="alternate stylesheet" type="text/css" media="all" title="alternate" href="<?php bloginfo('stylesheet_directory'); ?>/alternate.css?v=4" disabled="" />
+    <link rel="alternate stylesheet" type="text/css" media="all" title="alternate" href="<?php bloginfo('stylesheet_directory'); ?>/alternate.css?v=5" disabled="" />
 
     <!-- jQuery -->
     <script type="text/javascript" src="<?php bloginfo('stylesheet_directory'); ?>/js/jquery.js"></script>
@@ -82,8 +82,6 @@
 			  'container' => '',
 			  'depth' => '1'
 			)); ?>
-
-			<?php get_search_form(); ?>
       
       <ul class="social">
         <li class="flickr"><a href="http://flickr.com/photos/troy" target="_blank">Flickr</a></li>
@@ -92,11 +90,7 @@
       
       <hr />
       
-      <p>Design by <a href="http://twitter.com/mdo" target="_blank"><span>@</span>mdo</a></p>
-      <p><a href="http://laughingsquid.us/" target="_blank">Laughing Squid Hosting</a></p>
-      <p><a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/3.0/" title="This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License." target="_blank">Creative Commons</a></p>
-      
-      <hr />
+      <p>All photos licensed under the <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/3.0/" title="This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License." target="_blank">Creative Commons</a>.</p>
       
 		  <ul class="stylesheets">
 		    <li><a href="#" id="default">White</a></li>

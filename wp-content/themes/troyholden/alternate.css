@@ -47,6 +47,9 @@ form input[type=password]
 form textarea {
   border: none;
 }
+div.no-results form#search {
+  background-color: #444;
+}
 
 /* Change up scrollbars */
 ::-webkit-scrollbar-track-piece {

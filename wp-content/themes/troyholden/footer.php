@@ -1,14 +1,10 @@
-    
-<!--
       <div class="footer">
-    		<?php // get_search_form(); ?>
-        <p>
-          <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/3.0/" title="This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License.">
-            <img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-nd/3.0/88x31.png" />
-          </a>
+    		<?php get_search_form(); ?>
+	      <p>
+          Design by <a href="http://twitter.com/mdo" target="_blank"><span>@</span>mdo</a> <span class="muted">&middot;</span> 
+          <a href="http://laughingsquid.us/" target="_blank">Laughing Squid Hosting</a>
         </p>
       </div>
--->
 
     </div> <!-- /content -->
 
