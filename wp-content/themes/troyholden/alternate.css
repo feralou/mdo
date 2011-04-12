@@ -33,6 +33,7 @@ div.header form#search input {
   padding: 5px 13px;
 }
 div.photo,
+div.photos div.photo,
 div.footer,
 div#comments ol,
 div#comments ol li {

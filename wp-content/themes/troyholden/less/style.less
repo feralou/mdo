@@ -15,7 +15,6 @@ html, body {
   background-color: @white;
 }
 body {
-  padding-bottom: 60px;
   color: @gray;
   text-rendering: optimizeLegibility;
 }
@@ -25,7 +24,7 @@ body, p, li {
 
 
 // Bangin' links
-@link-color: @gray-dark;
+@link-color: darken(@gray-dark, 15%);
 // Bangin' links
 a, a:visited {
   font-weight: bold;
@@ -58,6 +57,10 @@ form {
     width: 160px;
     text-align: right;
   }
+  // Help text
+  small {
+    color: @gray-light;
+  }
   // Shift over the inside div to align all label's relevant content
   div.input {
     margin-left: 180px;
@@ -69,6 +72,8 @@ form {
   }
   // Inputs, Textareas, Selects
   input[type=text],
+  input[type=email],
+  input[type=url],
   input[type=password],
   textarea,
   select {
@@ -81,7 +86,7 @@ form {
     border: 1px solid #ddd;
     .border-radius(4px);
     &.large {
-      width: 600px;
+      width: 450px;
     }
   }
   input[type=text], 
@@ -166,6 +171,15 @@ hr {
   border-top: 1px solid #eee;
   border-bottom: 1px solid #fff;
 }
+.muted {
+  color: @gray-light;
+}
+strong {
+  font-weight: bold;
+}
+em {
+  font-style: italic;
+}
 
 
 // Scaffolding
@@ -240,8 +254,8 @@ hr {
       li {
         display: inline;
         a {
-          background-color: #eee;
-          background-position: center center;
+          background-color: #f5f5f5;
+          background-position: 0 0;
           background-repeat: no-repeat;
           float: left;
           display: inline;
@@ -251,7 +265,8 @@ hr {
           text-indent: -999em;
           .border-radius(3px);
           &:hover {
-            background-color: #ccc;
+            background-color: #eee;
+            background-position: 0 -30px;
           }
         }
         &.flickr a {
@@ -270,7 +285,7 @@ hr {
   min-width: 760px;
 }
 .footer {
-  margin: 30px 0 40px;
+  margin: 30px 0 60px;
   border-top: 1px solid #eee;
   padding-top: 39px;
   p {
@@ -297,7 +312,7 @@ hr {
 ul.pagination {
   margin: -20px 0 30px;
   width: 100%;
-  height: 20px;
+  .clearfix();
   list-style: none;
   li {
     display: inline;
@@ -396,33 +411,55 @@ div.no-results {
 }
 
 
-// Comment form
-div#comments {
-  div.comments-header,
+// Comments
+div#comments,
+div#respond {
   h3,
-  p.comments-help {
+  p.comments-header {
     margin-left: 180px;
-    margin-right: 180px;
+    margin-bottom: 10px;
   }
-  h3 {
-    margin-bottom: 20px;
-  }
+}
+div#comments {
   ol {
-    margin: 0 0 20px;
+    margin: 20px 0;
     list-style: none;
     border-bottom: 1px solid #eee;
     li {
       margin-bottom: 20px;
       padding-top: 19px;
       border-top: 1px solid #eee;
-      .author {
+      .clearfix();
+      div.comment-wrapper {
+        width: 100%;
+        .clearfix();
+      }
+      div.comment-author,
+      div.comment,
+      div.comment-actions {
         float: left;
+        display: inline;
+      }
+      div.comment-author {
         width: 160px;
         text-align: right;
+        line-height: 15px;
+        img {
+          float: right;
+          margin-left: 8px;
+          .border-radius(3px);
+        }
+        small {
+          font-size: 11px;
+          a {
+            font-weight: normal;
+            color: @gray-light;
+          }
+        }
       }
-      .comment {
-        margin-left: 180px;
-        margin-right: 180px;
+      div.comment {
+        margin-left: 20px;
+        width: 460px;
         .awaiting-moderation {
           background: #f5f5f5;
           background: rgba(255,255,255,.03);
@@ -441,6 +478,30 @@ div#comments {
           font-weight: normal;
           font-size: 12px;
           color: #999;
+        }
+      }
+      div.comment-actions {
+        margin-left: 20px;
+        a {
+          font-weight: normal;
+          color: @gray-light;
+        }
+      }
+    }
+    ul.children {
+      list-style: none;
+      margin-left: 52px;
+      li {
+        border-top: 0;
+        .clearfix();
+        div.comment {
+          width: 408px;
+        }
+        li div.comment {
+          width: 356px;
+          li div.comment {
+            width: 304px;
+          }
         }
       }
     }

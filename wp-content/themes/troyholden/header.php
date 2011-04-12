@@ -30,18 +30,22 @@
 
     <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <link rel="profile" href="http://gmpg.org/xfn/11" />
-    <link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo('stylesheet_url'); ?>" />
 
     <!-- // RSS -->
     <link rel="alternate" type="application/rss+xml" title="RSS for <?php bloginfo('name'); ?>" href="<?php bloginfo('rss2_url'); ?>" />
 
+<?php /*
+    Comment out source Less JS and CSS for a lighter footprint in production.
+    
     <!-- // Less.js at the ready! -->
     <link rel="stylesheet/less" type="text/css" media="all" href="<?php bloginfo('stylesheet_directory'); ?>/less/style.less" />
     <script type="text/javascript" src="<?php bloginfo('stylesheet_directory'); ?>/js/less-1.0.40.min.js"></script>
+*/ ?>
 
-    <!-- // Lighter Styles -->
+    <!-- // CSS -->
+    <link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo('stylesheet_url'); ?>" />
     <script type="text/javascript" src="<?php bloginfo('stylesheet_directory'); ?>/js/style-switcher.js"></script>
-    <link rel="alternate stylesheet" type="text/css" media="all" title="alternate" href="<?php bloginfo('stylesheet_directory'); ?>/alternate.css?v=5" disabled="" />
+    <link rel="alternate stylesheet" type="text/css" media="all" title="alternate" href="<?php bloginfo('stylesheet_directory'); ?>/alternate.css?v=6" disabled="" />
 
     <!-- jQuery -->
     <script type="text/javascript" src="<?php bloginfo('stylesheet_directory'); ?>/js/jquery.js"></script>
