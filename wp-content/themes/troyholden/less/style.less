@@ -17,6 +17,7 @@ html, body {
 body {
   color: @gray;
   text-rendering: optimizeLegibility;
+  min-width: 1020px;
 }
 body, p, li {
   .sans-serif(normal,13px,18px);
@@ -351,7 +352,19 @@ div.photo {
     img {
       width: 100%;
       height: auto;
-      margin: 0 0 10px;
+      margin: 0;
+      line-height: 1;
+    }
+  }
+  .post-content {
+    ul, ol,
+    p,
+    h2, h3, h4 h5, h6 {
+      max-width: 600px;
+    }
+    p:first-child {
+      max-width: 100%;
+      line-height: 1;
     }
   }
   ul.meta {
