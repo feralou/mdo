@@ -54,7 +54,8 @@ ul.pagination li{display:inline;}ul.pagination li a{float:left;display:inline;fo
 ul.pagination li.newer a{float:right;}
 div.photos div.photo{padding-bottom:29px;margin-bottom:50px;border-bottom:1px solid #eee;}
 div.photo{margin-bottom:10px;}div.photo a img{width:100%;height:auto;margin:0 0 10px;}
-div.photo ul.meta{margin:8px 0 0;float:right;}div.photo ul.meta li{display:inline;}div.photo ul.meta li a{background-repeat:no-repeat;background-position:-1px -1px;display:inline;float:left;margin-left:20px;height:30px;padding-left:30px;line-height:30px;}
+div.photo ul.meta{margin:-10px 0 10px;zoom:1;}div.photo ul.meta:after{display:block;visibility:hidden;height:0;clear:both;content:".";}
+div.photo ul.meta li{display:inline;}div.photo ul.meta li a{background-repeat:no-repeat;background-position:-1px -1px;display:inline;float:left;margin-right:10px;height:30px;padding-left:30px;line-height:30px;}
 div.photo ul.meta li.comment a{background-image:url(../img/comments.png);}
 div.photo ul.meta li.tweet a{background-image:url(../img/larry.png);}
 div.results{margin-bottom:30px;}div.results h2{color:#777777;}div.results h2 em{font-style:italic;}
@@ -73,13 +74,3 @@ div#comments ol li div.comment-actions{margin-left:20px;}div#comments ol li div.
 div#comments ol ul.children{list-style:none;margin-left:52px;}div#comments ol ul.children li{border-top:0;zoom:1;}div#comments ol ul.children li:after{display:block;visibility:hidden;height:0;clear:both;content:".";}
 div#comments ol ul.children li div.comment{width:408px;}
 div#comments ol ul.children li li div.comment{width:356px;}div#comments ol ul.children li li div.comment li div.comment{width:304px;}
-html{overflow:auto;}
-body{overflow-x:hidden;overflow-y:scroll;position:absolute;top:0;left:0;right:20px;bottom:0;}
-::-webkit-scrollbar{width:8px;height:8px;}
-::-webkit-scrollbar-button:start:decrement,::-webkit-scrollbar-button:end:increment{display:block;height:6px;}
-::-webkit-scrollbar-button:end:increment{height:0;}
-::-webkit-scrollbar-button:vertical:increment{background-color:transparent;}
-::-webkit-scrollbar-track-piece{background-color:#f5f5f5;margin-top:15px;margin-bottom:20px;-webkit-border-radius:4px;}
-::-webkit-scrollbar-thumb:vertical{background-color:#ccc;height:50px;-webkit-border-radius:4px;-webkit-box-shadow:0 1px 1px #ffffff;}
-::-webkit-scrollbar-thumb:horizontal{background-color:#ccc;width:50px;-webkit-border-radius:4px;}
-@media only screen and (max-device-width:1024px){body{position:relative;top:auto;right:auto;bottom:auto;left:auto;overflow:auto;}}body.ff,body.ie{position:relative;top:auto;right:auto;bottom:auto;left:auto;overflow:auto;}

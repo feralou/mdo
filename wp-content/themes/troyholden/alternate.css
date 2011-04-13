@@ -51,15 +51,3 @@ form textarea {
 div.no-results form#search {
   background-color: #444;
 }
-
-/* Change up scrollbars */
-::-webkit-scrollbar-track-piece {
-  background-color: rgba(0,0,0,.1);
-}
-::-webkit-scrollbar-thumb:vertical {
-  background-color: #444;
-  -webkit-box-shadow: 0 1px 0 rgba(255,255,255,.1);
-}
-::-webkit-scrollbar-thumb:horizontal {
-  background-color: #444;
-}

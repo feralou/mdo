@@ -88,7 +88,7 @@
 			)); ?>
       
       <ul class="social">
-        <li class="flickr"><a href="http://flickr.com/photos/troy" target="_blank">Flickr</a></li>
+        <li class="flickr"><a href="http://flickr.com/photos/troyholden" target="_blank">Flickr</a></li>
         <li class="twitter"><a href="http://twitter.com/troy" target="_blank">Twitter</a></li>
       </ul>
       
