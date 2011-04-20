@@ -159,7 +159,7 @@ h4 {
   }
 }
 p {
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 ol, ul {
   margin-left: 30px;
@@ -183,13 +183,25 @@ hr {
 .muted {
   color: @gray-light;
 }
+em, strong {
+  line-height: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+}
 strong {
   font-weight: bold;
 }
 em {
   font-style: italic;
 }
-
+blockquote {
+  margin-left: 30px;
+  p {
+    font-size: 16px;
+    font-weight: light;
+    line-height: 25px !important;
+  }
+}
 
 // Scaffolding
 .header {
@@ -313,6 +325,7 @@ em {
 
 // Misc Post Content
 .page {
+  padding-top: 30px; // adjust for not having a page title here
   max-width: 600px;
   .edit-link {
     float: right;
@@ -363,6 +376,7 @@ div.photo {
   .post-content {
     ul, ol,
     p,
+    blockquote,
     h2, h3, h4 h5, h6 {
       max-width: 600px;
     }
@@ -372,7 +386,7 @@ div.photo {
     }
   }
   ul.meta {
-    margin: -10px 0 10px;
+    margin: -5px 0 10px;
     .clearfix();
     li {
       display: inline;

@@ -27,14 +27,16 @@ h1{margin-top:-8px;margin-bottom:10px;font-size:40px;}
 h2{margin-bottom:10px;font-size:30px;}h2 small{font-size:13px;color:#777777;}
 h3{margin-bottom:10px;font-size:25px;}h3 small{font-size:14px;color:#777777;}h3 small a{font-weight:normal;color:#777777;}
 h4{font-size:16px;margin-bottom:9px;}h4 small{font-size:12px;color:#666;}
-p{margin-bottom:20px;}
+p{margin-bottom:15px;}
 ol,ul{margin-left:30px;margin-bottom:20px;}
 ol{list-style:decimal;}
 ul{list-style:disc;}ul li a{font-weight:normal;}
 hr{margin:19px 0;border:0;border-top:1px solid #eee;border-bottom:1px solid #fff;}
 .muted{color:#777777;}
+em,strong{line-height:inherit;font-style:inherit;font-weight:inherit;}
 strong{font-weight:bold;}
 em{font-style:italic;}
+blockquote{margin-left:30px;}blockquote p{font-size:16px;font-weight:light;line-height:25px !important;}
 .header{position:fixed;top:0;left:0;width:160px;margin:45px 0 0 40px;}.header h3{margin-bottom:25px;}.header h3 a{font-weight:200;}.header h3 a strong{font-weight:bold;}
 .header h4{color:#777777;}
 .header p{margin-bottom:10px;color:#777777;line-height:20px;}.header p a{font-weight:normal;}
@@ -49,15 +51,15 @@ em{font-style:italic;}
 .header ul.social li.twitter a{background-image:url(../img/icon-twitter.png);}
 .content{margin:40px 20px 0 240px;max-width:1024px;min-width:760px;}
 .footer{margin:30px 0 60px;border-top:1px solid #eee;padding-top:39px;}.footer p{text-align:center;margin-bottom:0;font-size:13px;}.footer p span{opacity:.5;}
-.page{max-width:600px;}.page .edit-link{float:right;}
+.page{padding-top:30px;max-width:600px;}.page .edit-link{float:right;}
 ul.pagination{margin:-20px 0 30px;width:100%;zoom:1;list-style:none;}ul.pagination:after{display:block;visibility:hidden;height:0;clear:both;content:".";}
 ul.pagination li{display:inline;}ul.pagination li a{float:left;display:inline;font-weight:bold;line-height:20px;}
 ul.pagination li.newer a{float:right;}
 div.photos div.photo{padding-bottom:29px;margin-bottom:50px;border-bottom:1px solid #eee;}
 div.photo{margin-bottom:10px;}div.photo a img{max-width:100%;min-height:500px;height:auto;margin:0;line-height:1;}
-div.photo .post-content ul,div.photo .post-content ol,div.photo .post-content p,div.photo .post-content h2,div.photo .post-content h3,div.photo .post-content h4 h5,div.photo .post-content h6{max-width:600px;}
+div.photo .post-content ul,div.photo .post-content ol,div.photo .post-content p,div.photo .post-content blockquote,div.photo .post-content h2,div.photo .post-content h3,div.photo .post-content h4 h5,div.photo .post-content h6{max-width:600px;}
 div.photo .post-content p:first-child{max-width:100%;line-height:1;}
-div.photo ul.meta{margin:-10px 0 10px;zoom:1;}div.photo ul.meta:after{display:block;visibility:hidden;height:0;clear:both;content:".";}
+div.photo ul.meta{margin:-5px 0 10px;zoom:1;}div.photo ul.meta:after{display:block;visibility:hidden;height:0;clear:both;content:".";}
 div.photo ul.meta li{display:inline;}div.photo ul.meta li a{background-repeat:no-repeat;background-position:-1px -1px;display:inline;float:left;margin-right:10px;height:30px;padding-left:30px;line-height:30px;}
 div.photo ul.meta li.comment a{background-image:url(../img/comments.png);}
 div.photo ul.meta li.tweet a{background-image:url(../img/larry.png);}
