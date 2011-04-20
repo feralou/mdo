@@ -55,7 +55,7 @@ form {
     font-size: 13px;
     line-height: 18px;
     float: left;
-    width: 160px;
+    width: 100px;
     text-align: right;
   }
   // Help text
@@ -64,7 +64,7 @@ form {
   }
   // Shift over the inside div to align all label's relevant content
   div.input {
-    margin-left: 180px;
+    margin-left: 120px;
   }
   // Checkboxs and radio buttons
   input[type=checkbox],
@@ -110,7 +110,7 @@ form {
   // Actions (the buttons) end of forms
   div.actions {
     margin: 15px 0 0;
-    padding-left: 180px;
+    padding-left: 120px;
   }
 }
 // Buttons
@@ -263,7 +263,7 @@ em {
       li {
         display: inline;
         a {
-          background-color: #f5f5f5;
+          background-color: #eee;
           background-position: 0 0;
           background-repeat: no-repeat;
           float: left;
@@ -276,6 +276,9 @@ em {
           &:hover {
             background-color: #eee;
             background-position: 0 -30px;
+          }
+          &:focus {
+            outline: none;
           }
         }
         &.flickr a {
@@ -350,7 +353,8 @@ div.photo {
   margin-bottom: 10px;
   a {
     img {
-      width: 100%;
+      max-width: 100%;
+      min-height: 500px;
       height: auto;
       margin: 0;
       line-height: 1;
@@ -405,6 +409,9 @@ div.results {
     }
   }
 }
+body.search-no-results div.footer form {
+  display: none;
+}
 div.no-results {
   #search {
     background: #f5f5f5;
@@ -437,41 +444,40 @@ div#comments,
 div#respond {
   h3,
   p.comments-header {
-    margin-left: 180px;
     margin-bottom: 10px;
   }
 }
 div#comments {
+  margin-top: 30px;
   ol {
     margin: 20px 0;
     list-style: none;
     border-bottom: 1px solid #eee;
     li {
-      margin-bottom: 20px;
-      padding-top: 19px;
+      max-width: 600px;
+      margin-bottom: 10px;
+      padding-top: 14px;
       border-top: 1px solid #eee;
       .clearfix();
       div.comment-wrapper {
         width: 100%;
         .clearfix();
       }
-      div.comment-author,
-      div.comment,
-      div.comment-actions {
-        float: left;
-        display: inline;
-      }
       div.comment-author {
-        width: 160px;
-        text-align: right;
-        line-height: 15px;
+        margin-bottom: 10px;
+        line-height: 18px;
+        h5 {
+          color: #333;
+          font-size: 14px;
+          font-weight: bold;
+        }
         img {
-          float: right;
-          margin-left: 8px;
+          float: left;
+          margin-right: 8px;
           .border-radius(3px);
         }
         small {
-          font-size: 11px;
+          font-size: 12px;
           a {
             font-weight: normal;
             color: @gray-light;
@@ -479,8 +485,8 @@ div#comments {
         }
       }
       div.comment {
-        margin-left: 20px;
-        width: 460px;
+        margin-left: 40px;
+        margin-right: 40px;
         .awaiting-moderation {
           background: #f5f5f5;
           background: rgba(255,255,255,.03);
@@ -502,7 +508,7 @@ div#comments {
         }
       }
       div.comment-actions {
-        margin-left: 20px;
+        float: right;
         a {
           font-weight: normal;
           color: @gray-light;
@@ -511,17 +517,16 @@ div#comments {
     }
     ul.children {
       list-style: none;
-      margin-left: 52px;
+      margin-left: 40px;
+      margin-bottom: 0;
       li {
         border-top: 0;
         .clearfix();
-        div.comment {
-          width: 408px;
-        }
-        li div.comment {
-          width: 356px;
-          li div.comment {
-            width: 304px;
+        ul.children {
+          margin-top: 10px;
+          li {
+            margin-bottom: 10px;
+            padding-top: 0;
           }
         }
       }

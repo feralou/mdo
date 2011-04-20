@@ -72,7 +72,7 @@
     ?>
   </head>
 
-  <body>
+  <body <?php body_class($class); ?>>
 
     <div class="header">
       <h3>

@@ -4,8 +4,16 @@
     <div class="comment-wrapper">
   		<div class="comment-author">
   			<?php echo get_avatar($comment,$size='32'); ?>
-  			<?php printf(__('<strong class="fn">%s</strong>'), get_comment_author_link()) ?><br />
-  			<small><a href="<?php echo htmlspecialchars( get_comment_link( $comment->comment_ID ) ) ?>"><?php printf(__('%1$s'), get_comment_date(),  get_comment_time()) ?></a></small>
+  			<h5>
+          <?php printf(__('%s'), get_comment_author_link()) ?> 
+          <small>
+          </small>
+  			</h5>
+  			<small>
+          <a href="<?php echo htmlspecialchars( get_comment_link( $comment->comment_ID ) ) ?>"><?php printf(__('%1$s'), get_comment_date(),  get_comment_time()) ?></a> <span class="muted">&middot;</span> 
+          <?php comment_reply_link(array_merge( $args, array('depth' => $depth, 'max_depth' => $args['max_depth']))) ?>
+          <?php edit_comment_link('Edit',' <span class="muted">&middot;</span> ','') ?>
+  			</small>
   		</div>
   		<?php if ($comment->comment_approved == '0') : ?>
    			<div class="notice">
@@ -14,9 +22,6 @@
   		<?php endif; ?>
   		<div class="comment">
   			<?php comment_text() ?>
-  		</div>
-  		<div class="comment-actions">
-  			<p><?php edit_comment_link('Edit','',' <span class="muted">&middot;</span>') ?> <?php comment_reply_link(array_merge( $args, array('depth' => $depth, 'max_depth' => $args['max_depth']))) ?></p>
   		</div>
     </div>
 <?php } ?>

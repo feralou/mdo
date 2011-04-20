@@ -10,4 +10,6 @@
   <p><a href="<?php bloginfo('siteurl');?>" title="Back home">&larr; Back home</a></p>
 </div>
 
+<?php comments_template( '', true ); ?>
+
 <?php get_footer(); ?>
