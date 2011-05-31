@@ -1,5 +1,6 @@
 # Ignore specific files
 
 .DS_Store
-wp-config.php
-wp-content/uploads/
+/wp-config.php
+/wp-content/uploads/
+/bootstrap
