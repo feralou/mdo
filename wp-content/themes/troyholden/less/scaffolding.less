@@ -1,0 +1,174 @@
+/*--------------------------------------------------
+	
+	Bootstrapped Scaffolding
+	Using to build our base grid system, structural 
+	layout, and base styles for all pages.
+	
+-------------------------------------------------- */
+
+@site-width: 940px;
+
+/*--------------------------------------------------
+	Baseline Grid System
+-------------------------------------------------- */
+	
+div.grid {
+  .container;
+  div.span1   { .columns(1); }
+  div.span2   { .columns(2); }
+  div.span3   { .columns(3); }
+  div.span4   { .columns(4); }
+  div.span5   { .columns(5); }
+  div.span6   { .columns(6); }
+  div.span7   { .columns(7); }
+  div.span8   { .columns(8); }
+  div.span9   { .columns(9); }
+  div.span10  { .columns(10); }
+  div.span11  { .columns(11); }
+  div.span12  { .columns(12); }
+  div.span13  { .columns(13); }
+  div.span14  { .columns(14); }
+  div.span15  { .columns(15); }
+  div.span16  { .columns(16); }
+}
+
+
+/*--------------------------------------------------
+	Structural Layout
+-------------------------------------------------- */
+	
+html, body {
+  background-color: @white;
+}
+body {
+  padding-bottom: 60px;
+  .sans-serif(normal,13px,18px);
+  color: @gray-dark;
+  text-rendering: optimizeLegibility;
+}
+
+// Containers
+div.container {
+  width: @site-width;
+  margin: 0 auto;
+}
+
+// Scaffolding
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 220px;
+  margin: 30px 0 0 30px;
+}
+.content {
+  margin: 30px 30px 0 280px;
+  max-width: 1024px;
+  min-width: 760px;
+}
+.footer {
+  p {
+    text-align: center;
+    margin-bottom: 0;
+    font-size: 13px;
+    span {
+      opacity: .5;
+    }
+  }
+}
+
+// Bangin' links
+a, a:visited {
+  font-weight: bold;
+  color: @link-color;
+  text-decoration: none;
+  .transition(all linear .2s);
+  &:hover {
+    color: @link-color;
+    text-decoration: underline;
+  }
+}
+
+// Forms
+form.common-form {
+  // Parent element that clears floats and wraps labels and fields
+  div.clearfix {
+    margin-bottom: 15px;
+  }
+  // Typography for forms
+  label, input, select, textarea {
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  }
+  // Float labels left
+  label {
+    padding-top: 5px;
+    font-size: 13px;
+    line-height: 18px;
+    float: left;
+    width: 160px;
+    text-align: right;
+  }
+  // Shift over the inside div to align all label's relevant content
+  div.input {
+    margin-left: 180px;
+  }
+  // Checkboxs and radio buttons
+  input[type=checkbox],
+  input[type=radio] {
+    cursor: pointer;
+  }
+  // Inputs, Textareas, Selects
+  input[type=text],
+  input[type=password],
+  textarea,
+  select {
+    width: 330px;
+    margin: 0;
+    padding: 4px;
+    font-size: 13px;
+    line-height: 18px;
+    color: #555;
+    border: 1px solid #bbb;
+    .border-radius(4px);
+    &.large {
+      width: 600px;
+    }
+  }
+  input[type=text], 
+  input[type=password], 
+  select, textarea {
+    @transition: border linear .2s, box-shadow linear .2s;
+    .transition(@transition);
+  }
+  input[type=text]:focus, 
+  input[type=password]:focus, 
+  textarea:focus {
+    outline: none;
+    border-color: rgba(82,168,236,.75);
+    .box-shadow(0 0 8px rgba(82,168,236,.5));
+  }
+  select {
+    height: 28px;
+    line-height: 28px;
+  }
+  // Turn off focus for disabled (read-only) form elements
+  input[readonly]:focus,
+  textarea[readonly]:focus,
+  input.disabled {
+    background: #f5f5f5;
+    border-color: #ddd;
+    .box-shadow(none);
+  }
+  // Actions (the buttons) end of forms
+  div.actions {
+    margin: 15px 0 0;
+    padding-left: 180px;
+  }
+}
+
+// Buttons
+a.button,
+button.button {
+  @padding: 6px 15px;
+  .button();
+}

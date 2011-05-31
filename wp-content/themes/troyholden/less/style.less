@@ -1,0 +1,549 @@
+// Clearize w/ adapted CSS Reset by Eric Meyer
+html, body { margin: 0; padding: 0; }
+h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, cite, code, del, dfn, em, img, q, s, samp, small, strike, strong, sub, sup, tt, var, dd, dl, dt, li, ol, ul, fieldset, form, label, legend, button, table, caption, tbody, tfoot, thead, tr, th, td { margin: 0; padding: 0; border: 0; font-weight: normal; font-style: normal; font-size: 100%; line-height: 1; font-family: inherit; text-align: left; }
+table { border-collapse: collapse; border-spacing: 0; }
+ol, ul { list-style: none; }
+q:before, q:after, blockquote:before, blockquote:after { content: ""; }
+
+
+// Bootstrap it!
+@import "bootstrap.less";
+
+
+// Nice bod(y)
+html, body {
+  background-color: @white;
+}
+body {
+  color: @gray;
+  text-rendering: optimizeLegibility;
+  min-width: 1020px;
+}
+body, p, li {
+  .sans-serif(normal,13px,18px);
+}
+
+
+// Bangin' links
+@link-color: darken(@gray-dark, 15%);
+// Bangin' links
+a, a:visited {
+  font-weight: bold;
+  color: @link-color;
+  text-decoration: none;
+  .transition(all linear .2s);
+}
+a:hover {
+  color: @link-color;
+  text-decoration: underline;
+}
+
+
+// Forms
+form {
+  // Parent element that clears floats and wraps labels and fields
+  div.clearfix {
+    margin-bottom: 15px;
+  }
+  // Typography for forms
+  label, input, select, textarea {
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  }
+  // Float labels left
+  label {
+    padding-top: 5px;
+    font-size: 13px;
+    line-height: 18px;
+    float: left;
+    width: 100px;
+    text-align: right;
+  }
+  // Help text
+  small {
+    color: @gray-light;
+  }
+  // Shift over the inside div to align all label's relevant content
+  div.input {
+    margin-left: 120px;
+  }
+  // Checkboxs and radio buttons
+  input[type=checkbox],
+  input[type=radio] {
+    cursor: pointer;
+  }
+  // Inputs, Textareas, Selects
+  input[type=text],
+  input[type=email],
+  input[type=url],
+  input[type=password],
+  textarea,
+  select {
+    width: 330px;
+    margin: 0;
+    padding: 4px;
+    font-size: 13px;
+    line-height: 18px;
+    color: #555;
+    border: 1px solid #ddd;
+    .border-radius(4px);
+    &.large {
+      width: 450px;
+    }
+  }
+  input[type=text], 
+  input[type=password], 
+  select, textarea {
+    @transition: border linear .2s, box-shadow linear .2s;
+    .transition(@transition);
+  }
+  input[type=text]:focus, 
+  input[type=password]:focus, 
+  textarea:focus {
+    outline: none;
+    border-color: rgba(82,168,236,.75);
+    .box-shadow(0 0 8px rgba(82,168,236,.5));
+  }
+  select {
+    height: 28px;
+    line-height: 28px;
+  }
+  // Actions (the buttons) end of forms
+  div.actions {
+    margin: 15px 0 0;
+    padding-left: 120px;
+  }
+}
+// Buttons
+a.button,
+button.button {
+  @padding: 6px 15px;
+  .button();
+}
+
+
+// Typography
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 200;
+}
+h1 {
+  margin-top: -8px;
+  margin-bottom: 10px;
+  font-size: 40px;
+}
+h2 {
+  margin-bottom: 10px;
+  font-size: 30px;
+  small {
+    font-size: 13px;
+    color: @gray-light;
+  }
+}
+h3 {
+  margin-bottom: 10px;
+  font-size: 25px;
+  small {
+    font-size: 14px;
+    color: @gray-light;
+    a {
+      font-weight: normal;
+      color: @gray-light;
+    }
+  }
+}
+h4 {
+  font-size: 16px;
+  margin-bottom: 9px;
+  small {
+    font-size: 12px;
+    color: #666;
+  }
+}
+p {
+  margin-bottom: 15px;
+}
+ol, ul {
+  margin-left: 30px;
+  margin-bottom: 20px;
+}
+ol {
+  list-style: decimal;
+}
+ul {
+  list-style: disc;
+  li a {
+    font-weight: normal;
+  }
+}
+hr {
+  margin: 19px 0;
+  border: 0;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #fff;
+}
+.muted {
+  color: @gray-light;
+}
+em, strong {
+  line-height: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+}
+strong {
+  font-weight: bold;
+}
+em {
+  font-style: italic;
+}
+blockquote {
+  margin-left: 30px;
+  p {
+    font-size: 16px;
+    font-weight: light;
+    line-height: 25px !important;
+  }
+}
+
+// Scaffolding
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 160px;
+  margin: 45px 0 0 40px;
+  h3 {
+    margin-bottom: 25px;
+    a {
+      font-weight: 200;
+      strong {
+        font-weight: bold;
+      }
+    }
+  }
+  h4 {
+    color: @gray-light;
+  }
+  p {
+    margin-bottom: 10px;
+    color: @gray-light;
+    line-height: 20px;
+    a {
+      font-weight: normal;
+    }
+  }
+  ul {
+    margin: 0 0 15px;
+    list-style: none;
+    li {
+      line-height: 20px;
+    }
+    // Main nav styles
+    &.menu li {
+      a:hover:after,
+      &.current-menu-item a:after {
+        content: "\00a0 \2192";
+      }
+      &.current-menu-item a {
+        color: lighten(@gray-light, 25);
+      }
+    }
+    // Stylesheet switcher
+    &.stylesheets {
+      li {
+        display: inline;
+        a {
+          background-color: #444;
+          background-repeat: no-repeat;
+          background-position: center center;
+          float: left;
+          display: inline;
+          width: 20px;
+          height: 20px;
+          margin-right: 5px;
+          overflow: hidden;
+          text-indent: -999em;
+          .border-radius(3px);
+          &#default {
+            background-color: #eee;
+            background-image: url(../img/checkmark.png);
+          }
+        }
+      }
+    }
+    // Social nav
+    &.social {
+      .clearfix();
+      li {
+        display: inline;
+        a {
+          background-color: #eee;
+          background-position: 0 0;
+          background-repeat: no-repeat;
+          float: left;
+          display: inline;
+          width: 30px;
+          height: 30px;
+          margin-right: 5px;
+          text-indent: -999em;
+          .border-radius(3px);
+          &:hover {
+            background-color: #eee;
+            background-position: 0 -30px;
+          }
+          &:focus {
+            outline: none;
+          }
+        }
+        &.flickr a {
+          background-image: url(../img/icon-flickr.png);
+        }
+        &.twitter a {
+          background-image: url(../img/icon-twitter.png);
+        }
+      }
+    }
+  }
+}
+.content {
+  margin: 40px 20px 0 240px;
+  max-width: 1024px;
+  min-width: 760px;
+}
+.footer {
+  margin: 30px 0 60px;
+  border-top: 1px solid #eee;
+  padding-top: 39px;
+  p {
+    text-align: center;
+    margin-bottom: 0;
+    font-size: 13px;
+    span {
+      opacity: .5;
+    }
+  }
+}
+
+
+// Misc Post Content
+.page {
+  padding-top: 30px; // adjust for not having a page title here
+  max-width: 600px;
+  .edit-link {
+    float: right;
+  }
+}
+
+
+// Pagination
+ul.pagination {
+  margin: -20px 0 30px;
+  width: 100%;
+  .clearfix();
+  list-style: none;
+  li {
+    display: inline;
+    a {
+      float: left;
+      display: inline;
+      font-weight: bold;
+      line-height: 20px;
+    }
+    &.newer a {
+      float: right;
+    }
+  }
+}
+
+
+// Photos
+div.photos {
+  div.photo {
+    padding-bottom: 29px;
+    margin-bottom: 50px;
+    border-bottom: 1px solid #eee;
+  }  
+}
+div.photo {
+  margin-bottom: 10px;
+  a {
+    img {
+      max-width: 100%;
+      min-height: 500px;
+      height: auto;
+      margin: 0;
+      line-height: 1;
+    }
+  }
+  .post-content {
+    ul, ol,
+    p,
+    blockquote,
+    h2, h3, h4 h5, h6 {
+      max-width: 600px;
+    }
+    p:first-child {
+      max-width: 100%;
+      line-height: 1;
+    }
+  }
+  ul.meta {
+    margin: -5px 0 10px;
+    .clearfix();
+    li {
+      display: inline;
+      a {
+        background-repeat: no-repeat;
+        background-position: -1px -1px;
+        display: inline;
+        float: left;
+        margin-right: 10px;
+        height: 30px;
+        padding-left: 30px;
+        line-height: 30px;
+      }
+      &.comment a {
+        background-image: url(../img/comments.png);
+      }
+      &.tweet a {
+        background-image: url(../img/larry.png);
+      }
+    }
+  }
+}
+
+
+// Search
+
+// Search Page
+div.results {
+  margin-bottom: 30px;
+  h2 {
+    color: @gray-light;
+    em {
+      font-style: italic;
+    }
+  }
+}
+body.search-no-results div.footer form {
+  display: none;
+}
+div.no-results {
+  #search {
+    background: #f5f5f5;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding: 40px;
+    // .border-radius(4px);
+    input {
+      width: 90%;
+      border-color: #ccc;
+    }
+  }
+}
+// Search Form
+#search {
+  margin-bottom: 20px;
+  input {
+    display: block;
+    width: 310px;
+    margin: 0 auto;
+    padding: 6px 14px;
+    .sans-serif(normal,13px,1);
+    .border-radius(13px);
+  }
+}
+
+
+// Comments
+div#comments,
+div#respond {
+  h3,
+  p.comments-header {
+    margin-bottom: 10px;
+  }
+}
+div#comments {
+  margin-top: 30px;
+  ol {
+    margin: 20px 0;
+    list-style: none;
+    border-bottom: 1px solid #eee;
+    li {
+      max-width: 600px;
+      margin-bottom: 10px;
+      padding-top: 14px;
+      border-top: 1px solid #eee;
+      .clearfix();
+      div.comment-wrapper {
+        width: 100%;
+        .clearfix();
+      }
+      div.comment-author {
+        margin-bottom: 10px;
+        line-height: 18px;
+        h5 {
+          color: #333;
+          font-size: 14px;
+          font-weight: bold;
+        }
+        img {
+          float: left;
+          margin-right: 8px;
+          .border-radius(3px);
+        }
+        small {
+          font-size: 12px;
+          a {
+            font-weight: normal;
+            color: @gray-light;
+          }
+        }
+      }
+      div.comment {
+        margin-left: 40px;
+        margin-right: 40px;
+        .awaiting-moderation {
+          background: #f5f5f5;
+          background: rgba(255,255,255,.03);
+          padding: 5px 10px;
+          .border-radius(4px);
+          font-size: 12px;
+          font-style: italic;
+          position: relative;
+          top: -4px;
+          margin-bottom: 10px;
+        }
+        p, ul, ol {
+          margin-bottom: 10px;
+        }
+        small a {
+          font-weight: normal;
+          font-size: 12px;
+          color: #999;
+        }
+      }
+      div.comment-actions {
+        float: right;
+        a {
+          font-weight: normal;
+          color: @gray-light;
+        }
+      }
+    }
+    ul.children {
+      list-style: none;
+      margin-left: 40px;
+      margin-bottom: 0;
+      li {
+        border-top: 0;
+        .clearfix();
+        ul.children {
+          margin-top: 10px;
+          li {
+            margin-bottom: 10px;
+            padding-top: 0;
+          }
+        }
+      }
+    }
+  }
+}
