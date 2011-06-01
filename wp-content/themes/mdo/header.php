@@ -119,9 +119,11 @@
   			)); ?>
   		  <h4>Elsewhere</h4>
         <ul>
+<!--
           <li>
             <a href="http://twitter.com/mdo" title="Follow me on Twitter">Twitter</a>
           </li>
+-->
           <li>
             <a href="http://dribbble.com/players/mdo" title="Follow my work on Dribbble">Dribbble</a>
           </li>
@@ -132,6 +134,11 @@
             <a href="http://rdio.com/people/mdo/" title="Follow me and my musical tastes on Rdio">Rdio</a>
           </li>
         </ul>
+        
+        <!-- Follow button, bitches! -->
+        <a href="http://twitter.com/mdo" class="twitter-follow-button" data-show-count="false">Follow @mdo</a>
+        <script src="http://platform.twitter.com/widgets.js" type="text/javascript"></script>
+        
         <h4>Contact</h4>
         <ul>
           <li>
