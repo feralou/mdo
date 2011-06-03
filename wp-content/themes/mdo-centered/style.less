@@ -1,0 +1,659 @@
+/*--------------------------------------------------
+  MDO.com - v1.0
+	-------------------------------------------------- */
+
+/*--------------------------------------------------
+  Global Reset
+  --------------------------------------------------
+	Props to Eric Meyer (meyerweb.com) for his CSS 
+	reset file. We're using an adapted version here 
+	that cuts out some of the reset HTML elements we 
+	will never need here (i.e., dfn, samp, etc).
+	-------------------------------------------------- */
+
+	html, body { margin: 0; padding: 0; }
+	h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, cite, code, del, dfn, em, img, q, s, samp, small, strike, strong, sub, sup, tt, var, dd, dl, dt, li, ol, ul, fieldset, form, label, legend, button, table, caption, tbody, tfoot, thead, tr, th, td { margin: 0; padding: 0; border: 0; font-weight: normal; font-style: normal; font-size: 100%; line-height: 1; font-family: inherit; text-align: left; }
+	table { border-collapse: collapse; border-spacing: 0; }
+	ol, ul { list-style: none; }
+	q:before, q:after, blockquote:before, blockquote:after { content: ""; }
+  
+
+/*--------------------------------------------------
+  Colors
+	-------------------------------------------------- */
+
+    /* Links */
+    @linkColor: #2276bb;
+    @linkHoverColor: #2b96ee;
+    @bgBlue: #c0deed;
+    
+    /* Grays */
+    @darkGray: #333;
+    @gray: #555;
+    @lightGray: #7f7d79;
+    
+    /* Blues */
+    @sidebarBlue: #cceaf3;
+    @twitterBlue: #52bdec;
+    
+    /* Accents */
+    @twitterGreen: #4bb14b;
+    @twitterRed: #ab2920;
+    @twitterYellow: #ffcc2f;
+    @twitterGold: #faa226;
+    @twitterPink: #cc3a67;
+    @twitterPurple: #8b59c2;
+ 
+  
+/*--------------------------------------------------
+  CSS3 Properties: Corners, Shadows
+	-------------------------------------------------- */
+
+  .borderRadius (@radius: 5px) {
+    border-radius: @radius;
+    -khtml-border-radius: @radius;
+    -moz-border-radius: @radius;
+    -webkit-border-radius: @radius;
+  }
+  .borderTopRadius (@radius: 5px) {
+    border-radius: @radius @radius 0 0;
+    -khtml-border-radius: @radius @radius 0 0;
+    -moz-border-radius: @radius @radius 0 0;
+    -webkit-border-top-left-radius: @radius;
+    -webkit-border-top-right-radius: @radius;
+  }
+  .borderTopLeftRadius (@radius: 5px) {
+    border-radius: @radius 0 0 0;
+    -khtml-border-radius: @radius 0 0 0;
+    -moz-border-radius: @radius 0 0 0;
+    -webkit-border-top-left-radius: @radius;
+  }
+  .borderTopRightRadius (@radius: 5px) {
+    border-radius: 0 @radius 0 0;
+    -khtml-border-radius: 0 @radius 0 0;
+    -moz-border-radius: 0 @radius 0 0;
+    -webkit-border-top-right-radius: @radius;
+  }
+  .borderBottomRadius (@radius: 5px) {
+    border-radius: 0 0 @radius @radius;
+    -khtml-border-radius: 0 0 @radius @radius;
+    -moz-border-radius: 0 0 @radius @radius;
+    -webkit-border-bottom-left-radius: @radius;
+    -webkit-border-bottom-right-radius: @radius;
+  }
+  .borderBottomRightRadius (@radius: 5px) {
+    border-radius: 0 0 @radius 0;
+    -khtml-border-radius: 0 0 @radius 0;
+    -moz-border-radius: 0 0 @radius 0;
+    -webkit-border-bottom-right-radius: @radius;
+  }
+  .borderBottomLeftRadius (@radius: 5px) {
+    border-radius: 0 0 0 @radius;
+    -khtml-border-radius: 0 0 0 @radius;
+    -moz-border-radius: 0 0 0 @radius;
+    -webkit-border-bottom-left-radius: @radius;
+  }
+  
+  .boxShadow (@shadow: 0 1px 3px rgba(0,0,0,.25)) {
+    box-shadow: @shadow;
+    -moz-box-shadow: @shadow;
+    -webkit-box-shadow: @shadow;
+  }
+ 
+  
+/*--------------------------------------------------
+  Image Classes
+	-------------------------------------------------- */
+
+
+
+/*--------------------------------------------------
+	Typography Styles
+	-------------------------------------------------- */
+
+  hr {
+    margin: 29px 0;
+    border: 0;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #fff;
+  }
+
+  strong {
+    font-style: inherit;
+    font-weight: bold;
+    color: #111;
+  }
+  em {
+    font-style: italic;
+    font-weight: inherit;
+  }
+  
+  abbr {
+    background: #eee;
+    display: inline-block;
+    padding: 3px;
+    font-size: 11px;
+    font-weight: bold;
+    color: #555;
+    text-shadow: 0 1px 1px rgba(255,255,255,.5);
+    text-transform: uppercase;
+    .borderRadius(3px);
+  }
+  
+  code, pre {
+    padding: 0 3px 2px;
+    font-family: Monaco, Andale Mono, Courier New, monospace;
+    font-size: 12px;
+    .borderRadius(3px);
+  }
+  code {
+    background: rgba(250,162,38,.25);
+    color: rgba(0,0,0,.75);
+    display: inline-block;
+    padding: 2px 3px 3px;
+  }
+  pre {
+    background: #eee;
+    display: block;
+    margin: 10px 0 18px;
+    background: #fff;
+/*     .boxShadow(0 1px 3px rgba(0,0,0,.1)); */
+    -webkit-font-smoothing: subpixel-antialiased;
+  }
+  pre ol {
+    background: rgba(0,0,0,.05);
+    background: lighten(@twitterGreen, 40);
+    list-style: decimal;
+    margin: 0;
+    padding-left: 40px;
+    .borderRadius(2px);
+  }
+  pre ol li {
+    background: #fff;
+    padding: 2px 10px;
+    border-left: 1px solid rgba(0,0,0,.1);
+    border-left-color: lighten(@twitterGreen, 30);
+    font-size: 11px;
+    line-height: 18px;
+    color: rgba(0,0,0,.5);
+    text-shadow: 0 1px 1px rgba(255,255,255,.5);
+  }
+  pre ol li:nth-child(odd) {
+    background: lighten(@twitterGreen, 50);
+  }
+  pre ol li:hover {
+    background: #f7f7f7;
+  }
+/*
+  pre ol li:first-child {
+    padding-top: 8px;
+  }
+  pre ol li:last-child {
+    padding-bottom: 8px;
+  }
+*/
+  /* Language Styles */
+  span.html__tag_start,
+  span.html__tag_end { color: #277ac1; font-weight: normal; }
+  span.html__attr_name { color: #d78b41; }
+  span.html__attr_value { color: #de4a3f; }
+
+  blockquote {
+    background: #f5f5f5;
+    .borderRadius(3px);
+    margin: 0 0 15px;
+    padding: 20px 30px;
+  }
+  blockquote p {
+    margin: 0;
+    font-size: 20px;
+    line-height: 25px;
+    color: @lightGray;
+  }
+  blockquote p:before {
+    content: '\201C';
+  }
+  blockquote p:after {
+    content: '\201D';
+  }
+
+  img {
+    display: block;
+    margin: 0 0 20px;
+  }
+
+  p {
+    font-size: 16px;
+    line-height: 24px;
+    margin: 0 0 15px;
+  }
+  p.lead {
+    font-size: 18px;
+    line-height: 25px;
+    margin-bottom: 12px;
+  }
+  p a {
+    font-weight: bold;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    line-height: 1;
+    color: #111;
+  }
+  h1 {
+    font-size: 30px;
+    line-height: 35px;
+    margin: 0 0 10px;
+  }
+  h1 a {
+    color: @darkGray;
+  }
+  h2 {
+    font-size: 20px;
+    margin: 20px 0 10px;
+    letter-spacing: -1px;
+  }
+  h3 {
+    font-size: 16px;
+    margin: 24px 0 5px;
+  }
+  h4 {
+    font-size: 14px;
+    margin: 16px 0 5px;
+  }
+  h1 small {
+    font-size: 20px;
+    color: @lightGray;
+  }
+  
+  ul, ol {
+    margin: 0 0 15px 25px;
+    padding: 0;
+  }
+  ul {
+    list-style: disc;
+  }
+  ol {
+    
+  }
+  li {
+    line-height: 20px;
+  }
+
+
+/*--------------------------------------------------
+  Base Structure
+	-------------------------------------------------- */
+  
+  body {
+    background: #fff;
+    font: normal 16px/24px "PT Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #333;
+    color: #454441;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  
+  /* Links */
+  a, a:visited {
+    color: @twitterGreen;
+    text-decoration: none;
+  }
+  a:hover {
+    color: darken(@twitterGreen, 10);
+    text-decoration: underline;
+  }
+
+  @siteWidth: 980px;
+
+  header {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 100;
+    background-color: #fff;
+  }
+
+  div#container {
+    width: @siteWidth;
+    margin: 0 auto;
+  }
+
+  div#sidebar,
+  div#content {
+    padding: 30px;
+  }
+  div#sidebar {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 50%;
+    bottom: 0;
+    width: 220px;
+    margin-left: -500px;
+    font-size: 12px;
+    line-height: 15px;
+  }
+  div#content {
+    xmargin-left: 250px;
+    xwidth: 500px;
+  }
+  
+  div#sidebar div {
+    padding: 0 30px;
+  }
+  div#sidebar div div {
+    padding: 0;
+  }
+  
+  div#sidebar img {
+    width: 100%;
+    .borderRadius(125px);
+    .boxShadow(0 1px 10px rgba(0,0,0,.05));
+  }
+  
+  div#sidebar ul {
+    margin: 0 0 15px;
+    list-style: none;
+  }
+  div#sidebar ul li {
+    xtext-align: center;
+    line-height: 15px;
+  }
+  div#sidebar ul li a:hover:after,
+  div#sidebar ul li.current-menu-item a:after {
+    content: "\00a0 \2192";
+  }
+  div#sidebar ul li.current-menu-item a {
+    color: lighten(@lightGray, 25);
+  }
+  div#sidebar h4,
+  div#sidebar p {
+    color: @lightGray;
+  }
+  div#sidebar p {
+    font-size: 12px;
+    line-height: 15px;
+  }
+  
+  div.oh-hai {
+    padding: 58px 0 2px;
+  }
+  div.oh-hai h1 {
+    color: #797773;
+    color: @lightGray;
+    font-weight: 300;
+  }
+  
+  // The Posts
+  div.post {
+    position: relative;
+  }
+  div.tw_button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-top: 10px;
+    margin-right: -120px;
+  }
+  span.date {
+    display: block;
+    margin: -10px 0 10px;
+    color: #ccc;
+  }
+  div.post figure div.tw_button {
+    top: -65px;
+  }
+
+  
+  figure {
+    display: block;
+    position: relative;
+    margin: 0;
+  }
+  figure img {
+    display: block;
+    .borderRadius(3px);
+    -webkit-transition: linear all .2s;
+  }
+  figure figcaption {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: -170px;
+    z-index: 2;
+    width: 160px;
+    font-size: 11px;
+    line-height: 15px;
+    color: @lightGray;
+  }
+  figure figcaption strong,
+  figure figcaption small {
+    display: block;
+    line-height: 15px;
+  }
+  figure figcaption strong {
+    color: #111;
+  }
+  figure figcaption small {
+    margin-top: 15px;
+  }
+  figure figcaption small a {
+    color: lighten(@lightGray, 25) !important;
+  }
+
+
+  ul.pagination {
+    margin: 0 0 40px;
+    height: 40px;
+  }
+  ul.pagination li {
+    display: inline;
+  }
+  ul.pagination a {
+    float: left;
+    font-weight: bold;
+    line-height: 40px;
+    color: @twitterGreen;
+  }
+  ul.pagination a span {
+    display: inline-block;
+    background: @twitterGreen;
+    color: #fff;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    .borderRadius(20px);
+    float: left;
+    margin: 0 10px 0 0;
+  }
+  ul.pagination li.newer,
+  ul.pagination li.newer span {
+    float: right;
+  }
+  ul.pagination li.newer span {
+    margin: 0 0 0 10px;
+  }
+  ul.pagination a:hover {
+    text-decoration: none;
+    color: darken(@twitterGreen, 10);
+  }
+  ul.pagination a:hover span {
+    background: darken(@twitterGreen, 10);
+  }
+
+
+/*--------------------------------------------------
+  Holy Awesome Scrollbars, Batman! (via @maxvoltar... <3)
+	-------------------------------------------------- */
+  html {
+    overflow: auto;
+  }
+  body {
+    overflow-x: hidden;
+    overflow-y: scroll;
+    position: absolute;
+    top: 5px;
+    left: 0;
+    right: 10px;
+    bottom: 0;
+  }
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-button:start:decrement,
+  ::-webkit-scrollbar-button:end:increment {
+    display: block;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-button:end:increment {
+    height: 0;
+  }
+  ::-webkit-scrollbar-button:vertical:increment {
+    background-color: transparent;
+  }
+  ::-webkit-scrollbar-track-piece {
+    background-color: #f5f5f5;
+    -webkit-border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:vertical {
+    height: 50px;
+    background-color: #ccc;
+    -webkit-border-radius: 4px;
+    -webkit-box-shadow: 0 1px 1px rgba(255,255,255,1);
+  }
+  ::-webkit-scrollbar-thumb:horizontal {
+    width: 50px;
+    background-color: #ccc;
+    -webkit-border-radius: 4px;
+  }
+  // Undo it for iPads
+  @media only screen and (max-device-width:1024px) {
+    body {
+      position: relative;
+      top: auto;
+      right: auto;
+      bottom: auto;
+      left: auto;
+      overflow: auto;
+    }
+  }
+  // Undo for FF
+  body.ff,
+  body.ie {
+    position: relative;
+    top: auto;
+    right: auto;
+    bottom: auto;
+    left: auto;
+    overflow: auto;
+  }
+
+/*--------------------------------------------------
+  Misc. Classes
+	-------------------------------------------------- */
+    
+  // Wells (sunken content areas)
+  div.well {
+  	background: #f3f3f3;
+  	padding: 14px 19px;
+  	margin: 0 0 20px;
+  	.borderRadius(6px);
+  	border: 1px solid #eee;
+  	border-top-color: #ddd;
+  }
+
+  // Alignment Styles
+  .right {
+    float: right;
+  }
+  .left {
+    float: left;
+  }
+  
+  // Mute something, don't "gray it out"
+  .muted {
+    color: #777;
+  }
+  
+  // Base gradient styles
+  .gradient {
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(transparent), to(rgba(0,0,0,.15)));
+    background-image: -moz-linear-gradient(transparent, rgba(0,0,0,.15));
+  }
+  
+
+  // New Post Link
+  a.admin-link,
+  span.admin-link a {
+    position: fixed;
+    top: 0;
+    right: 40px;
+    background: rgba(0,0,0,.25);
+    .borderBottomRadius(3px);
+    font-size: 40px;
+    font-weight: bolder;
+    line-height: 1;
+    color: #fff;
+    text-shadow: 0 1px 0 rgba(0,0,0,.25);
+    padding: 5px 15px 10px;
+  }
+  a.admin-link:hover,
+  span.admin-link a:hover {
+    background: @twitterGreen;
+    text-decoration: none;
+    color: #fff;
+  }
+  a#newPost {
+    right: 40px;
+  }
+  span#editPost a {
+    right: 105px;
+  }
+
+  // Textareas for sharing code
+  textarea.copy-code {
+    background: #f5f5f5;
+    display: block;
+    width: 480px;
+    max-height: 200px;
+    overflow-y: scroll;
+    margin: 0 0 15px;
+    padding: 9px;
+    font: 11px/15px Monaco, Andale Mono, Courier New, monospace;
+    color: #555;
+    border: 1px solid rgba(0,0,0,.1);
+    .borderRadius(3px);
+    .boxShadow(inset 0 1px 2px rgba(0,0,0,.05));
+  }
+  textarea.copy-code:focus {
+    outline: none;
+    border-color: @linkColor;
+    @shadow: 0 0 10px lighten(@linkColor, 25), inset 0 1px 2px rgba(0,0,0,.05);
+    .boxShadow(@shadow);
+  }
+
+  // Tools
+  ul#tools {
+    li {
+      display: inline;
+      float: left;
+      width: 33.333333%;
+      text-align: center;
+      img {
+        display: block;
+        margin: 0 auto;
+      }
+    }
+  }
+  
+  
+  
