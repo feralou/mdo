@@ -182,7 +182,7 @@ class Walker_Nav_Menu_Edit extends Walker_Nav_Menu  {
 							remove_query_arg($removed_args, admin_url( 'nav-menus.php' ) )
 						),
 						'delete-menu_item_' . $item_id
-					); ?>"><?php _e('Remove'); ?></a> <span class="meta-sep"> | </span> <a class="item-cancel submitcancel" id="cancel-<?php echo $item_id; ?>" href="<?php	echo add_query_arg( array('edit-menu-item' => $item_id, 'cancel' => time()), remove_query_arg( $removed_args, admin_url( 'nav-menus.php' ) ) );
+					); ?>"><?php _e('Remove'); ?></a> <span class="meta-sep"> | </span> <a class="item-cancel submitcancel" id="cancel-<?php echo $item_id; ?>" href="<?php	echo esc_url( add_query_arg( array('edit-menu-item' => $item_id, 'cancel' => time()), remove_query_arg( $removed_args, admin_url( 'nav-menus.php' ) ) ) );
 						?>#menu-item-settings-<?php echo $item_id; ?>"><?php _e('Cancel'); ?></a>
 				</div>
 
@@ -207,6 +207,21 @@ class Walker_Nav_Menu_Edit extends Walker_Nav_Menu  {
  * @uses Walker_Nav_Menu
  */
 class Walker_Nav_Menu_Checklist extends Walker_Nav_Menu  {
+	function __construct( $fields = false ) {
+		if ( $fields ) {
+			$this->db_fields = $fields;
+		}
+	}
+
+	function start_lvl( &$output, $depth ) {
+		$indent = str_repeat( "\t", $depth );
+		$output .= "\n$indent<ul class='children'>\n";
+	}
+
+	function end_lvl( &$output, $depth ) {
+		$indent = str_repeat( "\t", $depth );
+		$output .= "\n$indent</ul>";
+	}
 
 	/**
 	 * @see Walker::start_el()
@@ -614,7 +629,12 @@ function wp_nav_menu_item_post_type_meta_box( $object, $post_type ) {
 	if ( !$posts )
 		$error = '<li id="error">'. $post_type['args']->labels->not_found .'</li>';
 
-	$walker = new Walker_Nav_Menu_Checklist;
+	$db_fields = false;
+	if ( is_post_type_hierarchical( $post_type_name ) ) {
+		$db_fields = array( 'parent' => 'post_parent', 'id' => 'ID' );
+	}
+
+	$walker = new Walker_Nav_Menu_Checklist( $db_fields );
 
 	$current_tab = 'most-recent';
 	if ( isset( $_REQUEST[$post_type_name . '-tab'] ) && in_array( $_REQUEST[$post_type_name . '-tab'], array('all', 'search') ) ) {
@@ -670,7 +690,7 @@ function wp_nav_menu_item_post_type_meta_box( $object, $post_type ) {
 			<p class="quick-search-wrap">
 				<input type="text" class="quick-search input-with-default-title" title="<?php esc_attr_e('Search'); ?>" value="<?php echo $searched; ?>" name="quick-search-posttype-<?php echo $post_type_name; ?>" />
 				<img class="waiting" src="<?php echo esc_url( admin_url( 'images/wpspin_light.gif' ) ); ?>" alt="" />
-				<?php submit_button( __( 'Search' ), 'quick-search-submit button-secondary hide-if-js', 'submit', false ); ?>
+				<?php submit_button( __( 'Search' ), 'quick-search-submit button-secondary hide-if-js', 'submit', false, array( 'id' => 'submit-quick-search-posttype-' . $post_type_name ) ); ?>
 			</p>
 
 			<ul id="<?php echo $post_type_name; ?>-search-checklist" class="list:<?php echo $post_type_name?> categorychecklist form-no-clear">
@@ -716,6 +736,7 @@ function wp_nav_menu_item_post_type_meta_box( $object, $post_type ) {
 							'object_id' => $_nav_menu_placeholder,
 							'post_content' => '',
 							'post_excerpt' => '',
+							'post_parent' => '',
 							'post_title' => _x('Home', 'nav menu home label'),
 							'post_type' => 'nav_menu_item',
 							'type' => 'custom',
@@ -724,6 +745,7 @@ function wp_nav_menu_item_post_type_meta_box( $object, $post_type ) {
 					}
 				}
 
+				$posts = apply_filters( 'nav_menu_items_'.$post_type_name, $posts, $args, $post_type );
 				$checkbox_items = walk_nav_menu_tree( array_map('wp_setup_nav_menu_item', $posts), 0, (object) $args );
 
 				if ( 'all' == $current_tab && ! empty( $_REQUEST['selectall'] ) ) {
@@ -821,7 +843,12 @@ function wp_nav_menu_item_taxonomy_meta_box( $object, $taxonomy ) {
 		'current' => $pagenum
 	));
 
-	$walker = new Walker_Nav_Menu_Checklist;
+	$db_fields = false;
+	if ( is_taxonomy_hierarchical( $taxonomy_name ) ) {
+		$db_fields = array( 'parent' => 'parent', 'id' => 'term_id' );
+	}
+
+	$walker = new Walker_Nav_Menu_Checklist( $db_fields );
 
 	$current_tab = 'most-used';
 	if ( isset( $_REQUEST[$taxonomy_name . '-tab'] ) && in_array( $_REQUEST[$taxonomy_name . '-tab'], array('all', 'most-used', 'search') ) ) {
@@ -897,7 +924,7 @@ function wp_nav_menu_item_taxonomy_meta_box( $object, $taxonomy ) {
 			<p class="quick-search-wrap">
 				<input type="text" class="quick-search input-with-default-title" title="<?php esc_attr_e('Search'); ?>" value="<?php echo $searched; ?>" name="quick-search-taxonomy-<?php echo $taxonomy_name; ?>" />
 				<img class="waiting" src="<?php echo esc_url( admin_url( 'images/wpspin_light.gif' ) ); ?>" alt="" />
-				<?php submit_button( __( 'Search' ), 'quick-search-submit button-secondary hide-if-js', 'submit', false ); ?>
+				<?php submit_button( __( 'Search' ), 'quick-search-submit button-secondary hide-if-js', 'submit', false, array( 'id' => 'submit-quick-search-taxonomy-' . $taxonomy_name ) ); ?>
 			</p>
 
 			<ul id="<?php echo $taxonomy_name; ?>-search-checklist" class="list:<?php echo $taxonomy_name?> categorychecklist form-no-clear">

@@ -163,7 +163,7 @@ function get_allowed_themes() {
  *
  * @since 1.5.0
  *
- * @return array Key is template name, Value is template name
+ * @return array Key is the template name, value is the filename of the template
  */
 function get_page_templates() {
 	$themes = get_themes();
@@ -179,6 +179,9 @@ function get_page_templates() {
 
 			// don't allow template files in subdirectories
 			if ( false !== strpos($basename, '/') )
+				continue;
+
+			if ( 'functions.php' == $basename )
 				continue;
 
 			$template_data = implode( '', file( $template ));
@@ -393,9 +396,9 @@ function themes_api($action, $args = null) {
 		if ( is_wp_error($request) ) {
 			$res = new WP_Error('themes_api_failed', __('An Unexpected HTTP Error occurred during the API request.'), $request->get_error_message() );
 		} else {
-			$res = unserialize($request['body']);
+			$res = unserialize( wp_remote_retrieve_body( $request ) );
 			if ( ! $res )
-			$res = new WP_Error('themes_api_failed', __('An unknown error occurred.'), $request['body']);
+			$res = new WP_Error('themes_api_failed', __('An unknown error occurred.'), wp_remote_retrieve_body( $request ) );
 		}
 	}
 	//var_dump(array($args, $res));

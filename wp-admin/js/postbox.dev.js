@@ -5,6 +5,8 @@ var postboxes;
 			this.init(page,args);
 			$('.postbox h3, .postbox .handlediv').click( function() {
 				var p = $(this).parent('.postbox'), id = p.attr('id');
+				if ( 'dashboard_browser_nag' == id )
+					return;
 
 				p.toggleClass('closed');
 				postboxes.save_state(page);
@@ -18,10 +20,15 @@ var postboxes;
 			$('.postbox h3 a').click( function(e) {
 				e.stopPropagation();
 			} );
+			$('.postbox a.dismiss').click( function(e) {
+				var hide_id = $(this).parents('.postbox').attr('id') + '-hide';
+				$( '#' + hide_id ).prop('checked', false).triggerHandler('click');
+				return false;
+			} );
 			$('.hide-postbox-tog').click( function() {
 				var box = $(this).val();
 
-				if ( $(this).attr('checked') ) {
+				if ( $(this).prop('checked') ) {
 					$('#' + box).show();
 					if ( $.isFunction( postboxes.pbshow ) )
 						postboxes.pbshow( box );
