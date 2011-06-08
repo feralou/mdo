@@ -23,25 +23,16 @@
 @blue:        #2291D7;
 @linkColor:   @blue;
 
+@gray:        #666;
+@grayDark:    #444;
+@grayLight:   #888;
+
+
 // New site width
 @siteWidth:   1000px;
 
 // New baseline
-@baseline:   25px;
-
-// New mixin for Google Fonts
-.pt-sans(@weight: normal, @size: 14px, @lineheight: 20px) {
-  font-family: "PT Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: @size;
-  font-weight: @weight;
-  line-height: @lineheight;
-}
-.open-sans(@weight: normal, @size: 14px, @lineheight: 20px) {
-  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: @size;
-  font-weight: @weight;
-  line-height: @lineheight;
-}
+@baseline:   20px;
 
 // Misc mixins
 .fixed-top(@height: 40px) {
@@ -54,22 +45,11 @@
 }
 
 // Setup the fonts
-body, p, li {
-  .open-sans(300,16px,25px);
-//  .font(normal,16px,24px);
-}
 h1, h2, h3, h4, h5, h6 {
   a, a:hover {
     color: @grayDark;
     text-decoration: none;
   }
-}
-h1 {
-  margin-bottom: 60px;
-  font-size: 100px;
-  font-weight: bold;
-  line-height: 1;
-  letter-spacing: -5px;
 }
 p small {
   color: @grayLighter;
@@ -82,51 +62,7 @@ html, body {
 body {
   #gradient > .vertical-three-colors(#ddd,#f5f5f5,0.25,#f5f5f5);
   background-attachment: fixed;
-  padding: 60px 0 40px;
-}
-
-// Fixed masthead
-header {
-  #gradient > .vertical(#333, #222);
-  background-color: @grayDark;
-  .fixed-top(40px);
-  .box-shadow(0 1px 3px rgba(0,0,0,.1));
-  a {
-    display: inline;
-    float: left;
-    color: @white;
-    line-height: 40px;
-    &:hover {
-      background-color: rgba(255,255,255,.05);
-      color: #fff;
-      text-decoration: none;
-      text-shadow: 0 0 5px rgba(255,255,255,.75);
-    }
-  }
-  h3 {
-    font-size: 14px;
-    a {
-      padding: 0 20px;
-    }
-  }
-  p {
-    margin-bottom: 0;
-  }
-  ul {
-    float: left;
-    margin: 0;
-    li {
-      display: inline;
-      font-size: 14px;
-      a {
-        padding: 0 10px;
-      }
-    }
-  }
-  div.follow-button {
-    float: left;
-    margin: 9px 0 0 10px;
-  }
+  padding: 40px;
 }
 
 // Blank canvas
@@ -136,39 +72,52 @@ div.canvas {
   background-color: #fff;
   width: 880px;
   margin: 0 auto;
-  padding: 60px;
-  padding-bottom: 120px; // account for pagination
+  padding: 40px;
   .border-radius(4px);
   .box-shadow(0 1px 3px rgba(0,0,0,.1));
 }
 
-// Footer
-footer {
+// Site footer
+div.footer {
+  margin: @baseline 0;
   p {
-    color: @grayLighter;
-    font-size: 14px;
     text-align: center;
   }
 }
 
-// Columnized content
-div.columnize {
+// Top of Pages
+header {
+  position: relative;
+  overflow: hidden;
   margin-bottom: 40px;
+  text-shadow: 0 1px 0 rgba(255,255,255,.4);
+  border-bottom: 5px solid rgba(0,0,0,.5);
+  .box-shadow(0 1px 0 rgba(255,255,255,.4));
+  h2,
+  h2 a,
+  h2 a:visited,
+  h2 a:hover,
+  h5 {
+    font-weight: bold;
+    color: #999;
+    color: rgba(0,0,0,.5);
+  }
+  h2 {
+    float: left;
+  }
+  h5 {
+    float: right;
+    margin: 10px 0 0;
+  }
 }
-div.col2 { .content-columns(2); }
-div.col3 { .content-columns(3); }
-div.col4 { .content-columns(4); }
-div.col5 { .content-columns(5); }
+
 
 // Pagination
 ul.pagination {
-  width: @siteWidth - 120px;
-  margin: -100px auto 60px;
-  padding-top: 29px;
+  width: 100%;
+  margin: 0 auto;
   height: 25px;
   border-top: 1px solid #eee;
-  position: relative;
-  z-indx: 5;
   li {
     display: inline;
     a {

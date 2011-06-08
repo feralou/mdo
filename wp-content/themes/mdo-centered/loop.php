@@ -12,7 +12,7 @@
 
 <?php if ( have_posts() ) while ( have_posts() ) : the_post(); ?>
 
-  <div class="canvas">
+  <article>
     <h1><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a></h1>
     <?php if (in_category('photos')) { // If a photo/video ?>
       <figure>
@@ -35,7 +35,7 @@
       <?php the_content(); ?>
       <p><small class="date"><?php the_time('l, F jS, Y') ?></small></p>
     <?php } ?>
-  </div>
+</article>
 
 <?php endwhile; ?>
 

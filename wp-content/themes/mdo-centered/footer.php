@@ -1,10 +1,9 @@
-      </div> <!-- /close content -->
-    </div> <!-- /close container -->       
+    </div> <!-- /canvas -->
     
-    <footer>
-      <p>&copy; <?php echo date("Y") ?>. All rights reserved.</p>
-    </footer>
-     
+    <div class="footer">
+  		<p>&copy; <?php echo date("Y") ?>. All rights reserved.</p>
+    </div>
+    
     <?php wp_footer(); ?>
-	</body>
+  </body>
 </html>
