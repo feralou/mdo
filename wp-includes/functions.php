@@ -600,10 +600,6 @@ function add_option( $option, $value = '', $deprecated = '', $autoload = 'yes' )
 
 	wp_protect_special_option( $option );
 
-	/*
-	 * FIXME the next two lines of code are not necessary and should be removed.
-	 * @see http://core.trac.wordpress.org/ticket/13480
-	 */
 	if ( is_object($value) )
 		$value = clone $value;
 
@@ -1954,11 +1950,6 @@ function wp_nonce_url( $actionurl, $action = -1 ) {
  * offer absolute protection, but should protect against most cases. It is very
  * important to use nonce field in forms.
  *
- * If you set $echo to true and set $referer to true, then you will need to
- * retrieve the {@link wp_referer_field() wp referer field}. If you have the
- * $referer set to true and are echoing the nonce field, it will also echo the
- * referer field.
- *
  * The $action and $name are optional, but if you want to have better security,
  * it is strongly suggested to set those two parameters. It is easier to just
  * call the function without any parameters, because validation of the nonce
@@ -1982,11 +1973,12 @@ function wp_nonce_url( $actionurl, $action = -1 ) {
 function wp_nonce_field( $action = -1, $name = "_wpnonce", $referer = true , $echo = true ) {
 	$name = esc_attr( $name );
 	$nonce_field = '<input type="hidden" id="' . $name . '" name="' . $name . '" value="' . wp_create_nonce( $action ) . '" />';
-	if ( $echo )
-		echo $nonce_field;
 
 	if ( $referer )
-		wp_referer_field( $echo );
+		$nonce_field .= wp_referer_field( false );
+
+	if ( $echo )
+		echo $nonce_field;
 
 	return $nonce_field;
 }
@@ -2573,6 +2565,7 @@ function get_allowed_mime_types() {
 		'txt|asc|c|cc|h' => 'text/plain',
 		'csv' => 'text/csv',
 		'tsv' => 'text/tab-separated-values',
+		'ics' => 'text/calendar',
 		'rtx' => 'text/richtext',
 		'css' => 'text/css',
 		'htm|html' => 'text/html',

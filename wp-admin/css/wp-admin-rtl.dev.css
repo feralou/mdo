@@ -40,6 +40,7 @@ TABLE OF CONTENTS:
 21.0 - Admin Footer
 22.0 - Misc
 23.0 - Dead
+24.0 - TinyMCE tweaks
 
 
 ------------------------------------------------------------------------------*/
@@ -214,7 +215,7 @@ form.upgrade .hint {
 }
 
 #wp-fullscreen-tagline {
-	left: 20px;
+	float: left;
 }
 
 /* =Top bar
@@ -449,13 +450,13 @@ form.upgrade .hint {
 	float: right;
 }
 
-.folded #adminmenu .wp-submenu {
+.js.folded #adminmenu .wp-submenu {
 	display: block;
 	left: auto;
 	right: 26px;
 }
 
-.folded #adminmenu .wp-submenu.sub-open {
+.js.folded #adminmenu .wp-submenu.sub-open {
 	padding: 0 0 8px 8px;
 }
 
@@ -463,7 +464,7 @@ form.upgrade .hint {
 	padding: 6px 10px 5px 4px;
 }
 
-.folded #adminmenu .wp-submenu-wrap {
+.js.folded #adminmenu .wp-submenu-wrap {
 	-webkit-border-bottom-right-radius: 0;
 	-webkit-border-bottom-left-radius: 3px;
 	-webkit-border-top-right-radius: 0;
@@ -480,18 +481,19 @@ form.upgrade .hint {
 	border-bottom-left-radius: 3px;
 	border-top-right-radius: 0;
 	border-top-left-radius: 3px;
+	border-width: 0 0 1px 1px;
 }
 
-.folded #adminmenu .wp-submenu ul {
+.js.folded #adminmenu .wp-submenu ul {
 	border-width: 0 1px 0 0;
 }
 
-.folded #adminmenu .wp-submenu a {
+.js.folded #adminmenu .wp-submenu a {
 	padding-left: 0;
 	padding-right: 10px;
 }
 
-.folded #adminmenu a.wp-has-submenu {
+.js.folded #adminmenu a.wp-has-submenu {
 	margin-left: 0;
 	margin-right: 40px;
 }
@@ -506,7 +508,7 @@ form.upgrade .hint {
 	padding: 6px 1px 0 0;
 }
 
-#adminmenu #awaiting-mod,
+#adminmenu .awaiting-mod,
 #adminmenu span.update-plugins,
 #sidemenu li a span.update-plugins {
 	font-family: Tahoma, Arial, sans-serif;
@@ -715,7 +717,18 @@ th.sorted a span {
   11.0 - Write/Edit Post Screen
 ------------------------------------------------------------------------------*/
 
+#titlediv #title-prompt-text,
+#wp-fullscreen-title-prompt-text {
+	right:0;
+}
 
+#sample-permalink {
+	direction:ltr;
+}
+
+#sample-permalink #editable-post-name {
+	unicode-bidi:embed;
+}
 #wp-fullscreen-title-prompt-text {
 	left: auto;
 	right: 0;
@@ -838,7 +851,7 @@ th.sorted a span {
 }
 
 #post-body .wp_themeSkin .mceStatusbar a.mceResize {
-	background: transparent url(../images/resize-rtl.gif) no-repeat scroll right bottom;
+	background: transparent url(../images/resize-rtl.gif) no-repeat scroll left bottom;
 	cursor: sw-resize;
 }
 
@@ -863,7 +876,7 @@ th.sorted a span {
 ------------------------------------------------------------------------------*/
 
 table.diff td, table.diff th {
-	font-family: Courier, monospace;
+	font-family: Consolas, Monaco, monospace;
 }
 
 /*------------------------------------------------------------------------------
@@ -1229,6 +1242,11 @@ h2 .nav-tab {
 	margin-left: 10px;
 }
 
+.tagchecklist {
+	margin-left: 0;
+	margin-right: 14px;
+}
+
 .tagchecklist strong {
 	margin-left: 0;
 	margin-right: -8px;
@@ -1300,3 +1318,19 @@ table .column-rating {
 ------------------------------------------------------------------------------*/
 /* No RTL for now, this space intentionally left blank */
 
+
+/*------------------------------------------------------------------------------
+ 24.0 - TinyMCE tweaks
+		Small tweaks for until tinymce css files are proprely RTLized
+------------------------------------------------------------------------------*/
+#editorcontainer .wp_themeSkin .mceStatusbar {
+	padding-left: 0;
+	padding-right: 5px;
+}
+#editorcontainer .wp_themeSkin .mceStatusbar div {
+	float: right;
+}
+
+#editorcontainer .wp_themeSkin .mceStatusbar a.mceResize {
+	float: left;
+}

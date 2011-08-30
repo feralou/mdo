@@ -28,7 +28,6 @@ else
 $admin_title = apply_filters( 'admin_title', $admin_title, $title );
 
 wp_user_settings();
-wp_menu_unfold();
 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -84,6 +83,9 @@ if ( get_user_setting('mfold') == 'f' )
 
 if ( is_admin_bar_showing() )
 	$admin_body_class .= ' admin-bar';
+
+if ( is_rtl() )
+	$admin_body_class .= ' rtl';
 
 $admin_body_class .= ' branch-' . str_replace( '.', '-', floatval( $wp_version ) );
 $admin_body_class .= ' version-' . str_replace( '.', '-', preg_replace( '/^([.0-9]+).*/', '$1', $wp_version ) );
@@ -146,11 +148,12 @@ if ( function_exists('mb_strlen') ) {
 
 do_action('in_admin_header');
 
-// Generate user profile and info links.
-$howdy = sprintf( __('Howdy, %1$s'), $user_identity );
 $links = array();
 
-$links[5] = '<a href="profile.php" title="' . esc_attr__('Edit your profile') . '">' . __('Your Profile') . '</a>';
+// Generate user profile and info links.
+$links[5] = sprintf( __('Howdy, %1$s'), $user_identity );
+
+$links[8] = '<a href="profile.php" title="' . esc_attr__('Edit your profile') . '">' . __('Your Profile') . '</a>';
 
 if ( is_multisite() && is_super_admin() ) {
 	if ( !is_network_admin() )
@@ -166,6 +169,8 @@ ksort( $links );
 
 // Trim whitespace and pipes from links, then convert to list items.
 $links = array_map( 'trim', $links, array_fill( 0, count( $links ), " |\n\t" ) );
+
+$howdy = array_shift( $links );
 
 $links_no_js = implode( ' | ', $links );
 $links_js = '<li>' . implode( '</li><li>', $links ) . '</li>';

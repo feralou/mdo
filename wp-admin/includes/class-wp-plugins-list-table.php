@@ -21,13 +21,17 @@ class WP_Plugins_List_Table extends WP_List_Table {
 		if ( $status != $default_status && 'search' != $status )
 			update_user_meta( get_current_user_id(), 'plugins_last_view', $status );
 
+
+		if ( isset($_REQUEST['s']) )
+			$_SERVER['REQUEST_URI'] = add_query_arg('s', stripslashes($_REQUEST['s']) );
+
 		$page = $this->get_pagenum();
 
 		parent::__construct( array(
 			'plural' => 'plugins',
 		) );
 	}
-	
+
 	function get_table_classes() {
 		return array( 'widefat', $this->_args['plural'] );
 	}
@@ -132,7 +136,7 @@ class WP_Plugins_List_Table extends WP_List_Table {
 			uasort( $this->items, array( &$this, '_order_callback' ) );
 		}
 
-		$plugins_per_page = $this->get_items_per_page( str_replace( '-', '_', $screen->id . '_per_page' ) );
+		$plugins_per_page = $this->get_items_per_page( str_replace( '-', '_', $screen->id . '_per_page' ), 999 );
 
 		$start = ( $page - 1 ) * $plugins_per_page;
 

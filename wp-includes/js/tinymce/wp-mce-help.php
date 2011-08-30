@@ -228,21 +228,13 @@ wp_admin_css( 'wp-admin', true );
 <div id="content3" class="hidden">
 	<h2><?php _e('Writing at Full Speed') ?></h2>
     <p><?php _e('Rather than reaching for your mouse to click on the toolbar, use these access keys. Windows and Linux use Ctrl + letter. Macintosh uses Command + letter.') ?></p>
-	<p class="dfw-extra"><?php
 
-	printf( __('In Distraction free writing mode use %1$s to make the editor wider, %2$s to make it narrower and %3$s to reset it to the original theme width.'),
-		'<span class="win">Alt +</span><span class="mac">Ctrl +</span>',
-		'<span class="win">Alt -</span><span class="mac">Ctrl -</span>',
-		'<span class="win">Alt 0</span><span class="mac">Ctrl 0</span>'
-	);
-
-	?></p>
 	<table class="keys" width="100%" style="border: 0 none;">
 		<tr class="top"><th class="key center"><?php _e('Letter') ?></th><th class="left"><?php _e('Action') ?></th><th class="key center"><?php _e('Letter') ?></th><th class="left"><?php _e('Action') ?></th></tr>
 		<tr><th>c</th><td><?php _e('Copy') ?></td><th>v</th><td><?php _e('Paste') ?></td></tr>
 		<tr><th>a</th><td><?php _e('Select all') ?></td><th>x</th><td><?php _e('Cut') ?></td></tr>
 		<tr><th>z</th><td><?php _e('Undo') ?></td><th>y</th><td><?php _e('Redo') ?></td></tr>
-		
+
 		<tr class="win"><th>b</th><td><?php _e('Bold') ?></td><th>i</th><td><?php _e('Italic') ?></td></tr>
 		<tr class="win"><th>u</th><td><?php _e('Underline') ?></td><th>1</th><td><?php _e('Heading 1') ?></td></tr>
 		<tr class="win"><th>2</th><td><?php _e('Heading 2') ?></td><th>3</th><td><?php _e('Heading 3') ?></td></tr>
@@ -264,6 +256,11 @@ wp_admin_css( 'wp-admin', true );
 		<tr><th>g</th><td><?php _e('Full Screen') ?></td><th>t</th><td><?php _e('Insert More Tag') ?></td></tr>
 		<tr><th>p</th><td><?php _e('Insert Page Break tag') ?></td><th>h</th><td><?php _e('Help') ?></td></tr>
 		<tr><th>e</th><td colspan="3"><?php _e('Switch to HTML mode') ?></td></tr>
+
+		<tr><th colspan="4" style="font-weight: normal;padding: 15px 10px 10px;"><?php _e('Editor width in Distraction-free writing mode:'); ?></th></tr>
+		<tr><th><span class="win">Alt +</span><span class="mac">Ctrl +</span></th><td><?php _e('Wider') ?></td>
+			<th><span class="win">Alt -</span><span class="mac">Ctrl -</span></th><td><?php _e('Narrower') ?></td></tr>
+		<tr><th><span class="win">Alt 0</span><span class="mac">Ctrl 0</span></th><td><?php _e('Default width') ?></td><th></th><td></td></tr>
 	</table>
 </div>
 

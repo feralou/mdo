@@ -562,7 +562,7 @@ function remove_accents($string) {
 		chr(195).chr(176) => 'd', chr(195).chr(177) => 'n',
 		chr(195).chr(178) => 'o', chr(195).chr(179) => 'o',
 		chr(195).chr(180) => 'o', chr(195).chr(181) => 'o',
-		chr(195).chr(182) => 'o', chr(195).chr(182) => 'o',
+		chr(195).chr(182) => 'o', chr(195).chr(184) => 'o',
 		chr(195).chr(185) => 'u', chr(195).chr(186) => 'u',
 		chr(195).chr(187) => 'u', chr(195).chr(188) => 'u',
 		chr(195).chr(189) => 'y', chr(195).chr(190) => 'th',
@@ -2426,7 +2426,14 @@ function sanitize_option($option, $value) {
 					add_settings_error('admin_email', 'invalid_admin_email', __('The email address entered did not appear to be a valid email address. Please enter a valid email address.'));
 			}
 			break;
-
+		case 'new_admin_email':
+			$value = sanitize_email($value);
+			if ( !is_email($value) ) {
+				$value = get_option( $option ); // Resets option to stored value in the case of failed sanitization
+				if ( function_exists('add_settings_error') )
+					add_settings_error('new_admin_email', 'invalid_admin_email', __('The email address entered did not appear to be a valid email address. Please enter a valid email address.'));
+			}
+			break;
 		case 'thumbnail_size_w':
 		case 'thumbnail_size_h':
 		case 'medium_size_w':
@@ -2518,6 +2525,20 @@ function sanitize_option($option, $value) {
 				$value = get_option( $option ); // Resets option to stored value in the case of failed sanitization
 				if ( function_exists('add_settings_error') )
 					add_settings_error('home', 'invalid_home', __('The Site address you entered did not appear to be a valid URL. Please enter a valid URL.'));
+			}
+			break;
+		case 'WPLANG':
+			$allowed = get_available_languages();
+			if ( ! in_array( $value, $allowed ) && ! empty( $value ) )
+				$value = get_option( $option );
+			break;
+
+		case 'timezone_string':
+			$allowed_zones = timezone_identifiers_list();
+			if ( ! in_array( $value, $allowed_zones ) && ! empty( $value ) ) {
+				$value = get_option( $option ); // Resets option to stored value in the case of failed sanitization
+				if ( function_exists('add_settings_error') )
+					add_settings_error('timezone_string', 'invalid_timezone_string', __('The timezone you have entered is not valid. Please select a valid timezone.') );
 			}
 			break;
 
@@ -2898,7 +2919,7 @@ function capital_P_dangit( $text ) {
  * @return string Sanitized mime type
  */
 function sanitize_mime_type( $mime_type ) {
-	$sani_mime_type = preg_replace( '/[^-*.a-zA-Z0-9\/]/', '', $mime_type );
+	$sani_mime_type = preg_replace( '/[^-+*.a-zA-Z0-9\/]/', '', $mime_type );
 	return apply_filters( 'sanitize_mime_type', $sani_mime_type, $mime_type );
 }
 

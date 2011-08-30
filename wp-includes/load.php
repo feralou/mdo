@@ -2,6 +2,8 @@
 /**
  * These functions are needed to load WordPress.
  *
+ * @internal This file must be parsable by PHP4.
+ *
  * @package WordPress
  */
 
@@ -94,6 +96,9 @@ function wp_fix_server_vars() {
  * Check for the required PHP version, and the MySQL extension or a database drop-in.
  *
  * Dies if requirements are not met.
+ *
+ * This function must be able to work without a complete environment set up. In wp-load.php, for
+ * example, WP_CONTENT_DIR is defined and version.php is included before this function is called.
  *
  * @access private
  * @since 3.0.0
@@ -561,9 +566,8 @@ function shutdown_action_hook() {
  */
 
 function wp_clone( $object ) {
-	_deprecated_function( __FUNCTION__, '3.2' );
-
-	return clone $object;
+	// Use parens for clone to accommodate PHP 4.  See #17880
+	return clone( $object );
 }
 
 /**

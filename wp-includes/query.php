@@ -851,7 +851,7 @@ class WP_Query {
 	/**
 	 * Metadata query container
 	 *
-	 * @since 3.2
+	 * @since 3.2.0
 	 * @access public
 	 * @var object WP_Meta_Query
 	 */
@@ -1260,7 +1260,7 @@ class WP_Query {
 	/**
 	 * Set if post thumbnails are cached
 	 *
-	 * @since 3.2
+	 * @since 3.2.0
 	 * @access public
 	 * @var bool
 	 */
@@ -2179,9 +2179,6 @@ class WP_Query {
 				$search .= "{$searchand}(($wpdb->posts.post_title LIKE '{$n}{$term}{$n}') OR ($wpdb->posts.post_content LIKE '{$n}{$term}{$n}'))";
 				$searchand = ' AND ';
 			}
-			$term = esc_sql( like_escape( $q['s'] ) );
-			if ( empty($q['sentence']) && count($q['search_terms']) > 1 && $q['search_terms'][0] != $q['s'] )
-				$search .= " OR ($wpdb->posts.post_title LIKE '{$n}{$term}{$n}') OR ($wpdb->posts.post_content LIKE '{$n}{$term}{$n}')";
 
 			if ( !empty($search) ) {
 				$search = " AND ({$search}) ";
@@ -3495,6 +3492,12 @@ function wp_old_slug_redirect() {
 			$post_type = 'page';
 		else
 			$post_type = 'post';
+
+		if ( is_array( $post_type ) ) {
+			if ( count( $post_type ) > 1 )
+				return;
+			$post_type = array_shift( $post_type );
+		}
 
 		// Do not attempt redirect for hierarchical post types
 		if ( is_post_type_hierarchical( $post_type ) )

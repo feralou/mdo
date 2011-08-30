@@ -489,6 +489,8 @@ function get_body_class( $class = '' ) {
 		if ( is_page_template() ) {
 			$classes[] = 'page-template';
 			$classes[] = 'page-template-' . sanitize_html_class( str_replace( '.', '-', get_post_meta( $page_id, '_wp_page_template', true ) ), '' );
+		} else {
+			$classes[] = 'page-template-default';
 		}
 	} elseif ( is_search() ) {
 		if ( !empty( $wp_query->posts ) )
@@ -529,10 +531,13 @@ function get_body_class( $class = '' ) {
 			$classes[] = 'post-type-paged-' . $page;
 	}
 
-	if ( !empty( $class ) ) {
+	if ( ! empty( $class ) ) {
 		if ( !is_array( $class ) )
 			$class = preg_split( '#\s+#', $class );
 		$classes = array_merge( $classes, $class );
+	} else {
+		// Ensure that we always coerce class to being an array.
+		$class = array();
 	}
 
 	$classes = array_map( 'esc_attr', $classes );
@@ -1242,7 +1247,7 @@ function is_page_template($template = '') {
 
 	// We have no argument passed so just see if a page_template has been specified
 	if ( empty( $template ) ) {
-		if (!empty( $page_template ) ) {
+		if ( !empty( $page_template ) and ( 'default' != $page_template ) ) {
 			return true;
 		}
 	} elseif ( $template == $page_template) {
