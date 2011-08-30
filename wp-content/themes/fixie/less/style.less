@@ -1,0 +1,265 @@
+/*
+  Theme: Fixie v1.0
+  Author: @mdo
+  Description: Simple, two column WordPress theme with a fixed left sidebar.
+*/
+
+
+/* Imports
+-------------------------------------------------- */
+@import "preboot.less";
+@import "reset.less";
+@import "type.less";
+
+
+/* Base Structure
+-------------------------------------------------- */
+html, body {
+  background-color: #fff;
+  text-rendering: optimizeLegibility;
+}
+body, p {
+  #font > .sans-serif(300,14px,20px);
+  color: #454441;
+}
+
+// Links
+a, a:visited {
+  color: @linkColor;
+  text-decoration: none;
+}
+a:hover {
+  color: @linkColorHover;
+  text-decoration: underline;
+}
+
+// Columns
+.sidebar,
+.content {
+  padding: 30px;
+}
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 220px;
+  font-size: 12px;
+  line-height: 15px;
+}
+.content {
+  margin-left: 250px;
+  width: 500px;
+}
+
+.sidebar div {
+  padding: 0 20px;
+}
+.sidebar div div {
+  padding: 0;
+}
+
+.sidebar img {
+  width: 220px;
+  .border-radius(110px);
+}
+
+.sidebar ul {
+  margin: 0 0 15px;
+  list-style: none;
+}
+.sidebar ul li {
+  line-height: 15px;
+}
+.sidebar ul li a:hover:after,
+.sidebar ul li.current-menu-item a:after {
+  content: "\00a0 \2192";
+}
+.sidebar ul li.current-menu-item a {
+  color: lighten(@grayLight, 25);
+}
+.sidebar h4,
+.sidebar p {
+  color: @grayLight;
+}
+.sidebar p {
+  font-size: 12px;
+  line-height: 15px;
+}
+
+.sidebar input {
+  display: block;
+  width: 190px;
+  margin: 0 -15px 15px;
+  padding: 4px 14px;
+  #font > .sans-serif(300,14px,20px);
+  border: 1px solid #ddd;
+  .border-radius(15px);
+}
+
+div.oh-hai {
+  padding: 58px 0 2px;
+}
+div.oh-hai h1 {
+  color: @grayLight;
+  font-weight: 300;
+}
+
+// The Posts
+div.post {
+  position: relative;
+}
+div.tw_button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-top: 10px;
+  margin-right: -120px;
+}
+span.date {
+  display: block;
+  margin: -10px 0 10px;
+  color: #ccc;
+}
+div.post figure div.tw_button {
+  top: -65px;
+}
+
+
+figure {
+  display: block;
+  position: relative;
+  margin: 0;
+}
+figure img {
+  display: block;
+  .border-radius(3px);
+  -webkit-transition: linear all .2s;
+}
+figure figcaption {
+  display: block;
+  position: absolute;
+  top: 0;
+  right: -170px;
+  z-index: 2;
+  width: 160px;
+  font-size: 11px;
+  line-height: 15px;
+  color: @grayLight;
+}
+figure figcaption strong,
+figure figcaption small {
+  display: block;
+  line-height: 15px;
+}
+figure figcaption strong {
+  color: #111;
+}
+figure figcaption small {
+  margin-top: 15px;
+}
+figure figcaption small a {
+  color: lighten(@grayLight, 25) !important;
+}
+
+
+ul.pagination {
+  margin: 0 0 40px;
+  height: 40px;
+}
+ul.pagination li {
+  display: inline;
+}
+ul.pagination a {
+  float: left;
+  font-weight: bold;
+  line-height: 40px;
+  color: @green;
+}
+ul.pagination a span {
+  display: inline-block;
+  background-color: @green;
+  color: #fff;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  .border-radius(20px);
+  float: left;
+  margin: 0 10px 0 0;
+}
+ul.pagination li.newer,
+ul.pagination li.newer span {
+  float: right;
+}
+ul.pagination li.newer span {
+  margin: 0 0 0 10px;
+}
+ul.pagination a:hover {
+  text-decoration: none;
+  color: darken(@green, 10);
+}
+ul.pagination a:hover span {
+  background: darken(@green, 10);
+}
+
+
+
+/* Misc. Classes
+-------------------------------------------------- */
+
+// Wells (sunken content areas)
+div.well {
+  background-color: #f3f3f3;
+  padding: 14px 19px;
+  margin: 0 0 20px;
+  .border-radius(6px);
+  border: 1px solid #eee;
+  border-top-color: #ddd;
+}
+
+// Alignment Styles
+.right { float: right; }
+.left { float: left; }
+
+// Mute something, don't "gray it out"
+.muted {
+  color: #777;
+}
+
+// Base gradient styles
+.gradient {
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(transparent), to(rgba(0,0,0,.15)));
+  background-image: -moz-linear-gradient(transparent, rgba(0,0,0,.15));
+}
+
+// New Post Link
+a.admin-link,
+span.admin-link a {
+  position: fixed;
+  top: 0;
+  right: 40px;
+  background-color: #eee;
+  padding: 5px 15px 10px;
+  font-size: 40px;
+  font-weight: bolder;
+  line-height: 1;
+  color: #fff;
+  text-shadow: 0 1px 0 rgba(0,0,0,.25);
+  .border-radius(0 0 3px 3px);
+}
+a.admin-link:hover,
+span.admin-link a:hover {
+  background-color: @green;
+  text-decoration: none;
+  color: #fff;
+}
+a#newPost {
+  right: 40px;
+}
+span#editPost a {
+  right: 105px;
+}
+
