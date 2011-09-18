@@ -36,10 +36,7 @@
       <?php the_content(); ?>
     <?php } ?>
   </div>
-  
-  <?php if(!is_single()) { ?>
-  <hr />
-  <?php } ?>
+
 <?php endwhile; ?>
 
 

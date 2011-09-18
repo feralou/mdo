@@ -31,12 +31,15 @@
     <!-- // Less.js at the ready! -->
     <link rel="stylesheet/less" type="text/css" media="all" href="<?php bloginfo('stylesheet_directory'); ?>/style.less" />
     <script type="text/javascript" src="<?php bloginfo('stylesheet_directory'); ?>/js/less-1.0.40.min.js"></script>
-    <link href="<?php bloginfo('stylesheet_directory'); ?>/google-code-prettify/prettify.css" rel="stylesheet">
+    <link href="<?php bloginfo('stylesheet_directory'); ?>/js/google-code-prettify/prettify.css" rel="stylesheet">
 
     <!-- jQuery -->
     <script type="text/javascript" src="<?php bloginfo('stylesheet_directory'); ?>/js/jquery.js"></script>
 		<script type="text/javascript">
       $(document).ready(function(){
+        // Google code prettify
+        prettyPrint();
+
         $(".copy-code").focus(function() {
           $(this).select();
         });
