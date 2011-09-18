@@ -1,7 +1,7 @@
 /*
 Theme Name: Theme
 Theme URI: http://markdotto.com/
-Description: The default theme for MDO.com, last updated Sun Sep 18 02:15:37 PDT 2011
+Description: The default theme for MDO.com, last updated Sun Sep 18 11:56:23 PDT 2011
 Author: @mdo
 Version: v2.0.0
 */
@@ -182,9 +182,6 @@ a:hover {
 }
 p {
   margin-bottom: 12.5px;
-}
-p a {
-  font-weight: bold;
 }
 h1,
 h2,
