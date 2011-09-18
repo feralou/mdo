@@ -167,6 +167,7 @@ a {
 }
 .follow-btn {
   width: 100px;
+  overflow: hidden;
   margin: @baseline * 2 auto @baseline / 2;
 }
 
@@ -458,46 +459,45 @@ figcaption small a {
   color: #777;
 }
 
-// New Post Link
-a.admin-link,
-span.admin-link a {
-  position: fixed;
-  top: 0;
-  right: 40px;
-  background: rgba(0,0,0,.25);
-  -webkit-border-radius: 0 0 3px 3px;
-     -moz-border-radius: 0 0 3px 3px;
-          border-radius: 0 0 3px 3px;
-  font-size: 40px;
-  font-weight: bolder;
-  line-height: 1;
-  color: #fff;
-  text-shadow: 0 1px 0 rgba(0,0,0,.25);
-  padding: 5px 15px 10px;
-}
-a.admin-link:hover,
-span.admin-link a:hover {
-  background: @linkColor;
-  text-decoration: none;
-  color: #fff;
-}
-a#newPost {
-  right: 40px;
-}
-span#editPost a {
-  right: 105px;
-}
 
-// Tools
-#tools {
-  li {
-    display: inline;
-    float: left;
-    width: 33.333333%;
-    text-align: center;
+
+// MEDIA QUERIES
+// -------------
+
+// Mobile phones
+@media only screen and (max-width: 480px) {
+
+  // Remove the padding for gutters
+  .container {
+    width: auto;
+    padding-left: 20px;
+    padding-right: 20px;
   }
-  img {
-    display: block;
-    margin: 0 auto;
+
+  // Move tweet button back inside
+  .tw_button {
+    position: relative;
+    top: auto;
+    left: auto;
+  }
+
+  // Move figcaption over
+  figcaption {
+    position: relative;
+    top: auto;
+    left: auto;
+    right: auto;
+    width: auto;
+  }
+
+  // Move in pagination
+  .pagination {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  // Post changes
+  .post img {
+    max-width: 100%;
   }
 }
