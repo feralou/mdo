@@ -11,16 +11,19 @@
     <link rel="alternate" type="application/rss+xml" title="RSS for Deep Thoughts by Mark Otto" href="http://feeds.feedburner.com/mdo">
 
     <!-- CSS-->
-    <link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Sans:400,700">
     <link rel="stylesheet/less" type="text/css" media="all" href="<?php bloginfo('stylesheet_url'); ?>">
+    <link href="<?php bloginfo('stylesheet_directory'); ?>/js/google-code-prettify/prettify.css" rel="stylesheet">
 
-		<!-- @anywhere -->
+		<!-- JS -->
 		<script src="http://platform.twitter.com/anywhere.js?id=Bil8FuG70FBQMHJrqB0Qlw&v=1" type="text/javascript"></script>
 		<script type="text/javascript">
   		twttr.anywhere(function (T) {
         T.hovercards();
       });
 		</script>
+    <script type="text/javascript" src="<?php bloginfo('stylesheet_directory'); ?>/js/google-code-prettify/prettify.js"></script>
+    <script>$(function () { prettyPrint() })</script>
 
     <!-- Google Webmaster Tools & Analytics -->
     <meta name="google-site-verification" content="i2l3RBLrWFm3JY5fXIug2_83I6muZwPlIF5e4j13-o8" />
@@ -57,8 +60,8 @@
     <?php // Container div closes in the footer ?>
     <div class="container">
       <header class="masthead">
-        <a href="<?php echo home_url('/'); ?>" title="<?php bloginfo('name'); ?>">
-          <img class="mdo" src="<?php bloginfo('stylesheet_directory'); ?>/images/mdo-rounded.png" alt="Mark Otto" />
+        <a class="mdo" href="<?php echo home_url('/'); ?>" title="<?php bloginfo('name'); ?>">
+          <img src="<?php bloginfo('stylesheet_directory'); ?>/images/mdo-rounded.png" alt="Mark Otto" />
         </a>
         <p>This is the website of one Mark Otto, a designer at Twitter.</p>
       </header>
