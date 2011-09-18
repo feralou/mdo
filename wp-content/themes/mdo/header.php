@@ -16,29 +16,30 @@
   }
 ?>
 
-<!doctype html>
+<!DOCTYPE html>
 <html <?php language_attributes(); ?>>
   <head>
     <meta charset="<?php bloginfo( 'charset' ); ?>" />
     <title><?php wp_title('&middot;', true, 'right'); ?> <?php bloginfo('name'); ?></title>
-    <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon" /> 
+    <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <link rel="profile" href="http://gmpg.org/xfn/11" />
     <link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo('stylesheet_url'); ?>" />
-    
+
     <!-- // RSS, just for you @paulrobertlloyd -->
     <link rel="alternate" type="application/rss+xml" title="RSS for Deep Thoughts by Mark Otto" href="http://feeds.feedburner.com/mdo" />
-
-    <!-- Fonts by @fontdeck -->
-<!--     <link rel="stylesheet" href="http://f.fontdeck.com/s/css/59wvGNX0yeikAvAhSNQIwLlajYw/markdotto.com/189.css" type="text/css" /> -->
 
     <!-- // Less.js at the ready! -->
     <link rel="stylesheet/less" type="text/css" media="all" href="<?php bloginfo('stylesheet_directory'); ?>/style.less" />
     <script type="text/javascript" src="<?php bloginfo('stylesheet_directory'); ?>/js/less-1.0.40.min.js"></script>
-    
+    <link href="<?php bloginfo('stylesheet_directory'); ?>/js/google-code-prettify/prettify.css" rel="stylesheet">
+
     <!-- jQuery -->
     <script type="text/javascript" src="<?php bloginfo('stylesheet_directory'); ?>/js/jquery.js"></script>
 		<script type="text/javascript">
       $(document).ready(function(){
+        // Google code prettify
+        prettyPrint();
+
         $(".copy-code").focus(function() {
           $(this).select();
         });
@@ -47,7 +48,7 @@
         });
       });
 		</script>
-		
+
 		<!-- @anywhere -->
 		<script src="http://platform.twitter.com/anywhere.js?id=Bil8FuG70FBQMHJrqB0Qlw&v=1" type="text/javascript"></script>
 		<script type="text/javascript">
@@ -55,13 +56,9 @@
         T.hovercards();
       });
 		</script>
-		
+
     <!-- Code Highlighting -->
-    <script type="text/javascript" src="<?php bloginfo('stylesheet_directory'); ?>/js/chili/jquery.chili-2.2.js"></script>
-    <script type="text/javascript" src="<?php bloginfo('stylesheet_directory'); ?>/js/chili/recipes.js"></script>
-    <script id="setup" type="text/javascript">
-    	ChiliBook.lineNumbers = true; 
-    </script> 
+    <script type="text/javascript" src="<?php bloginfo('stylesheet_directory'); ?>/js/google-code-prettify/prettify.js"></script>
 
     <!-- Google Webmaster Tools & Analytics -->
     <meta name="google-site-verification" content="i2l3RBLrWFm3JY5fXIug2_83I6muZwPlIF5e4j13-o8" />
@@ -91,7 +88,7 @@
     	 */
     	if ( is_singular() && get_option( 'thread_comments' ) )
     		wp_enqueue_script( 'comment-reply' );
-    
+
     	/* Always have wp_head() just before the closing </head>
     	 * tag of your theme, or you will break many plugins, which
     	 * generally use this hook to add elements to <head> such
@@ -102,14 +99,14 @@
   </head>
 
   <body class="<?php echo $browser ?>">
-    
+
     <div id="sidebar">
 		  <p>
 			<a href="<?php echo home_url( '/' ); ?>" title="<?php bloginfo('name'); ?>">
 		      <img src="<?php bloginfo('stylesheet_directory'); ?>/images/hells-yeah-rounded.png" alt="Mark Otto" id="hellsYeah" />
 		    </a>
 		  </p>
-		  
+
 		  <div class="wrapper">
   		  <h4>What's Here</h4>
   			<?php wp_nav_menu(array(
@@ -134,11 +131,11 @@
             <a href="http://rdio.com/people/mdo/" title="Follow me and my musical tastes on Rdio">Rdio</a>
           </li>
         </ul>
-        
+
         <!-- Follow button, bitches! -->
         <a href="http://twitter.com/mdo" class="twitter-follow-button" data-show-count="false">Follow @mdo</a>
         <script src="http://platform.twitter.com/widgets.js" type="text/javascript"></script>
-        
+
         <h4>Contact</h4>
         <ul>
           <li>
@@ -154,13 +151,13 @@
   		<p>&copy; <?php echo date("Y") ?>. All rights reserved.</p>
       </div>
     </div>
-    
+
     <div id="content"> <!-- /closes in footer -->
-      
+
       <?php if (is_home()) { ?>
       <div class="oh-hai">
         <h1>This is the website of one Mark Otto,<br /> a designer living in California and<br /> working at Twitter.</h1>
       </div>
-      
+
       <hr />
       <?php } ?>
