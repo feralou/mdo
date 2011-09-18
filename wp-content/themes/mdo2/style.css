@@ -1,7 +1,7 @@
 /*
 Theme Name: Theme
 Theme URI: http://markdotto.com/
-Description: The default theme for MDO.com, last updated Sun Sep 18 12:43:34 PDT 2011
+Description: The default theme for MDO.com, last updated Sun Sep 18 13:23:20 PDT 2011
 Author: @mdo
 Version: v2.0.0
 */
@@ -124,7 +124,14 @@ a:hover {
   width: 220px;
   height: 220px;
   margin: 0 auto 25px;
-  opacity: .75;
+  opacity: .85;
+  background-color: #eee;
+  -webkit-border-radius: 110px;
+  -moz-border-radius: 110px;
+  border-radius: 110px;
+  -webkit-transition: all 0.1s ease-in-out;
+  -moz-transition: all 0.1s ease-in-out;
+  transition: all 0.1s ease-in-out;
 }
 .mdo img {
   margin-bottom: 0;
@@ -132,10 +139,10 @@ a:hover {
   z-index: 1;
 }
 .mdo:hover {
-  opacity: .6;
+  opacity: .7;
 }
 .mdo:active {
-  opacity: .45;
+  opacity: .55;
 }
 .mdo:after {
   position: absolute;
@@ -191,26 +198,26 @@ h4,
 h5,
 h6 {
   margin: 0;
-  line-height: 1;
+  line-height: 25px;
   color: #111;
 }
 h1 {
   margin: 0 0 10px;
-  font-size: 30px;
-  line-height: 35px;
+  font-size: 32px;
+  line-height: 36px;
 }
 h2 {
   margin: 20px 0 10px;
-  font-size: 20px;
+  font-size: 16px;
   letter-spacing: -1px;
 }
 h3 {
   margin: 24px 0 5px;
-  font-size: 16px;
+  font-size: 12px;
 }
 h4 {
   margin: 16px 0 5px;
-  font-size: 14px;
+  font-size: 9.328px;
 }
 h1 small {
   font-size: 20px;
@@ -436,11 +443,29 @@ figcaption small a {
 .muted {
   color: #777;
 }
-@media only screen and (max-width: 480px) {
+@media (max-width: 480px) {
+  body,
+  p,
+  li,
+  pre {
+    font-size: 14px;
+    line-height: 20px;
+  }
+  h1 {
+    font-size: 24px;
+    line-height: 30px;
+  }
+  h2 {
+    font-size: 18px;
+    line-height: 20px;
+  }
+  ul, ol {
+    margin-left: 25px;
+  }
   .container {
     width: auto;
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 0;
+    padding-right: 0;
   }
   .tw_button {
     position: relative;
