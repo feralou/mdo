@@ -5,14 +5,14 @@
     <title><?php wp_title('&middot;', true, 'right'); ?> <?php bloginfo('name'); ?></title>
     <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon">
     <link rel="profile" href="http://gmpg.org/xfn/11">
-    <link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo('stylesheet_url'); ?>">
+    <meta name="viewport" content="width=device-width; initial-scale=1.0, maximum-scale=1">
 
     <!-- RSS -->
     <link rel="alternate" type="application/rss+xml" title="RSS for Deep Thoughts by Mark Otto" href="http://feeds.feedburner.com/mdo">
 
     <!-- CSS-->
     <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Sans:400,700">
-    <link rel="stylesheet/less" type="text/css" media="all" href="<?php bloginfo('stylesheet_url'); ?>">
+    <link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo('stylesheet_url'); ?>">
     <link href="<?php bloginfo('stylesheet_directory'); ?>/js/google-code-prettify/prettify.css" rel="stylesheet">
 
 		<!-- JS -->
