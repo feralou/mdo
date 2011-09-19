@@ -6,6 +6,14 @@
         </div>
         <ul>
           <li>
+            <a href="./about">About</a>
+          </li>
+          <li>
+            <a href="http://feeds.feedburner.com/mdo">RSS feed</a>
+          </li>
+        </ul>
+        <ul>
+          <li>
             <a href="http://dribbble.com/players/mdo" title="Follow my work on Dribbble">Dribbble</a>
           </li>
           <li>
@@ -16,9 +24,6 @@
           </li>
           <li>
             <a href="mailto:hi@markdotto.com?subject=Oh hai!" title="Email Me">Email</a>
-          </li>
-          <li>
-            <a href="http://feeds.feedburner.com/mdo">RSS feed</a>
           </li>
         </ul>
         <p>&copy; <?php echo date("Y") ?>. All rights reserved.</p>
