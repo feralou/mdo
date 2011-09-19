@@ -6,7 +6,6 @@
     <h1><?php the_title(); ?></h1>
     <?php the_content(); ?>
     <?php edit_post_link( 'Edit', '<span class="edit-link">', '</span>' ); ?>
-    <hr />
   <?php endwhile; ?>
 
 	<?php // comments_template( '', true ); ?>
