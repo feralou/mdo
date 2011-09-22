@@ -1,7 +1,7 @@
 /*
 Theme Name: Theme
 Theme URI: http://markdotto.com/
-Description: The default theme for MDO.com, last updated Mon Sep 19 18:14:50 PDT 2011
+Description: The default theme for MDO.com, last updated Thu Sep 22 00:13:26 PDT 2011
 Author: @mdo
 Version: v2.0.0
 */
@@ -89,7 +89,7 @@ body {
 body, p {
   font-family: "Open Sans", Helvetica, Arial, sans-serif;
   font-size: 16px;
-  font-weight: normal;
+  font-weight: 300;
   line-height: 25px;
 }
 a {
