@@ -159,21 +159,23 @@ a {
 .influads_block {
   float: left;
   width: 120px;
-  margin-left: -150px;
+  margin-left: -160px;
   font-size: 12px;
   line-height: @baseline * .75;
 }
 .influads_img {
   height: 90px;
-  margin-bottom: 0;
+  margin-top: -1px;
+  margin-bottom: (@baseline / 2) + 1;
 }
 .influads_text {
-  margin-bottom: @baseline / 2;
+  margin-bottom: @baseline / 4;
 }
 .influads_text_a {
   color: @gray;
   &:hover {
     color: @linkColorHover;
+    text-decoration: underline;
   }
 }
 
