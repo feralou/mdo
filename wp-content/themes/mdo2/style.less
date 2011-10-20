@@ -159,8 +159,10 @@ a {
 .influads_block {
   float: left;
   width: 120px;
+  margin-top: -@baseline / 2;
   margin-left: -160px;
   font-size: 12px;
+  text-align: right;
   line-height: @baseline * .75;
 }
 .influads_img {
@@ -174,8 +176,14 @@ a {
 .influads_text_a {
   color: @gray;
   &:hover {
+    color: @grayDark;
+    text-decoration: none;
+  }
+}
+.influads_powered_link {
+  color: @grayLight;
+  &:hover {
     color: @linkColorHover;
-    text-decoration: underline;
   }
 }
 
