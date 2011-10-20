@@ -70,7 +70,6 @@ q:before, q:after, blockquote:before, blockquote:after { content: ""; }
 body {
   padding: (@baseline * 1.6) 20px; // 40px
   color: #454441;
-  text-rendering: optimizeLegibility;
   background-color: #fff;
 }
 body,
@@ -154,6 +153,13 @@ a {
   padding-bottom: @baseline;
   color: @grayLight;
   text-align: center;
+}
+
+// Ads
+.influads_block {
+  float: left;
+  width: 120px;
+  background-color: #f5f5f5;
 }
 
 // Footer
@@ -291,7 +297,7 @@ pre {
   display: block;
   padding: (@baseline - 1) / 2;
   margin: 0 0 @baseline;
-  font-size: 12px;
+  font-size: 13px;
   line-height: @baseline;
   white-space: pre;
   white-space: pre-wrap;
