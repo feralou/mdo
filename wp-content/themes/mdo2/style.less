@@ -160,11 +160,21 @@ a {
   float: left;
   width: 120px;
   margin-left: -150px;
-  font-size: 13px;
+  font-size: 12px;
   line-height: @baseline * .75;
 }
-.influads_link_img {
+.influads_img {
   height: 90px;
+  margin-bottom: 0;
+}
+.influads_text {
+  margin-bottom: @baseline / 2;
+}
+.influads_text_a {
+  color: @gray;
+  &:hover {
+    color: @linkColorHover;
+  }
 }
 
 // Footer
