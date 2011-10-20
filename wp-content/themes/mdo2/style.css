@@ -1,7 +1,7 @@
 /*
 Theme Name: Theme
 Theme URI: http://markdotto.com/
-Description: The default theme for MDO.com, last updated Wed Oct 19 20:54:19 PDT 2011
+Description: The default theme for MDO.com, last updated Wed Oct 19 21:16:26 PDT 2011
 Author: @mdo
 Version: v2.0.0
 */
@@ -507,6 +507,15 @@ figcaption small a {
     width: auto;
     padding-left: 0;
     padding-right: 0;
+  }
+  .influads_block {
+    float: none;
+    width: auto;
+    margin-top: 0;
+    margin-left: 0;
+    font-size: 12px;
+    text-align: left;
+    line-height: 18.75px;
   }
   .tw_button {
     position: relative;
