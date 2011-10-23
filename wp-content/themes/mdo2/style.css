@@ -1,7 +1,7 @@
 /*
 Theme Name: Theme
 Theme URI: http://markdotto.com/
-Description: The default theme for MDO.com, last updated Fri Oct 21 10:14:04 PDT 2011
+Description: The default theme for MDO.com, last updated Sat Oct 22 22:11:03 PDT 2011
 Author: @mdo
 Version: v2.0.0
 */
@@ -81,7 +81,7 @@ blockquote:after {
   content: "";
 }
 body {
-  padding: 38.400000000000006px 20px;
+  padding: 38.400000000000006px 0;
   color: #454441;
   background-color: #fff;
 }
@@ -483,29 +483,13 @@ figcaption small a {
 .muted {
   color: #777;
 }
-@media (max-width: 480px) {
-  body,
-  p,
-  li,
-  pre {
-    font-size: 14px;
-    line-height: 20px;
-  }
-  h1 {
-    font-size: 24px;
-    line-height: 30px;
-  }
-  h2 {
-    font-size: 18px;
-    line-height: 20px;
-  }
-  ul, ol {
-    margin-left: 25px;
+@media (max-width: 960px) {
+  body {
+    background-color: red;
   }
   .container {
-    width: auto;
-    padding-left: 0;
-    padding-right: 0;
+    padding-left: 20px;
+    padding-right: 20px;
   }
   .influads_block {
     float: none;
@@ -543,5 +527,29 @@ figcaption small a {
   .pagination {
     margin-left: 0;
     margin-right: 0;
+  }
+}
+@media (max-width: 480px) {
+  body, p, li {
+    font-size: 14px;
+    line-height: 20px;
+  }
+  pre {
+    font-size: 12px;
+    line-height: 20px;
+  }
+  h1 {
+    font-size: 24px;
+    line-height: 30px;
+  }
+  h2 {
+    font-size: 18px;
+    line-height: 20px;
+  }
+  ul, ol {
+    margin-left: 25px;
+  }
+  .container {
+    width: auto;
   }
 }
