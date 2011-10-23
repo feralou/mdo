@@ -1,7 +1,7 @@
 /*
 Theme Name: Theme
 Theme URI: http://markdotto.com/
-Description: The default theme for MDO.com, last updated Wed Oct 19 21:19:41 PDT 2011
+Description: The default theme for MDO.com, last updated Sat Oct 22 22:11:03 PDT 2011
 Author: @mdo
 Version: v2.0.0
 */
@@ -81,15 +81,14 @@ blockquote:after {
   content: "";
 }
 body {
-  padding: 40px 20px;
+  padding: 38.400000000000006px 0;
   color: #454441;
   background-color: #fff;
 }
 body, p, li {
   font-family: "Open Sans", Helvetica, Arial, sans-serif;
-  font-size: 16px;
-  font-weight: 300;
-  line-height: 25px;
+  font-size: 15px;
+  line-height: 24px;
 }
 a {
   font-weight: inherit;
@@ -115,14 +114,14 @@ a:hover {
   background-color: #eee;
 }
 .masthead {
-  margin-bottom: 75px;
+  margin-bottom: 72px;
 }
 .mdo {
   position: relative;
   display: block;
   width: 220px;
   height: 220px;
-  margin: 0 auto 25px;
+  margin: 0 auto 24px;
   opacity: .85;
   background-color: #999;
   -webkit-border-radius: 110px;
@@ -160,26 +159,26 @@ a:hover {
   box-shadow: inset 0 5px 10px rgba(0, 0, 0, 0.5);
 }
 .masthead p {
-  padding-bottom: 25px;
+  padding-bottom: 24px;
   color: #999999;
   text-align: center;
 }
 .influads_block {
   float: left;
   width: 120px;
-  margin-top: -12.5px;
+  margin-top: -12px;
   margin-left: -160px;
   font-size: 12px;
   text-align: right;
-  line-height: 18.75px;
+  line-height: 18px;
 }
 .influads_img {
   height: 90px;
   margin-top: -1px;
-  margin-bottom: 13.5px;
+  margin-bottom: 13px;
 }
 .influads_text {
-  margin-bottom: 6.25px;
+  margin-bottom: 6px;
 }
 .influads_text_a {
   color: #555555;
@@ -221,10 +220,10 @@ a:hover {
 .follow-btn {
   width: 100px;
   overflow: hidden;
-  margin: 50px auto 12.5px;
+  margin: 48px auto 12px;
 }
 p {
-  margin-bottom: 12.5px;
+  margin-bottom: 12px;
 }
 h1,
 h2,
@@ -233,26 +232,26 @@ h4,
 h5,
 h6 {
   margin: 0;
-  line-height: 25px;
+  line-height: 24px;
   color: #111;
 }
 h1 {
   margin: 0 0 10px;
-  font-size: 32px;
-  line-height: 36px;
+  font-size: 30px;
+  line-height: 34.56px;
 }
 h2 {
   margin: 20px 0 10px;
-  font-size: 24px;
+  font-size: 22.5px;
   letter-spacing: -1px;
 }
 h3 {
   margin: 24px 0 5px;
-  font-size: 16px;
+  font-size: 15px;
 }
 h4 {
   margin: 16px 0 5px;
-  font-size: 9.328px;
+  font-size: 8.745px;
 }
 h1 small {
   font-size: 20px;
@@ -260,7 +259,7 @@ h1 small {
 }
 ul, ol {
   padding: 0;
-  margin: 0 0 12.5px;
+  margin: 0 0 12px;
 }
 ul {
   list-style: disc;
@@ -269,10 +268,10 @@ ol {
   list-style: decimal;
 }
 li {
-  line-height: 25px;
+  line-height: 24px;
 }
 hr {
-  margin: 24px 0;
+  margin: 23px 0;
   border: 0;
   border-top: 1px solid #eee;
   border-bottom: 1px solid #fff;
@@ -315,10 +314,10 @@ code {
 pre {
   background-color: #f5f5f5;
   display: block;
-  padding: 12px;
-  margin: 0 0 25px;
+  padding: 11.5px;
+  margin: 0 0 24px;
   font-size: 13px;
-  line-height: 25px;
+  line-height: 24px;
   white-space: pre;
   white-space: pre-wrap;
   word-wrap: break-word;
@@ -331,7 +330,7 @@ pre {
 blockquote {
   background-color: #f5f5f5;
   padding: 20px 30px;
-  margin-bottom: 12.5px;
+  margin-bottom: 12px;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
@@ -353,7 +352,7 @@ img {
 }
 .post {
   position: relative;
-  margin-bottom: 75px;
+  margin-bottom: 72px;
 }
 .post:after {
   display: block;
@@ -362,7 +361,7 @@ img {
   height: 1px;
   margin: 0 auto;
   background-color: #eee;
-  margin-top: 75px;
+  margin-top: 72px;
 }
 .post img {
   max-width: 100%;
@@ -383,7 +382,7 @@ img {
   top: -65px;
 }
 .page {
-  padding-bottom: 75px;
+  padding-bottom: 72px;
 }
 figure {
   position: relative;
@@ -425,7 +424,7 @@ figcaption small a {
 }
 .pagination {
   height: 40px;
-  margin: 0 -180px 50px;
+  margin: 0 -180px 48px;
 }
 .pagination li {
   display: inline;
@@ -484,39 +483,23 @@ figcaption small a {
 .muted {
   color: #777;
 }
-@media (max-width: 480px) {
-  body,
-  p,
-  li,
-  pre {
-    font-size: 14px;
-    line-height: 20px;
-  }
-  h1 {
-    font-size: 24px;
-    line-height: 30px;
-  }
-  h2 {
-    font-size: 18px;
-    line-height: 20px;
-  }
-  ul, ol {
-    margin-left: 25px;
+@media (max-width: 960px) {
+  body {
+    background-color: red;
   }
   .container {
-    width: auto;
-    padding-left: 0;
-    padding-right: 0;
+    padding-left: 20px;
+    padding-right: 20px;
   }
   .influads_block {
     float: none;
     width: auto;
     height: 90px;
-    margin: -50px 0 25px;
+    margin: -48px 0 24px;
     padding: 15px;
     font-size: 12px;
     text-align: left;
-    line-height: 18.75px;
+    line-height: 18px;
     background-color: #f5f5f5;
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
@@ -544,5 +527,29 @@ figcaption small a {
   .pagination {
     margin-left: 0;
     margin-right: 0;
+  }
+}
+@media (max-width: 480px) {
+  body, p, li {
+    font-size: 14px;
+    line-height: 20px;
+  }
+  pre {
+    font-size: 12px;
+    line-height: 20px;
+  }
+  h1 {
+    font-size: 24px;
+    line-height: 30px;
+  }
+  h2 {
+    font-size: 18px;
+    line-height: 20px;
+  }
+  ul, ol {
+    margin-left: 25px;
+  }
+  .container {
+    width: auto;
   }
 }

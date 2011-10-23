@@ -45,8 +45,8 @@ q:before, q:after, blockquote:before, blockquote:after { content: ""; }
 @purple:            #7a43b6;
 
 // Baseline grid
-@basefont:          16px;
-@baseline:          25px;
+@basefont:          15px;
+@baseline:          24px;
 
 
 
@@ -68,7 +68,7 @@ q:before, q:after, blockquote:before, blockquote:after { content: ""; }
 // -----------
 
 body {
-  padding: (@baseline * 1.6) 20px; // 40px
+  padding: (@baseline * 1.6) 0; // 40px 0
   color: #454441;
   background-color: #fff;
 }
@@ -77,7 +77,6 @@ p,
 li {
   font-family: "Open Sans", Helvetica, Arial, sans-serif;
   font-size: @basefont;
-  font-weight: 300;
   line-height: @baseline;
 }
 
@@ -525,27 +524,18 @@ figcaption small a {
 // MEDIA QUERIES
 // -------------
 
-// Mobile phones and small screens
-@media (max-width: 480px) {
+// Anything under 960
+@media (max-width: 960px) {
 
-  // Downsize body text
-  body,
-  p,
-  li,
-  pre {
-    font-size: 14px;
-    line-height: 20px;
+  // Test!
+  body {
+    background-color: red;
   }
-  h1 { font-size: 24px; line-height: 30px; }
-  h2 { font-size: 18px; line-height: 20px; }
 
-  ul, ol { margin-left: 25px; }
-
-  // Remove the padding for gutters
+  // Pad the container so their is room to breathe
   .container {
-    width: auto;
-    padding-left: 0;
-    padding-right: 0;
+    padding-left: 20px;
+    padding-right: 20px;
   }
 
   // Ads
@@ -591,6 +581,31 @@ figcaption small a {
   .pagination {
     margin-left: 0;
     margin-right: 0;
+  }
+}
+
+// Mobile phones and small screens
+@media (max-width: 480px) {
+
+  // Downsize body text
+  body,
+  p,
+  li {
+    font-size: 14px;
+    line-height: 20px;
+  }
+  pre {
+    font-size: 12px;
+    line-height: 20px;
+  }
+  h1 { font-size: 24px; line-height: 30px; }
+  h2 { font-size: 18px; line-height: 20px; }
+
+  ul, ol { margin-left: 25px; }
+
+  // Set the container width
+  .container {
+    width: auto;
   }
 
 }
