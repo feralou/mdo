@@ -1,7 +1,7 @@
 /*
 Theme Name: Theme
 Theme URI: http://markdotto.com/
-Description: The default theme for MDO.com, last updated Sat Oct 22 22:13:43 PDT 2011
+Description: The default theme for MDO.com, last updated Sun Oct 23 23:24:59 PDT 2011
 Author: @mdo
 Version: v2.0.0
 */
@@ -482,6 +482,10 @@ figcaption small a {
 }
 .muted {
   color: #777;
+}
+.gist-highlight {
+  max-height: 400px;
+  overflow-y: scroll;
 }
 @media (max-width: 960px) {
   .container {
