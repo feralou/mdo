@@ -1,6 +1,6 @@
       <footer class="colophon">
         <div class="follow-btn">
-          <!-- Follow button, bitches! -->
+          <!-- Twitter Follow button -->
           <a href="http://twitter.com/mdo" class="twitter-follow-button" data-show-count="false">Follow @mdo</a>
           <script src="http://platform.twitter.com/widgets.js" type="text/javascript"></script>
         </div>
