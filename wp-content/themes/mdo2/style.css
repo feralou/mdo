@@ -1,7 +1,7 @@
 /*
 Theme Name: Theme
 Theme URI: http://markdotto.com/
-Description: The default theme for MDO.com, last updated Thu Dec  1 18:01:16 PST 2011
+Description: The default theme for MDO.com, last updated Thu Dec  1 18:07:07 PST 2011
 Author: @mdo
 Version: v2.0.0
 */
@@ -172,29 +172,16 @@ a:hover {
   text-align: right;
   line-height: 18px;
 }
-/*
-.influads_img {
+.fusionimg {
   height: 90px;
   margin-top: -1px;
-  margin-bottom: (@baseline / 2) + 1;
+  margin-bottom: 13px;
 }
-.influads_text {
-  margin-bottom: @baseline / 4;
+.fusion-ads .powered-by {
+  display: block;
+  text-align: right;
+  margin-top: 5px;
 }
-.influads_text_a {
-  color: @gray;
-  &:hover {
-    color: @grayDark;
-    text-decoration: none;
-  }
-}
-.influads_powered_link {
-  color: @grayLight;
-  &:hover {
-    color: @linkColorHover;
-  }
-}
-*/
 .colophon:before {
   display: block;
   content: '';
