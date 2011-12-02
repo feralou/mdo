@@ -1,7 +1,7 @@
 /*
 Theme Name: Theme
 Theme URI: http://markdotto.com/
-Description: The default theme for MDO.com, last updated Thu Dec  1 18:07:07 PST 2011
+Description: The default theme for MDO.com, last updated Thu Dec  1 18:10:10 PST 2011
 Author: @mdo
 Version: v2.0.0
 */
@@ -165,12 +165,18 @@ a:hover {
 }
 .fusion-ads {
   float: left;
-  width: 120px;
-  margin-top: -12px;
+  width: 130px;
+  margin-top: -15px;
   margin-left: -160px;
   font-size: 12px;
   text-align: right;
   line-height: 18px;
+}
+.fusiontext {
+  color: #999;
+}
+.fusiontext:hover {
+  color: #2d692d;
 }
 .fusionimg {
   height: 90px;
@@ -481,7 +487,7 @@ figcaption small a {
     padding-left: 20px;
     padding-right: 20px;
   }
-  .influads_block {
+  .fusion-ads {
     float: none;
     width: auto;
     height: 90px;
@@ -493,7 +499,7 @@ figcaption small a {
     -moz-border-radius: 4px;
     border-radius: 4px;
   }
-  .influads_img {
+  .fusionimg {
     float: left;
     margin: 0 15px 0 0;
   }
@@ -540,7 +546,7 @@ figcaption small a {
   .container {
     width: auto;
   }
-  .influads_block {
+  .fusion-ads {
     font-size: 12px;
     line-height: 18px;
   }
