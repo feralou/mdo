@@ -67,6 +67,6 @@
       </header>
 
       <div class="fusion-ads" id="fusion_ad">
-        <a href="http://fusionads.net">Powered by Fusion</a>
+        <a class="powered-by" href="http://fusionads.net">Powered by Fusion</a>
       </div>
 
