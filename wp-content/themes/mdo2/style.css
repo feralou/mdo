@@ -1,7 +1,7 @@
 /*
 Theme Name: Theme
 Theme URI: http://markdotto.com/
-Description: The default theme for MDO.com, last updated Thu Dec  1 18:10:10 PST 2011
+Description: The default theme for MDO.com, last updated Thu Dec  1 18:11:48 PST 2011
 Author: @mdo
 Version: v2.0.0
 */
@@ -177,6 +177,7 @@ a:hover {
 }
 .fusiontext:hover {
   color: #2d692d;
+  text-decoration: none;
 }
 .fusionimg {
   height: 90px;
@@ -502,6 +503,9 @@ figcaption small a {
   .fusionimg {
     float: left;
     margin: 0 15px 0 0;
+  }
+  .fusion-ads .powered-by {
+    text-align: left;
   }
   .tw_button {
     position: relative;
