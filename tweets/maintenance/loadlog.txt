@@ -10,3 +10,9 @@ Attempted load Sun, 24 Jul 2011 20:06:35 -0700
 Attempted load Sun, 24 Jul 2011 20:06:42 -0700
 Attempted load Mon, 25 Jul 2011 15:48:00 -0700
 Attempted load Thu, 01 Sep 2011 13:48:03 -0700
+Attempted load Fri, 23 Sep 2011 15:25:36 -0700
+Attempted load Mon, 10 Oct 2011 13:45:09 -0700
+Attempted load Thu, 17 Nov 2011 14:00:23 -0800
+Attempted load Thu, 17 Nov 2011 14:02:43 -0800
+Attempted load Fri, 06 Jan 2012 09:50:05 -0800
+Attempted load Fri, 27 Jan 2012 11:30:27 -0800
