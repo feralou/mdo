@@ -1,7 +1,7 @@
 /*
 Theme Name: Theme
 Theme URI: http://markdotto.com/
-Description: The default theme for MDO.com, last updated Sun Feb 26 11:23:56 PST 2012
+Description: The default theme for MDO.com, last updated Sun Feb 26 21:24:31 PST 2012
 Author: @mdo
 Version: v2.1
 */
@@ -449,7 +449,7 @@ figcaption small a {
 }
 .pagination {
   height: 40px;
-  margin: 0 -180px 56px;
+  margin-bottom: 56px;
 }
 .pagination li {
   display: inline;
@@ -539,10 +539,6 @@ figcaption small a {
     left: auto;
     right: auto;
     width: auto;
-  }
-  .pagination {
-    margin-left: 0;
-    margin-right: 0;
   }
 }
 @media (max-width: 640px) {
