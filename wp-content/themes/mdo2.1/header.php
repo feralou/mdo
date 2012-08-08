@@ -10,7 +10,7 @@
     <?php if (is_single) { ?>
       <meta name="twitter:card" content="summary">
       <meta name="twitter:creator" content="@mdo">
-      <meta name="twitter:url" content="<?php <?php the_permalink(); ?>">
+      <meta name="twitter:url" content="<?php the_permalink(); ?>">
       <meta name="twitter:title" content="<?php the_title(); ?>">
       <meta name="twitter:description" content="<?php the_excerpt(); ?>">
     <?php } ?>
