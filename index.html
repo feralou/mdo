@@ -1,9 +1,10 @@
-<!doctype html>
-<html>
-<head>
-  <title>Test</title>
-</head>
-<body>
-  <h1>Test</h1>
-</body>
-</html>
+---
+layout: default
+title: MDO.com
+---
+
+<ul class="posts">
+  {% for post in site.posts %}
+    <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ post.url }}">{{ post.title }}</a></li>
+  {% endfor %}
+</ul>
