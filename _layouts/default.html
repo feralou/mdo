@@ -1,15 +1,75 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
   <head>
-     <meta http-equiv="content-type" content="text/html; charset=utf-8">
-     <title>{{ page.title }}</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width; initial-scale=1.0, maximum-scale=1">
+    <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon">
+    <link href="http://gmpg.org/xfn/11" rel="profile">
 
-     <!-- CSS -->
-     <link rel="stylesheet" href="/css/mdo.css" type="text/css">
+    <title>{{ page.title }}</title>
+
+    <!-- RSS -->
+    <link rel="alternate" type="application/rss+xml" title="RSS for Deep Thoughts by Mark Otto" href="http://feeds.feedburner.com/mdo">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/css/mdo.css" type="text/css">
+
+    <!-- Google Webmaster Tools & Analytics -->
+    <meta name="google-site-verification" content="i2l3RBLrWFm3JY5fXIug2_83I6muZwPlIF5e4j13-o8">
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-146052-1']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
   </head>
   <body>
 
-    {{ content }}
+    <div class="container">
+      <header class="masthead">
+        <a class="mdo" href="/" title="Home">
+          <img src="/img/mdo.png" alt="Mark Otto">
+        </a>
+        <p>
+          <strong>Deep thoughts by one <a href="/about" title="About Mark Otto">Mark Otto</a>.</strong><br>
+          Web Platform Designer at Twitter. Creator of <a href="http://getbootstrap.com" title="Visit Twitter Bootstrap">Bootstrap</a>. Broheim.
+        </p>
+      </header>
+
+      <div class="fusion-ads" id="fusion_ad">
+        <a class="powered-by" href="http://fusionads.net">Powered by Fusion</a>
+      </div>
+
+      {{ content }}
+    </div>
+
+
+    <script type="text/javascript">
+      var _gauges = _gauges || [];
+      (function() {
+        var t   = document.createElement('script');
+        t.type  = 'text/javascript';
+        t.async = true;
+        t.id    = 'gauges-tracker';
+        t.setAttribute('data-site-id', '4deefa8bf5a1f53328000004');
+        t.src = '//secure.gaug.es/track.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(t, s);
+      })();
+    </script>
+
+    <script type="text/javascript">
+      (function(){
+        var fusion = document.createElement('script');
+        fusion.src = window.location.protocol + '//adn.fusionads.net/api/1.0/ad.js?zoneid=149&rand=' + Math.floor(Math.random()*9999999);
+        fusion.async = true;
+        (document.head || document.getElementsByTagName('head')[0]).appendChild(fusion);
+      })();
+    </script>
 
   </body>
 </html>
