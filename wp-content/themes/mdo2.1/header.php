@@ -12,7 +12,7 @@
       <meta name="twitter:creator" content="@mdo">
       <meta name="twitter:url" content="<?php the_permalink(); ?>">
       <meta name="twitter:title" content="<?php the_title(); ?>">
-      <meta name="twitter:description" content="<?php the_excerpt(); ?>">
+      <meta name="twitter:description" content="<?php $excerpt = strip_tags(get_the_excerpt()); echo $excerpt; ?>">
     <?php } ?>
 
     <!-- RSS -->
