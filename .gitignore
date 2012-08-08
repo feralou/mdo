@@ -1,4 +1,5 @@
 # Ignore specific files
 
+_drafts/
+_site/
 .DS_Store
-/wp-config.php
