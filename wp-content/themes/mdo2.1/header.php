@@ -8,11 +8,10 @@
     <meta name="viewport" content="width=device-width; initial-scale=1.0, maximum-scale=1">
 
     <?php if (is_single) { ?>
-      <meta name="twitter:card" content="summary">
-      <meta name="twitter:creator" content="@mdo">
-      <meta name="twitter:url" content="<?php the_permalink(); ?>">
-      <meta name="twitter:title" content="<?php the_title(); ?>">
-      <meta name="twitter:description" content="<?php $excerpt = strip_tags(get_the_excerpt()); echo $excerpt; ?>">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:creator" content="@mdo">
+    <meta name="twitter:url" content="<?php the_permalink(); ?>">
+    <meta name="twitter:title" content="<?php the_title(); ?>">
     <?php } ?>
 
     <!-- RSS -->
