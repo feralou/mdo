@@ -7,6 +7,14 @@
     <link rel="profile" href="http://gmpg.org/xfn/11">
     <meta name="viewport" content="width=device-width; initial-scale=1.0, maximum-scale=1">
 
+    <?php if (is_single) { ?>
+      <meta name="twitter:card" content="summary">
+      <meta name="twitter:creator" content="@mdo">
+      <meta name="twitter:url" content="<?php <?php the_permalink(); ?>">
+      <meta name="twitter:title" content="<?php the_title(); ?>">
+      <meta name="twitter:description" content="<?php the_excerpt(); ?>">
+    <?php } ?>
+
     <!-- RSS -->
     <link rel="alternate" type="application/rss+xml" title="RSS for Deep Thoughts by Mark Otto" href="http://feeds.feedburner.com/mdo">
 
