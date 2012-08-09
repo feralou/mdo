@@ -337,7 +337,8 @@ a:hover {
 
 /* List of posts
 ------------------------- */
-.posts {
+.posts,
+.fourohfour {
   margin-bottom: 80px;
 }
 .posts h3 {
