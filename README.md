@@ -1,3 +1,7 @@
-# Mark Otto's personal blog
+# @mdo's blog
 
-Built on Jekyll and hosted on GitHub pages.
+All content within `_posts/` and `public` is copyright Mark Otto. Do not reuse any part of my written words or assets without written permission.
+
+Made by [@mdo](http://twitter.com/mdo), built on [Jekyll](http://github.com/mojombo/jekyll), and hosted on GitHub Pages.
+
+<3
