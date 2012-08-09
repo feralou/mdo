@@ -1,14 +1,8 @@
---- 
+---
 layout: post
-status: publish
-tags: 
-- Bootstrap
-meta: 
-  _edit_last: "1"
-type: post
-published: true
 title: Learnings from open-sourcing Bootstrap
 ---
+
 [Bootstrap](http://getbootstrap.com) wasn't my first open-source project, but it's definitely the largest and most successful, largely thanks to [Jacob](http://twitter.com/fat) and [the community](https://github.com/twitter/bootstrap/) of course. Since open-sourcing Bootstrap seven months ago, I've realized a few things about open-source that I'd like share with you all.
 
 ## Communication is paramount

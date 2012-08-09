@@ -1,15 +1,8 @@
---- 
-layout: post
-status: publish
-tags: 
-- Bootstrap
-- Design
-meta: 
-  _edit_last: "1"
-type: post
-published: true
-title: "Bootstrap in A List Apart #342"
 ---
+layout: post
+title: Bootstrap in A List Apart No. 342
+---
+
 <a href="http://www.alistapart.com/articles/building-twitter-bootstrap/" title="Bootstrap in A List Apart" target="_blank"><img src="http://www.markdotto.com/wp-content/uploads/2012/01/bootstrap-ala.png" alt="Bootstrap in A List Apart"></a>
 
 Not too long ago I was asked by the A List Apart crew to contribute an article on [Bootstrap](https://twitter.github.com/bootstrap). After some delays due to the Twitter redesign, the holidays, and some run-ins with the flu, I'm very happy to announce that the article has been published in [today's new edition](http://www.alistapart.com/issues/342).

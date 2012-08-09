@@ -395,7 +395,7 @@ img {
 .post ul, .post ol {
   margin-left: 30px;
 }
-.tw_button {
+.tweet-button {
   margin: 14px 0;
 }
 .post-date {
@@ -448,19 +448,31 @@ figcaption small a {
   color: #d9d9d9 !important;
 }
 
-.post-list {
 
-}
 h2 a {
   display: block;
 }
-h2 a small {
+h2 a small,
+h3 a small {
   font-size: 14px;
   color: #999;
 }
-h2 a:hover {
+h2 a:hover,
+h3 a:hover {
   text-decoration: none
 }
+
+.related {
+  margin-bottom: 80px;
+}
+.related h2,
+.related .posts h3 {
+  text-align: center;
+}
+.related .posts h3 {
+  margin: 5px 0;
+}
+
 
 .pagination {
   height: 40px;

@@ -1,21 +1,9 @@
---- 
+---
 layout: post
-status: publish
-tags: 
-- Bootstrap
-- Code
-- Tools
-- Twitter
-- Work
-meta: 
-  _edit_last: "1"
-type: post
-published: true
 title: Bootstrap 2 ready for testing and feedback
 ---
-<div style="background-color: #f5f5f5; border-radius: 4px; padding: 9px 15px; margin-bottom: 14px;">
-<strong>Update:</strong> Bootstrap 2 is out and ready for you to dive in. Head over to <a href="http://getbootstrap.com" title="Visit Twitter Bootstrap" target="_blank">http://getbootstrap.com</a> to check it out!
-</div>
+
+**Update:** Bootstrap 2 is out and ready for you to dive in. Head over to [http://getbootstrap.com](http://getbootstrap.com) to check it out!
 
 My fellow nerds, I'm very happy to announce that [Bootstrap 2 drops January 31](http://twitterbootstrap2.eventbrite.com/). To ensure we have the very best release possible, we're opening up the branch and encouraging everyone to jump in and test the new code. We have a lot of new features, rewritten documentation, and use cases to test with the addition of media queries.
 

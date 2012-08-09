@@ -1,16 +1,8 @@
---- 
+---
 layout: post
-status: publish
-tags: 
-- Bootstrap
-- Code
-- CSS
-meta: 
-  _edit_last: "1"
-type: post
-published: true
 title: Comma-separated values in LESS mixins
 ---
+
 With some CSS3 properties, like `box-shadow` or `text-shadow`, it is possible to have a comma-separated list of values for multiple shadows like this:
 
 <pre class="prettyprint linenums">

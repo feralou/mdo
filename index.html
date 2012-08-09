@@ -1,13 +1,12 @@
 ---
 layout: default
-title: MDO.com
 ---
 
-<div class="posts">
-  {% for post in site.posts %}
-    <h2><a href="{{ post.url }}">
-      {{ post.title }}
-      <small>{{ post.date | date_to_string }}</small>
-    </a></h2>
-  {% endfor %}
-</div>
+{% for post in site.posts %}
+  <div class="post">
+    <h1><a href="{{ post.url }}">{{ post.title }}</a></h1>
+    <span class="post-date">{{ post.date | date_to_string }}</span>
+    {% include tweet-button.html %}
+    {{ post.content }}
+  </div>
+{% endfor %}

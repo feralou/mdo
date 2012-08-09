@@ -6,7 +6,12 @@
     <link href="/public/favicon.ico" rel="shortcut icon" type="image/x-icon">
     <link href="http://gmpg.org/xfn/11" rel="profile">
 
-    <title>{{ page.title }}</title>
+    <title>
+      {% if page.title %}
+      {{ page.title }} &middot;
+      {% endif %}
+      Deep Thoughts by Mark Otto
+    </title>
 
     <!-- RSS -->
     <link rel="alternate" type="application/rss+xml" title="RSS for Deep Thoughts by Mark Otto" href="http://feeds.feedburner.com/mdo">
