@@ -32,7 +32,7 @@ li {
 }
 
 p {
-  margin-bottom: 14px;
+  margin: 0 0 14px;
 }
 h1, h2, h3, h4, h5, h6 {
   font-weight: normal;
@@ -398,6 +398,25 @@ a:hover {
 
 .page {
   padding-bottom: 84px;
+}
+
+
+
+/* Projects
+-------------------------------------------------- */
+
+.project {
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+.project h2 {
+  margin: 10px 0 0;
+}
+.project img {
+  border: 1px solid rgba(0,0,0,.1);
+  -webkit-border-radius: 6px;
+     -moz-border-radius: 6px;
+          border-radius: 6px;
 }
 
 
