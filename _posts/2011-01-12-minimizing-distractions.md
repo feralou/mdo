@@ -1,15 +1,13 @@
---- 
+---
 layout: post
 status: draft
-tags: []
-
-meta: 
-  _edit_last: "1"
-type: post
 published: false
-title: Minimizing Distractions
+title: Minimizing distractions
 ---
-Despite owning an iPhone 4 since the middle of last year, I've only just noticed an awesome way Apple minimizes distractions for it's iOS users. Distractions, even things as small as unnecessary "design junk," can keep you from focusing on particular tasks, accomplishing specific goals, and enjoying an otherwise delightful design moment.
+
+This time, however, it's how Apple minizes distractions in iOS.
+
+Depsite owning an iPhone since the very first "Silverback" generation and an iPhone 4 since it's release, I've only just noticed an awesome way Apple minimizes distractions for it's iOS users. Distractions, even things as small as unnecessary "design junk," can keep you from focusing on particular tasks, accomplishing specific goals, and enjoying an otherwise delightful design moment.
 
 
 
