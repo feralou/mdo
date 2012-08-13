@@ -7,7 +7,7 @@ I've GitHubbed all the things today&mdash;more on that shortly&mdash;and while I
 
 ## GitHubbing
 
-Previously, my blog used WordPress and was hosted on Media Temple. Everything was version controlled with git already, making things relatively straightforward in case something went wrong, but it was still a pain. Hosting and updating my blog was tedious, having to install WordPress and it's plugins, pushing code, FTPing in case something broke, and SSHing into my server to pull it down. Not so [simple](/2012-07-11-simpler).
+Previously, my blog used WordPress and was hosted on Media Temple. Everything was version controlled with git already, making things relatively straightforward in case something went wrong, but it was still a pain. Hosting and updating my blog was tedious, having to install WordPress and it's plugins, pushing code, FTPing in case something broke, and SSHing into my server to pull it down. Not so [simple](/2012/07/11/simpler).
 
 **Now it's all GitHub, all the time.** This blog is still written in Markdown, but it's powered by [Jekyll](http://github.com/mojombo/jekyll) and deployed [using GitHub Pages](https://help.github.com/categories/20/articles). It happens in one fell swoop: just push. Super simple.
 

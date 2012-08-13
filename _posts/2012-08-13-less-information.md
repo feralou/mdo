@@ -9,4 +9,4 @@ Last week, I realized I had a problem of information overload: I was following t
 
 As <strike>users</strike> people, we control how much time and energy we put into these things. There's a lot of awesome stuff on the Web, but not everything needs to be followed all the time. More over, things like Twitter help us follow people who share interests with us, meaning only what's important to someone like me will bubble up. Suddenly there is no need to worry about missing something&mdash;**it will come naturally from the folks I want to hear it from**.
 
-So, I say again: the cure for information overload is less information. [Simpler](/2012-07-11-simpler) is better, and better is fewer things at a higher quality. Apply that philosophy to anything and you'll likely be happier.
+So, I say again: the cure for information overload is less information. [Simpler](/2012/07/11/simpler) is better, and better is fewer things at a higher quality. Apply that philosophy to anything and you'll likely be happier.
