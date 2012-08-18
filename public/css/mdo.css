@@ -19,16 +19,10 @@ html, body {
 body {
   padding: 40px 0;
   font-family: "Open Sans", Helvetica, Arial, sans-serif;
-  color: #454441;
-  background-color: #fff;
-}
-body,
-p {
   font-size: 16px;
   line-height: 28px;
-}
-li {
-  line-height: 28px;
+  color: #454441;
+  background-color: #fff;
 }
 
 p {
